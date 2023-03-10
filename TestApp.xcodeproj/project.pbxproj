@@ -15,6 +15,7 @@
 		A3958EC029BB5B350080541E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3958EBF29BB5B350080541E /* Assets.xcassets */; };
 		A3958EC329BB5B350080541E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3958EC129BB5B350080541E /* LaunchScreen.storyboard */; };
 		A3958ECC29BB5C840080541E /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3958ECB29BB5C840080541E /* BaseCoordinator.swift */; };
+		A3958ECE29BB5E550080541E /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3958ECD29BB5E550080541E /* AppCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		A3958EC229BB5B350080541E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A3958EC429BB5B350080541E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A3958ECB29BB5C840080541E /* BaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
+		A3958ECD29BB5E550080541E /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				A3958ECB29BB5C840080541E /* BaseCoordinator.swift */,
+				A3958ECD29BB5E550080541E /* AppCoordinator.swift */,
 			);
 			path = Flows;
 			sourceTree = "<group>";
@@ -152,6 +155,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3958ECE29BB5E550080541E /* AppCoordinator.swift in Sources */,
 				A3958ECC29BB5C840080541E /* BaseCoordinator.swift in Sources */,
 				A3958EB829BB5B300080541E /* ViewController.swift in Sources */,
 				A3958EBE29BB5B300080541E /* TestApp.xcdatamodeld in Sources */,
