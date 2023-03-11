@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A319FBBA29BC669300B868BE /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A319FBB929BC669300B868BE /* AuthorizationViewController.swift */; };
 		A3958EB429BB5B300080541E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3958EB329BB5B300080541E /* AppDelegate.swift */; };
 		A3958EB629BB5B300080541E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3958EB529BB5B300080541E /* SceneDelegate.swift */; };
 		A3958EB829BB5B300080541E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3958EB729BB5B300080541E /* ViewController.swift */; };
@@ -16,9 +17,11 @@
 		A3958EC329BB5B350080541E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3958EC129BB5B350080541E /* LaunchScreen.storyboard */; };
 		A3958ECC29BB5C840080541E /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3958ECB29BB5C840080541E /* BaseCoordinator.swift */; };
 		A3958ECE29BB5E550080541E /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3958ECD29BB5E550080541E /* AppCoordinator.swift */; };
+		A3958ED329BBAAC60080541E /* AuthorizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3958ED229BBAAC60080541E /* AuthorizationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A319FBB929BC669300B868BE /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
 		A3958EB029BB5B300080541E /* TestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3958EB329BB5B300080541E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A3958EB529BB5B300080541E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -30,6 +33,7 @@
 		A3958EC429BB5B350080541E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A3958ECB29BB5C840080541E /* BaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
 		A3958ECD29BB5E550080541E /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		A3958ED229BBAAC60080541E /* AuthorizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +75,8 @@
 				A3958EC129BB5B350080541E /* LaunchScreen.storyboard */,
 				A3958EC429BB5B350080541E /* Info.plist */,
 				A3958EBC29BB5B300080541E /* TestApp.xcdatamodeld */,
+				A3958ED229BBAAC60080541E /* AuthorizationView.swift */,
+				A319FBB929BC669300B868BE /* AuthorizationViewController.swift */,
 			);
 			path = TestApp;
 			sourceTree = "<group>";
@@ -159,7 +165,9 @@
 				A3958ECC29BB5C840080541E /* BaseCoordinator.swift in Sources */,
 				A3958EB829BB5B300080541E /* ViewController.swift in Sources */,
 				A3958EBE29BB5B300080541E /* TestApp.xcdatamodeld in Sources */,
+				A319FBBA29BC669300B868BE /* AuthorizationViewController.swift in Sources */,
 				A3958EB429BB5B300080541E /* AppDelegate.swift in Sources */,
+				A3958ED329BBAAC60080541E /* AuthorizationView.swift in Sources */,
 				A3958EB629BB5B300080541E /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
