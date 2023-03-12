@@ -7,7 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A30D971529BE59EE00AEF4C0 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = A30D971429BE59EE00AEF4C0 /* RxBlocking */; };
+		A30D971729BE59EE00AEF4C0 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = A30D971629BE59EE00AEF4C0 /* RxCocoa */; };
+		A30D971929BE59EE00AEF4C0 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = A30D971829BE59EE00AEF4C0 /* RxRelay */; };
 		A319FBBA29BC669300B868BE /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A319FBB929BC669300B868BE /* AuthorizationViewController.swift */; };
+		A319FBBC29BC992700B868BE /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A319FBBB29BC992700B868BE /* SignInViewController.swift */; };
 		A3958EB429BB5B300080541E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3958EB329BB5B300080541E /* AppDelegate.swift */; };
 		A3958EB629BB5B300080541E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3958EB529BB5B300080541E /* SceneDelegate.swift */; };
 		A3958EB829BB5B300080541E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3958EB729BB5B300080541E /* ViewController.swift */; };
@@ -22,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		A319FBB929BC669300B868BE /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
+		A319FBBB29BC992700B868BE /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		A3958EB029BB5B300080541E /* TestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3958EB329BB5B300080541E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A3958EB529BB5B300080541E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -41,6 +46,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A30D971929BE59EE00AEF4C0 /* RxRelay in Frameworks */,
+				A30D971729BE59EE00AEF4C0 /* RxCocoa in Frameworks */,
+				A30D971529BE59EE00AEF4C0 /* RxBlocking in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +85,7 @@
 				A3958EBC29BB5B300080541E /* TestApp.xcdatamodeld */,
 				A3958ED229BBAAC60080541E /* AuthorizationView.swift */,
 				A319FBB929BC669300B868BE /* AuthorizationViewController.swift */,
+				A319FBBB29BC992700B868BE /* SignInViewController.swift */,
 			);
 			path = TestApp;
 			sourceTree = "<group>";
@@ -106,6 +115,11 @@
 			dependencies = (
 			);
 			name = TestApp;
+			packageProductDependencies = (
+				A30D971429BE59EE00AEF4C0 /* RxBlocking */,
+				A30D971629BE59EE00AEF4C0 /* RxCocoa */,
+				A30D971829BE59EE00AEF4C0 /* RxRelay */,
+			);
 			productName = TestApp;
 			productReference = A3958EB029BB5B300080541E /* TestApp.app */;
 			productType = "com.apple.product-type.application";
@@ -134,6 +148,9 @@
 				Base,
 			);
 			mainGroup = A3958EA729BB5B300080541E;
+			packageReferences = (
+				A30D971329BE59EE00AEF4C0 /* XCRemoteSwiftPackageReference "RxSwift" */,
+			);
 			productRefGroup = A3958EB129BB5B300080541E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -166,6 +183,7 @@
 				A3958EB829BB5B300080541E /* ViewController.swift in Sources */,
 				A3958EBE29BB5B300080541E /* TestApp.xcdatamodeld in Sources */,
 				A319FBBA29BC669300B868BE /* AuthorizationViewController.swift in Sources */,
+				A319FBBC29BC992700B868BE /* SignInViewController.swift in Sources */,
 				A3958EB429BB5B300080541E /* AppDelegate.swift in Sources */,
 				A3958ED329BBAAC60080541E /* AuthorizationView.swift in Sources */,
 				A3958EB629BB5B300080541E /* SceneDelegate.swift in Sources */,
@@ -384,6 +402,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A30D971329BE59EE00AEF4C0 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A30D971429BE59EE00AEF4C0 /* RxBlocking */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A30D971329BE59EE00AEF4C0 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxBlocking;
+		};
+		A30D971629BE59EE00AEF4C0 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A30D971329BE59EE00AEF4C0 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		A30D971829BE59EE00AEF4C0 /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A30D971329BE59EE00AEF4C0 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		A3958EBC29BB5B300080541E /* TestApp.xcdatamodeld */ = {
