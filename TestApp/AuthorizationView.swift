@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 
 extension UIFont {
     static func specialFont(size: CGFloat) -> UIFont {
@@ -52,8 +53,8 @@ final class LoginAndSignInButton: UIControl {
 }
 
 final class DataView: UIView {
-    private let textField = UITextField()
-    private let securityButton: UIButton?
+    let textField = UITextField()
+    let securityButton: UIButton?
     private let width: Width
     private var isSecuryText: Bool
     private var placeholder: String
@@ -180,5 +181,47 @@ final class SignInWithView: UIControl {
                 text = "Sign in with Google"
             }
         }
+    }
+}
+
+final class AccountIsNotRegisteredView: UIView {
+    let signInButton = UIButton()
+    private let label = UILabel()
+    
+    init() {
+        super.init(frame: .zero)
+        configureView()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func configureView() {
+        label.text = "The account was not found"
+        label.font = UIFont.specialFont(size: 14)
+        label.textColor = .red
+        label.numberOfLines = 1
+        
+        signInButton.setTitle("Sign in", for: .normal)
+        signInButton.setTitleColor(.black, for: .normal)
+        
+        self.addSubview(label)
+        self.addSubview(signInButton)
+        
+        label.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate(
+            [label.widthAnchor.constraint(equalToConstant: 230),
+             label.topAnchor.constraint(equalTo: self.topAnchor),
+             label.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+             label.leftAnchor.constraint(equalTo: self.leftAnchor)])
+        
+        signInButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate(
+            [signInButton.widthAnchor.constraint(equalToConstant: 30),
+             signInButton.leftAnchor.constraint(equalTo: label.rightAnchor, constant: 3),
+             signInButton.topAnchor.constraint(equalTo: self.topAnchor),
+             signInButton.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+             signInButton.rightAnchor.constraint(equalTo: self.rightAnchor)])
     }
 }

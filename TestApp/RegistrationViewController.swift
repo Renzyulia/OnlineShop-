@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
-class SignInViewController: ViewController {
+class RegistrationViewController: ViewController {
+    
     private let signInLabel = UILabel()
     private let firstNameTextField = DataView(isSecureText: false, placeholder: "First name", securityButton: nil, width: .fullWidth)
     private let lastNameTextField = DataView(isSecureText: false, placeholder: "Last name", securityButton: nil, width: .fullWidth)
@@ -17,6 +20,21 @@ class SignInViewController: ViewController {
     private let logInButton = UIButton()
     private let signInWithGoogleButton = SignInWithView(company: .init(company: .google))
     private let signInWithAppleButton = SignInWithView(company: .init(company: .apple))
+    private let registrationViewModel: RegistrationViewModel
+    private let disposeBag = DisposeBag()
+    private lazy var invalidEmailLabel = UILabel()
+    private lazy var duplicateAccountLabel = UILabel()
+    var didFinishRegistrationBlock: (() -> Void)?
+    
+    init(registrationViewModel: RegistrationViewModel, didFinishRegistrationBlock: (() -> Void)?) {
+        self.registrationViewModel = registrationViewModel
+        self.didFinishRegistrationBlock = didFinishRegistrationBlock
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +48,44 @@ class SignInViewController: ViewController {
         configureLogInButton()
         configureSignInGoogleButton()
         configureSignInAppleButton()
+        configureInvalidEmailLabel()
+        configureDuplicateAccountLabel()
+        
+        let firstName = firstNameTextField.textField.rx.text
+            .asObservable()
+            .map({ (string: String?) -> String in return string ?? "" })
+        
+        let lastName = lastNameTextField.textField.rx.text
+            .asObservable()
+            .map({ (string: String?) -> String in return string ?? "" })
+        
+        let email = emailTextField.textField.rx.text
+            .asObservable()
+            .map({ (string: String?) -> String in return string ?? "" })
+        
+        let input = RegistrationViewModelInput(
+            signInClick: signInButton.rx.controlEvent(.touchUpInside).asObservable(),
+            firstName: firstName,
+            lastName: lastName,
+            email: email
+        )
+        
+        let output = registrationViewModel.bind(input)
+        
+        output.shouldShowInvalidEmailError.drive(onNext: { [weak self] in
+            self?.invalidEmailLabel.isHidden = false
+        })
+        .disposed(by: disposeBag)
+        
+        output.shouldShowExisitingLoginError.drive(onNext: { [weak self] (shouldShowError: Bool) in
+            self?.duplicateAccountLabel.isHidden = (shouldShowError == false)
+        })
+        .disposed(by: disposeBag)
+        
+        output.registrationIsCompleted.drive(onNext: { [weak self] in
+            self?.didFinishRegistrationBlock?()
+        })
+        .disposed(by: disposeBag)
     }
     
     private func configureSignInLabel() {
@@ -64,20 +120,13 @@ class SignInViewController: ViewController {
         NSLayoutConstraint.activate(
             [emailTextField.topAnchor.constraint(equalTo: lastNameTextField.topAnchor, constant: 35),
              emailTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 44)])
-        
     }
     
     private func configureSignInButton() {
-        signInButton.addTarget(self, action: #selector(signIn), for: .touchUpInside)
-        
         signInButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
             [signInButton.topAnchor.constraint(equalTo: emailTextField.topAnchor, constant: 35),
              signInButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 43)])
-    }
-    
-    @objc private func signIn() {
-        //сделать вход в аккаунт или если неверно введен email, то выдать ошибку
     }
     
     private func configureHaveAccountLabel() {
@@ -107,7 +156,7 @@ class SignInViewController: ViewController {
     }
     
     @objc private func logIn() {
-        //сделать переход на экран авторизации
+        didFinishRegistrationBlock!()
     }
     
     private func configureSignInGoogleButton() {
@@ -122,5 +171,29 @@ class SignInViewController: ViewController {
         NSLayoutConstraint.activate(
             [signInWithAppleButton.topAnchor.constraint(equalTo: signInWithGoogleButton.bottomAnchor, constant: 38),
              signInWithAppleButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 99)])
+    }
+    
+    private func configureInvalidEmailLabel() {
+        invalidEmailLabel.text = "Invalid e-mail form"
+        invalidEmailLabel.font = UIFont.specialFont(size: 9)
+        invalidEmailLabel.textColor = .red
+        invalidEmailLabel.numberOfLines = 1
+        
+        invalidEmailLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate(
+            [invalidEmailLabel.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 9),
+             invalidEmailLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 44)])
+    }
+    
+    private func configureDuplicateAccountLabel() {
+        duplicateAccountLabel.text = "The account already exists. Log in."
+        duplicateAccountLabel.font = UIFont.specialFont(size: 9)
+        duplicateAccountLabel.textColor = .red
+        duplicateAccountLabel.numberOfLines = 1
+        
+        duplicateAccountLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate(
+            [duplicateAccountLabel.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 12),
+             duplicateAccountLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 44)])
     }
 }

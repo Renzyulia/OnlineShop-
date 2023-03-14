@@ -6,11 +6,29 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
-class AuthorizationViewController: ViewController {
+final class AuthorizationViewController: ViewController {
     private let welcomeLabel = UILabel()
     private let nameTextField = DataView(isSecureText: false, placeholder: "First name", securityButton: nil, width: .fullWidth)
     private let passwordTextField = DataView(isSecureText: true, placeholder: "Password", securityButton: UIButton(), width: .shortWidth)
+    private let loginButton = LoginAndSignInButton(title: "Login")
+    private let accountIsNotRegisteredView = AccountIsNotRegisteredView()
+    private let authorizationViewModel: AuthorizationViewModel
+    private let disposeBag = DisposeBag()
+    
+    var didFinishAuthorizationBlock: (() -> Void)?
+    
+    init(authorizationViewModel: AuthorizationViewModel, didFinishAuthorizationBlock: (() -> Void)?) {
+        self.authorizationViewModel = authorizationViewModel
+        self.didFinishAuthorizationBlock = didFinishAuthorizationBlock
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +37,31 @@ class AuthorizationViewController: ViewController {
         congfigureNameTF()
         configurePasswordTF()
         configureButton()
+        
+        let name = nameTextField.textField.rx.text
+            .asObservable()
+            .map({ (string: String?) -> String in return string ?? "" })
+        
+        let password = passwordTextField.textField.rx.text
+            .asObservable()
+            .map({ (string: String?) -> String in return string ?? "" })
+        
+        let input = AuthorizationViewModelInput(
+            loginClick: loginButton.rx.controlEvent(.touchUpInside).asObservable(),
+            firstName: name,
+            password: password)
+        
+        let output = authorizationViewModel.bind(input)
+        
+        output.logInCompleted.drive(onNext: { [weak self] in
+            self?.didFinishAuthorizationBlock?()
+        })
+        .disposed(by: disposeBag)
+        
+        output.shouldShowAccountIsNotRegistered.drive(onNext: { [weak self] (shouldShowError: Bool) in
+            self?.accountIsNotRegisteredView.isHidden = (shouldShowError == false)
+        })
+        .disposed(by: disposeBag)
     }
     
     private func configureLabel() {
@@ -48,17 +91,22 @@ class AuthorizationViewController: ViewController {
     }
     
     private func configureButton() {
-        let loginButton = LoginAndSignInButton(title: "Login")
-        loginButton.addTarget(self, action: #selector(login), for: .touchUpInside)
-        
         loginButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
             [loginButton.topAnchor.constraint(equalTo: passwordTextField.topAnchor, constant: 99),
              loginButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 43)])
     }
     
-    @objc private func login() {
-        //войти в аккаунт если данные такие есть, если нет, то написать, что такой аккаунт еще не зарегистрирован
+    private func configureAccountIsNotRegisteredView() {
+        accountIsNotRegisteredView.signInButton.addTarget(self, action: #selector(signIn), for: .touchUpInside)
+        
+        accountIsNotRegisteredView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate(
+            [accountIsNotRegisteredView.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 15),
+             accountIsNotRegisteredView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 43)])
+    }
+    
+    @objc private func signIn() {
+        didFinishAuthorizationBlock!()
     }
 }
-
