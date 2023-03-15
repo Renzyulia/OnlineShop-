@@ -6,8 +6,6 @@
 //
 
 import UIKit
-import RxSwift
-import RxCocoa
 
 class AppCoordinator: BaseCoordinator {
     let window: UIWindow
@@ -19,6 +17,14 @@ class AppCoordinator: BaseCoordinator {
     override func start() {
         let viewController = UIViewController()
         window.rootViewController = viewController
+        
+        if LoginStorage.shared.getLogin() != nil {
+            //запускаем окно аккаунта
+        } else {
+            let registrationCoordinator = RegistrationCoordinator(rootViewController: viewController)
+            addChildCoordinator(registrationCoordinator)
+            registrationCoordinator.start()
+        }
     }
 }
 

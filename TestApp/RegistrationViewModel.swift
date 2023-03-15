@@ -23,6 +23,7 @@ struct RegistrationViewModelOutput {
 }
 
 final class RegistrationViewModel {
+    
     private struct FullName {
         var firstName: String
         var lastName: String

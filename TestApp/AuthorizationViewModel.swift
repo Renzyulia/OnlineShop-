@@ -21,6 +21,7 @@ struct AuthorizationViewModelOutput {
 }
 
 final class AuthorizationViewModel {
+    
     private struct AuthorizationData {
         var firstName: String
         var password: String

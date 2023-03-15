@@ -16,9 +16,11 @@ class AuthorizationCoordinator: BaseCoordinator {
     
     override func start() {
         let authorizationViewModel = AuthorizationViewModel()
+        
         let authorizationViewController = AuthorizationViewController(
             authorizationViewModel: authorizationViewModel,
-            didFinishAuthorizationBlock: nil)
+            didFinishAuthorizationBlock: nil
+        )
         
         authorizationViewController.didFinishAuthorizationBlock = { [weak self] in
             self?.closeAuthorizationViewController(authorizationViewController)

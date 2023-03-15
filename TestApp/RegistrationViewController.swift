@@ -20,10 +20,11 @@ class RegistrationViewController: ViewController {
     private let logInButton = UIButton()
     private let signInWithGoogleButton = SignInWithView(company: .init(company: .google))
     private let signInWithAppleButton = SignInWithView(company: .init(company: .apple))
-    private let registrationViewModel: RegistrationViewModel
-    private let disposeBag = DisposeBag()
     private lazy var invalidEmailLabel = UILabel()
     private lazy var duplicateAccountLabel = UILabel()
+    private let registrationViewModel: RegistrationViewModel
+    private let disposeBag = DisposeBag()
+    
     var didFinishRegistrationBlock: (() -> Void)?
     
     init(registrationViewModel: RegistrationViewModel, didFinishRegistrationBlock: (() -> Void)?) {

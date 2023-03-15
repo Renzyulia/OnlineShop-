@@ -13,6 +13,8 @@
 		A319FBBA29BC669300B868BE /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A319FBB929BC669300B868BE /* AuthorizationViewController.swift */; };
 		A319FBBC29BC992700B868BE /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A319FBBB29BC992700B868BE /* RegistrationViewController.swift */; };
 		A32023E129C0729400230214 /* AuthorizationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32023E029C0729400230214 /* AuthorizationCoordinator.swift */; };
+		A32023E329C09C0200230214 /* KeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32023E229C09C0200230214 /* KeyChain.swift */; };
+		A32023E529C1DEC000230214 /* LoginStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32023E429C1DEC000230214 /* LoginStorage.swift */; };
 		A33C591429BF244D009A74F9 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33C591329BF244D009A74F9 /* RegistrationViewModel.swift */; };
 		A33C591629BF2614009A74F9 /* AuthorizationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33C591529BF2614009A74F9 /* AuthorizationViewModel.swift */; };
 		A33C591829BF7BF7009A74F9 /* RegistrationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33C591729BF7BF7009A74F9 /* RegistrationCoordinator.swift */; };
@@ -32,6 +34,8 @@
 		A319FBB929BC669300B868BE /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
 		A319FBBB29BC992700B868BE /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		A32023E029C0729400230214 /* AuthorizationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationCoordinator.swift; sourceTree = "<group>"; };
+		A32023E229C09C0200230214 /* KeyChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChain.swift; sourceTree = "<group>"; };
+		A32023E429C1DEC000230214 /* LoginStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStorage.swift; sourceTree = "<group>"; };
 		A33C591329BF244D009A74F9 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		A33C591529BF2614009A74F9 /* AuthorizationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewModel.swift; sourceTree = "<group>"; };
 		A33C591729BF7BF7009A74F9 /* RegistrationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCoordinator.swift; sourceTree = "<group>"; };
@@ -96,6 +100,8 @@
 				A319FBBB29BC992700B868BE /* RegistrationViewController.swift */,
 				A33C591329BF244D009A74F9 /* RegistrationViewModel.swift */,
 				A33C591529BF2614009A74F9 /* AuthorizationViewModel.swift */,
+				A32023E229C09C0200230214 /* KeyChain.swift */,
+				A32023E429C1DEC000230214 /* LoginStorage.swift */,
 			);
 			path = TestApp;
 			sourceTree = "<group>";
@@ -196,11 +202,13 @@
 				A3958EBE29BB5B300080541E /* TestApp.xcdatamodeld in Sources */,
 				A33C591429BF244D009A74F9 /* RegistrationViewModel.swift in Sources */,
 				A319FBBA29BC669300B868BE /* AuthorizationViewController.swift in Sources */,
+				A32023E529C1DEC000230214 /* LoginStorage.swift in Sources */,
 				A319FBBC29BC992700B868BE /* RegistrationViewController.swift in Sources */,
 				A32023E129C0729400230214 /* AuthorizationCoordinator.swift in Sources */,
 				A3958EB429BB5B300080541E /* AppDelegate.swift in Sources */,
 				A3958ED329BBAAC60080541E /* AuthorizationView.swift in Sources */,
 				A3958EB629BB5B300080541E /* SceneDelegate.swift in Sources */,
+				A32023E329C09C0200230214 /* KeyChain.swift in Sources */,
 				A33C591829BF7BF7009A74F9 /* RegistrationCoordinator.swift in Sources */,
 				A33C591629BF2614009A74F9 /* AuthorizationViewModel.swift in Sources */,
 			);

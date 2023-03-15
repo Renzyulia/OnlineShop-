@@ -16,6 +16,7 @@ final class RegistrationCoordinator: BaseCoordinator {
     
     override func start() {
         let registrationViewModel = RegistrationViewModel()
+        
         let registrationViewController = RegistrationViewController(
             registrationViewModel: registrationViewModel,
             didFinishRegistrationBlock: nil
