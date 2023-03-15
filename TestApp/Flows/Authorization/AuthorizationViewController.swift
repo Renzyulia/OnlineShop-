@@ -14,7 +14,7 @@ final class AuthorizationViewController: ViewController {
     private let nameTextField = DataView(isSecureText: false, placeholder: "First name", securityButton: nil, width: .fullWidth)
     private let passwordTextField = DataView(isSecureText: true, placeholder: "Password", securityButton: UIButton(), width: .shortWidth)
     private let loginButton = LoginAndSignInButton(title: "Login")
-    private let accountIsNotRegisteredView = AccountIsNotRegisteredView()
+    private let accountIsNotRegisteredLabel = UILabel()
     private let authorizationViewModel: AuthorizationViewModel
     private let disposeBag = DisposeBag()
     
@@ -37,6 +37,7 @@ final class AuthorizationViewController: ViewController {
         congfigureNameTF()
         configurePasswordTF()
         configureButton()
+        configureAccountIsNotRegisteredLabel()
         
         let name = nameTextField.textField.rx.text
             .asObservable()
@@ -59,7 +60,7 @@ final class AuthorizationViewController: ViewController {
         .disposed(by: disposeBag)
         
         output.shouldShowAccountIsNotRegistered.drive(onNext: { [weak self] (shouldShowError: Bool) in
-            self?.accountIsNotRegisteredView.isHidden = (shouldShowError == false)
+            self?.accountIsNotRegisteredLabel.isHidden = (shouldShowError == false)
         })
         .disposed(by: disposeBag)
     }
@@ -97,16 +98,15 @@ final class AuthorizationViewController: ViewController {
              loginButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 43)])
     }
     
-    private func configureAccountIsNotRegisteredView() {
-        accountIsNotRegisteredView.signInButton.addTarget(self, action: #selector(signIn), for: .touchUpInside)
+    private func configureAccountIsNotRegisteredLabel() {
+        accountIsNotRegisteredLabel.text = "The account was not found"
+        accountIsNotRegisteredLabel.font = UIFont.specialFont(size: 14)
+        accountIsNotRegisteredLabel.textColor = .red
+        accountIsNotRegisteredLabel.numberOfLines = 1
         
-        accountIsNotRegisteredView.translatesAutoresizingMaskIntoConstraints = false
+        accountIsNotRegisteredLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
-            [accountIsNotRegisteredView.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 15),
-             accountIsNotRegisteredView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 43)])
-    }
-    
-    @objc private func signIn() {
-        didFinishAuthorizationBlock!()
+            [accountIsNotRegisteredLabel.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 15),
+             accountIsNotRegisteredLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 43)])
     }
 }

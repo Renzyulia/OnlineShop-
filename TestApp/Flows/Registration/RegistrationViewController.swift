@@ -74,7 +74,7 @@ class RegistrationViewController: ViewController {
         let output = registrationViewModel.bind(input)
         
         output.shouldShowInvalidEmailError.drive(onNext: { [weak self] in
-            self?.invalidEmailLabel.isHidden = false
+            self?.invalidEmailLabel.isHidden = true
         })
         .disposed(by: disposeBag)
         
@@ -85,6 +85,11 @@ class RegistrationViewController: ViewController {
         
         output.registrationIsCompleted.drive(onNext: { [weak self] in
             self?.didFinishRegistrationBlock?()
+        })
+        .disposed(by: disposeBag)
+        
+        output.shouldShowSavingError.drive(onNext: { [weak self] in
+            self?.configureSavingErrorAlert()
         })
         .disposed(by: disposeBag)
     }
@@ -196,5 +201,11 @@ class RegistrationViewController: ViewController {
         NSLayoutConstraint.activate(
             [duplicateAccountLabel.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 12),
              duplicateAccountLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 44)])
+    }
+    
+    private func configureSavingErrorAlert() {
+        let alert = UIAlertController(title: nil, message: "Error saving account", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        self.present(alert, animated: true)
     }
 }

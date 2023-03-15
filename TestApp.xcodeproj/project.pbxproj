@@ -15,6 +15,13 @@
 		A32023E129C0729400230214 /* AuthorizationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32023E029C0729400230214 /* AuthorizationCoordinator.swift */; };
 		A32023E329C09C0200230214 /* KeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32023E229C09C0200230214 /* KeyChain.swift */; };
 		A32023E529C1DEC000230214 /* LoginStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32023E429C1DEC000230214 /* LoginStorage.swift */; };
+		A32023EA29C1E80E00230214 /* LogInAndSignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32023E929C1E80E00230214 /* LogInAndSignInButton.swift */; };
+		A32023EC29C1E84800230214 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32023EB29C1E84800230214 /* Font.swift */; };
+		A32023EE29C1E87300230214 /* DataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32023ED29C1E87300230214 /* DataView.swift */; };
+		A32023F329C1EC9D00230214 /* ModelCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A32023F129C1EC9D00230214 /* ModelCoreData.xcdatamodeld */; };
+		A32023F629C1EEF300230214 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32023F429C1EEF300230214 /* User+CoreDataClass.swift */; };
+		A32023F729C1EEF300230214 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32023F529C1EEF300230214 /* User+CoreDataProperties.swift */; };
+		A32023F929C1EFD400230214 /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32023F829C1EFD400230214 /* CoreData.swift */; };
 		A33C591429BF244D009A74F9 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33C591329BF244D009A74F9 /* RegistrationViewModel.swift */; };
 		A33C591629BF2614009A74F9 /* AuthorizationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33C591529BF2614009A74F9 /* AuthorizationViewModel.swift */; };
 		A33C591829BF7BF7009A74F9 /* RegistrationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33C591729BF7BF7009A74F9 /* RegistrationCoordinator.swift */; };
@@ -27,7 +34,7 @@
 		A3958EC329BB5B350080541E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3958EC129BB5B350080541E /* LaunchScreen.storyboard */; };
 		A3958ECC29BB5C840080541E /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3958ECB29BB5C840080541E /* BaseCoordinator.swift */; };
 		A3958ECE29BB5E550080541E /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3958ECD29BB5E550080541E /* AppCoordinator.swift */; };
-		A3958ED329BBAAC60080541E /* AuthorizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3958ED229BBAAC60080541E /* AuthorizationView.swift */; };
+		A3958ED329BBAAC60080541E /* SignInWithView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3958ED229BBAAC60080541E /* SignInWithView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +43,13 @@
 		A32023E029C0729400230214 /* AuthorizationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationCoordinator.swift; sourceTree = "<group>"; };
 		A32023E229C09C0200230214 /* KeyChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChain.swift; sourceTree = "<group>"; };
 		A32023E429C1DEC000230214 /* LoginStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStorage.swift; sourceTree = "<group>"; };
+		A32023E929C1E80E00230214 /* LogInAndSignInButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInAndSignInButton.swift; sourceTree = "<group>"; };
+		A32023EB29C1E84800230214 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
+		A32023ED29C1E87300230214 /* DataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataView.swift; sourceTree = "<group>"; };
+		A32023F229C1EC9D00230214 /* ModelCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ModelCoreData.xcdatamodel; sourceTree = "<group>"; };
+		A32023F429C1EEF300230214 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
+		A32023F529C1EEF300230214 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		A32023F829C1EFD400230214 /* CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
 		A33C591329BF244D009A74F9 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		A33C591529BF2614009A74F9 /* AuthorizationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewModel.swift; sourceTree = "<group>"; };
 		A33C591729BF7BF7009A74F9 /* RegistrationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCoordinator.swift; sourceTree = "<group>"; };
@@ -50,7 +64,7 @@
 		A3958EC429BB5B350080541E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A3958ECB29BB5C840080541E /* BaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
 		A3958ECD29BB5E550080541E /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
-		A3958ED229BBAAC60080541E /* AuthorizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationView.swift; sourceTree = "<group>"; };
+		A3958ED229BBAAC60080541E /* SignInWithView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +81,57 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A32023E629C1E6F200230214 /* Authorization */ = {
+			isa = PBXGroup;
+			children = (
+				A32023E029C0729400230214 /* AuthorizationCoordinator.swift */,
+				A33C591529BF2614009A74F9 /* AuthorizationViewModel.swift */,
+				A319FBB929BC669300B868BE /* AuthorizationViewController.swift */,
+			);
+			path = Authorization;
+			sourceTree = "<group>";
+		};
+		A32023E729C1E73B00230214 /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+				A33C591729BF7BF7009A74F9 /* RegistrationCoordinator.swift */,
+				A33C591329BF244D009A74F9 /* RegistrationViewModel.swift */,
+				A319FBBB29BC992700B868BE /* RegistrationViewController.swift */,
+			);
+			path = Registration;
+			sourceTree = "<group>";
+		};
+		A32023E829C1E7C600230214 /* InterfaceElements */ = {
+			isa = PBXGroup;
+			children = (
+				A32023E929C1E80E00230214 /* LogInAndSignInButton.swift */,
+				A32023EB29C1E84800230214 /* Font.swift */,
+				A32023ED29C1E87300230214 /* DataView.swift */,
+				A3958ED229BBAAC60080541E /* SignInWithView.swift */,
+			);
+			path = InterfaceElements;
+			sourceTree = "<group>";
+		};
+		A32023EF29C1EA7200230214 /* KeyChain */ = {
+			isa = PBXGroup;
+			children = (
+				A32023E429C1DEC000230214 /* LoginStorage.swift */,
+				A32023E229C09C0200230214 /* KeyChain.swift */,
+			);
+			path = KeyChain;
+			sourceTree = "<group>";
+		};
+		A32023F029C1EC7B00230214 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				A32023F129C1EC9D00230214 /* ModelCoreData.xcdatamodeld */,
+				A32023F429C1EEF300230214 /* User+CoreDataClass.swift */,
+				A32023F529C1EEF300230214 /* User+CoreDataProperties.swift */,
+				A32023F829C1EFD400230214 /* CoreData.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		A3958EA729BB5B300080541E = {
 			isa = PBXGroup;
 			children = (
@@ -86,6 +151,9 @@
 		A3958EB229BB5B300080541E /* TestApp */ = {
 			isa = PBXGroup;
 			children = (
+				A32023F029C1EC7B00230214 /* CoreData */,
+				A32023EF29C1EA7200230214 /* KeyChain */,
+				A32023E829C1E7C600230214 /* InterfaceElements */,
 				A3958ECA29BB5C5F0080541E /* Flows */,
 				A3958EB329BB5B300080541E /* AppDelegate.swift */,
 				A3958EB529BB5B300080541E /* SceneDelegate.swift */,
@@ -95,13 +163,6 @@
 				A3958EC129BB5B350080541E /* LaunchScreen.storyboard */,
 				A3958EC429BB5B350080541E /* Info.plist */,
 				A3958EBC29BB5B300080541E /* TestApp.xcdatamodeld */,
-				A3958ED229BBAAC60080541E /* AuthorizationView.swift */,
-				A319FBB929BC669300B868BE /* AuthorizationViewController.swift */,
-				A319FBBB29BC992700B868BE /* RegistrationViewController.swift */,
-				A33C591329BF244D009A74F9 /* RegistrationViewModel.swift */,
-				A33C591529BF2614009A74F9 /* AuthorizationViewModel.swift */,
-				A32023E229C09C0200230214 /* KeyChain.swift */,
-				A32023E429C1DEC000230214 /* LoginStorage.swift */,
 			);
 			path = TestApp;
 			sourceTree = "<group>";
@@ -111,8 +172,8 @@
 			children = (
 				A3958ECB29BB5C840080541E /* BaseCoordinator.swift */,
 				A3958ECD29BB5E550080541E /* AppCoordinator.swift */,
-				A33C591729BF7BF7009A74F9 /* RegistrationCoordinator.swift */,
-				A32023E029C0729400230214 /* AuthorizationCoordinator.swift */,
+				A32023E729C1E73B00230214 /* Registration */,
+				A32023E629C1E6F200230214 /* Authorization */,
 			);
 			path = Flows;
 			sourceTree = "<group>";
@@ -196,18 +257,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A32023EE29C1E87300230214 /* DataView.swift in Sources */,
 				A3958ECE29BB5E550080541E /* AppCoordinator.swift in Sources */,
 				A3958ECC29BB5C840080541E /* BaseCoordinator.swift in Sources */,
 				A3958EB829BB5B300080541E /* ViewController.swift in Sources */,
+				A32023F929C1EFD400230214 /* CoreData.swift in Sources */,
 				A3958EBE29BB5B300080541E /* TestApp.xcdatamodeld in Sources */,
 				A33C591429BF244D009A74F9 /* RegistrationViewModel.swift in Sources */,
+				A32023EA29C1E80E00230214 /* LogInAndSignInButton.swift in Sources */,
 				A319FBBA29BC669300B868BE /* AuthorizationViewController.swift in Sources */,
 				A32023E529C1DEC000230214 /* LoginStorage.swift in Sources */,
 				A319FBBC29BC992700B868BE /* RegistrationViewController.swift in Sources */,
 				A32023E129C0729400230214 /* AuthorizationCoordinator.swift in Sources */,
+				A32023F329C1EC9D00230214 /* ModelCoreData.xcdatamodeld in Sources */,
 				A3958EB429BB5B300080541E /* AppDelegate.swift in Sources */,
-				A3958ED329BBAAC60080541E /* AuthorizationView.swift in Sources */,
+				A3958ED329BBAAC60080541E /* SignInWithView.swift in Sources */,
+				A32023F629C1EEF300230214 /* User+CoreDataClass.swift in Sources */,
+				A32023EC29C1E84800230214 /* Font.swift in Sources */,
 				A3958EB629BB5B300080541E /* SceneDelegate.swift in Sources */,
+				A32023F729C1EEF300230214 /* User+CoreDataProperties.swift in Sources */,
 				A32023E329C09C0200230214 /* KeyChain.swift in Sources */,
 				A33C591829BF7BF7009A74F9 /* RegistrationCoordinator.swift in Sources */,
 				A33C591629BF2614009A74F9 /* AuthorizationViewModel.swift in Sources */,
@@ -457,6 +525,16 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
+		A32023F129C1EC9D00230214 /* ModelCoreData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A32023F229C1EC9D00230214 /* ModelCoreData.xcdatamodel */,
+			);
+			currentVersion = A32023F229C1EC9D00230214 /* ModelCoreData.xcdatamodel */;
+			path = ModelCoreData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
 		A3958EBC29BB5B300080541E /* TestApp.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (

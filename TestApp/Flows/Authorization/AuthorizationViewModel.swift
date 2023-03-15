@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import CoreData
 
 struct AuthorizationViewModelInput {
     var loginClick: Observable<Void>
@@ -37,7 +38,7 @@ final class AuthorizationViewModel {
             .withLatestFrom(input.firstName)
             .withLatestFrom(input.password, resultSelector: { firstName, password in return AuthorizationData(firstName: firstName, password: password) })
             .map{ data -> AuthorizationResult in
-                if true { //смотрим по базе данных есть ли такой аакаунт
+                if self.accountIsRegistered(login: data.firstName) { //смотрим по базе данных есть ли такой аакаунт
                     return .success
                 } else {
                     return .accountIsNotRegistered
@@ -56,5 +57,29 @@ final class AuthorizationViewModel {
         return AuthorizationViewModelOutput(
             logInCompleted: eventOnSuccessfulAuthorization,
             shouldShowAccountIsNotRegistered: shouldShowExistingLoginError)
+    }
+    
+    private func fetchData(_ context: NSManagedObjectContext) -> [Users] {
+        var usersData = [Users]()
+        do {
+            usersData = try context.fetch(Users.fetchRequest())
+        } catch {
+            print("error")
+        }
+        return usersData
+    }
+    
+    private func accountIsRegistered(login: String) -> Bool {
+        let context = CoreData.shared.viewContext
+        let fetchResult = fetchData(context)
+        
+        var isRegistered = false
+        for user in fetchResult {
+            if login == user.firstName {
+                isRegistered = true
+                break
+            }
+        }
+        return isRegistered
     }
 }
