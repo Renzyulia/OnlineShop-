@@ -21,7 +21,8 @@ class AppCoordinator: BaseCoordinator {
         if LoginStorage.shared.getLogin() != nil {
             //запускаем окно аккаунта
         } else {
-            let registrationCoordinator = RegistrationCoordinator(rootViewController: viewController)
+            let login = "Satria Adhi Pradana"
+            let registrationCoordinator = ProfileCoordinator(rootViewController: viewController, login: login)
             addChildCoordinator(registrationCoordinator)
             registrationCoordinator.start()
         }

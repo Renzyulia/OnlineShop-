@@ -24,23 +24,22 @@ final class SignInWithView: UIControl {
     
     private func configureView() {
         textField.text = company.text
-        textField.font = UIFont.specialFont(size: 11)
+        textField.font = UIFont.specialFont(size: 11, style: .regular)
         icon.image = company.image
         
         textField.translatesAutoresizingMaskIntoConstraints = false
         icon.translatesAutoresizingMaskIntoConstraints = false
         
-        self.addSubview(textField)
         self.addSubview(icon)
-        
-        NSLayoutConstraint.activate(
-            [textField.widthAnchor.constraint(equalToConstant: 112.82)])
+        self.addSubview(textField)
         
         NSLayoutConstraint.activate(
             [icon.widthAnchor.constraint(equalToConstant: 23.83),
-             icon.heightAnchor.constraint(equalToConstant: 24.22),
-             icon.rightAnchor.constraint(equalTo: textField.leftAnchor, constant: 11.66)
-        ])
+             icon.heightAnchor.constraint(equalToConstant: 24.22)])
+        
+        NSLayoutConstraint.activate(
+            [textField.widthAnchor.constraint(equalToConstant: 112.82),
+             textField.leftAnchor.constraint(equalTo: icon.rightAnchor, constant: 11.66)])
     }
     
     enum Company {

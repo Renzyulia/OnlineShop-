@@ -12,7 +12,7 @@ import Security
 final class KeyChain {
     func save(login: String, key: String, service: String) {
         let login = login.data(using: String.Encoding.utf8)!
-        var query = [
+        let query = [
             kSecClass: kSecClassGenericPassword,
             kSecAttrService: service,
             kSecAttrAccount: key,
@@ -32,7 +32,7 @@ final class KeyChain {
             kSecReturnData: true
         ] as! CFDictionary
         var result: AnyObject?
-        let status = SecItemCopyMatching(query, &result)
+        let _ = SecItemCopyMatching(query, &result)
         
         guard let data = result as? Data else {return nil}
         return String(data: data, encoding: String.Encoding.utf8)

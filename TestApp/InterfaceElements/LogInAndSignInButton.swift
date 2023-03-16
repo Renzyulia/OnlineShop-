@@ -15,6 +15,7 @@ final class LoginAndSignInButton: UIControl {
         self.title = title
         super.init(frame: .zero)
         configureButton()
+        configureLabel()
     }
     
     required init?(coder: NSCoder) {
@@ -31,7 +32,7 @@ final class LoginAndSignInButton: UIControl {
     private func configureLabel() {
         label.text = title
         label.textColor = .white
-        label.font = UIFont.specialFont(size: 13)
+        label.font = UIFont.specialFont(size: 13, style: .bold)
         label.numberOfLines = 1
         
         self.addSubview(label)

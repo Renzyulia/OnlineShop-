@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class RegistrationViewController: ViewController {
+class RegistrationViewController: UIViewController {
     
     private let signInLabel = UILabel()
     private let firstNameTextField = DataView(isSecureText: false, placeholder: "First name", securityButton: nil, width: .fullWidth)
@@ -40,10 +40,13 @@ class RegistrationViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = UIColor(named: "BackgroundColor")
+        
         configureSignInLabel()
         configureFirstNameTF()
         configureLastNameTF()
         configureEmailTF()
+        configureInvalidEmailLabel()
         configureSignInButton()
         configureHaveAccountLabel()
         configureLogInButton()
@@ -74,7 +77,7 @@ class RegistrationViewController: ViewController {
         let output = registrationViewModel.bind(input)
         
         output.shouldShowInvalidEmailError.drive(onNext: { [weak self] in
-            self?.invalidEmailLabel.isHidden = true
+            self?.invalidEmailLabel.isHidden = false
         })
         .disposed(by: disposeBag)
         
@@ -96,9 +99,11 @@ class RegistrationViewController: ViewController {
     
     private func configureSignInLabel() {
         signInLabel.text = "Sign in"
-        signInLabel.font = UIFont.specialFont(size: 25)
+        signInLabel.font = UIFont.specialFont(size: 25, style: .bold)
         signInLabel.textAlignment = .center
         signInLabel.textColor = .black
+        
+        view.addSubview(signInLabel)
 
         signInLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
@@ -108,6 +113,8 @@ class RegistrationViewController: ViewController {
     }
     
     private func configureFirstNameTF() {
+        view.addSubview(firstNameTextField)
+        
         firstNameTextField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
             [firstNameTextField.topAnchor.constraint(equalTo: signInLabel.bottomAnchor, constant: 77.77),
@@ -115,50 +122,58 @@ class RegistrationViewController: ViewController {
     }
     
     private func configureLastNameTF() {
+        view.addSubview(lastNameTextField)
+        
         lastNameTextField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
-            [lastNameTextField.topAnchor.constraint(equalTo: firstNameTextField.topAnchor, constant: 35),
+            [lastNameTextField.topAnchor.constraint(equalTo: firstNameTextField.bottomAnchor, constant: 35),
              lastNameTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 44)])
     }
     
     private func configureEmailTF() {
+        view.addSubview(emailTextField)
+        
         emailTextField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
-            [emailTextField.topAnchor.constraint(equalTo: lastNameTextField.topAnchor, constant: 35),
+            [emailTextField.topAnchor.constraint(equalTo: lastNameTextField.bottomAnchor, constant: 35),
              emailTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 44)])
     }
     
     private func configureSignInButton() {
+        view.addSubview(signInButton)
+        
         signInButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
-            [signInButton.topAnchor.constraint(equalTo: emailTextField.topAnchor, constant: 35),
+            [signInButton.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 35),
              signInButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 43)])
     }
     
     private func configureHaveAccountLabel() {
         haveAccountLabel.text = "Already have an account?"
-        haveAccountLabel.font = UIFont.specialFont(size: 9)
+        haveAccountLabel.font = UIFont.specialFont(size: 9, style: .regular)
         haveAccountLabel.textColor = UIColor(named: "HaveAccountLabel")
         haveAccountLabel.numberOfLines = 1
         
         view.addSubview(haveAccountLabel)
+        
+        haveAccountLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
             [haveAccountLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 41.99),
-             haveAccountLabel.topAnchor.constraint(equalTo: signInButton.bottomAnchor, constant: 17.58),
-             haveAccountLabel.rightAnchor.constraint(equalTo: logInButton.leftAnchor, constant: 8.7)]) //нужно ли здесь указывать тоже это расстояние от соседнего объекта, если в у этого соседнего объекта я уже указала этот отступ? И достаточно ли этих трех отступов или нужен еще нижний?
+             haveAccountLabel.topAnchor.constraint(equalTo: signInButton.bottomAnchor, constant: 17.58)])
     }
     
     private func configureLogInButton() {
         logInButton.setTitle("Log in", for: .normal)
         logInButton.setTitleColor(UIColor(named: "LogInButton"), for: .normal)
+        logInButton.titleLabel?.font = UIFont.specialFont(size: 9, style: .bold)
         logInButton.addTarget(self, action: #selector(logIn), for: .touchUpInside)
         
         view.addSubview(logInButton)
+        
+        logInButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
-            [logInButton.topAnchor.constraint(equalTo: signInButton.bottomAnchor, constant: 17.43), //здесь я сделала отступы со всех четырех сторон, верно ли это?
-             logInButton.leftAnchor.constraint(equalTo: haveAccountLabel.rightAnchor, constant: 8.7),
-             logInButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -173.41),
-             logInButton.bottomAnchor.constraint(equalTo: signInWithGoogleButton.topAnchor, constant: -82.92)])
+            [logInButton.topAnchor.constraint(equalTo: signInButton.bottomAnchor, constant: 17.43),
+             logInButton.leftAnchor.constraint(equalTo: haveAccountLabel.rightAnchor, constant: 8.7)])
     }
     
     @objc private func logIn() {
@@ -166,24 +181,31 @@ class RegistrationViewController: ViewController {
     }
     
     private func configureSignInGoogleButton() {
+        view.addSubview(signInWithGoogleButton)
+        
         signInWithGoogleButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
-            [signInWithGoogleButton.topAnchor.constraint(equalTo: signInButton.bottomAnchor, constant: 101),
+            [signInWithGoogleButton.topAnchor.constraint(equalTo: signInButton.bottomAnchor, constant: 109.92),
              signInWithGoogleButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 99)])
     }
     
     private func configureSignInAppleButton() {
+        view.addSubview(signInWithAppleButton)
+        
         signInWithAppleButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
-            [signInWithAppleButton.topAnchor.constraint(equalTo: signInWithGoogleButton.bottomAnchor, constant: 38),
+            [signInWithAppleButton.topAnchor.constraint(equalTo: signInWithGoogleButton.bottomAnchor, constant: 48.73),
              signInWithAppleButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 99)])
     }
     
     private func configureInvalidEmailLabel() {
         invalidEmailLabel.text = "Invalid e-mail form"
-        invalidEmailLabel.font = UIFont.specialFont(size: 9)
+        invalidEmailLabel.font = UIFont.specialFont(size: 9, style: .regular)
         invalidEmailLabel.textColor = .red
         invalidEmailLabel.numberOfLines = 1
+        invalidEmailLabel.isHidden = true
+        
+        view.addSubview(invalidEmailLabel)
         
         invalidEmailLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
@@ -193,9 +215,12 @@ class RegistrationViewController: ViewController {
     
     private func configureDuplicateAccountLabel() {
         duplicateAccountLabel.text = "The account already exists. Log in."
-        duplicateAccountLabel.font = UIFont.specialFont(size: 9)
+        duplicateAccountLabel.font = UIFont.specialFont(size: 9, style: .regular)
         duplicateAccountLabel.textColor = .red
         duplicateAccountLabel.numberOfLines = 1
+        duplicateAccountLabel.isHidden = true
+        
+        view.addSubview(duplicateAccountLabel)
         
         duplicateAccountLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(

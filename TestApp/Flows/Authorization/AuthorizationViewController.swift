@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-final class AuthorizationViewController: ViewController {
+final class AuthorizationViewController: UIViewController {
     private let welcomeLabel = UILabel()
     private let nameTextField = DataView(isSecureText: false, placeholder: "First name", securityButton: nil, width: .fullWidth)
     private let passwordTextField = DataView(isSecureText: true, placeholder: "Password", securityButton: UIButton(), width: .shortWidth)
@@ -32,6 +32,8 @@ final class AuthorizationViewController: ViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = UIColor(named: "BackgroundColor")
         
         configureLabel()
         congfigureNameTF()
@@ -67,9 +69,11 @@ final class AuthorizationViewController: ViewController {
     
     private func configureLabel() {
         welcomeLabel.text = "Welcome back"
-        welcomeLabel.font = UIFont.specialFont(size: 19)
+        welcomeLabel.font = UIFont.specialFont(size: 19, style: .bold)
         welcomeLabel.textAlignment = .center
         welcomeLabel.numberOfLines = 1
+        
+        view.addSubview(welcomeLabel)
         
         welcomeLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
@@ -78,6 +82,8 @@ final class AuthorizationViewController: ViewController {
     }
     
     private func congfigureNameTF() {
+        view.addSubview(nameTextField)
+        
         nameTextField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
             [nameTextField.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 80.82),
@@ -85,6 +91,8 @@ final class AuthorizationViewController: ViewController {
     }
     
     private func configurePasswordTF() {
+        view.addSubview(passwordTextField)
+        
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
             [passwordTextField.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 35),
@@ -92,6 +100,8 @@ final class AuthorizationViewController: ViewController {
     }
     
     private func configureButton() {
+        view.addSubview(loginButton)
+        
         loginButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
             [loginButton.topAnchor.constraint(equalTo: passwordTextField.topAnchor, constant: 99),
@@ -100,9 +110,12 @@ final class AuthorizationViewController: ViewController {
     
     private func configureAccountIsNotRegisteredLabel() {
         accountIsNotRegisteredLabel.text = "The account was not found"
-        accountIsNotRegisteredLabel.font = UIFont.specialFont(size: 14)
+        accountIsNotRegisteredLabel.font = UIFont.specialFont(size: 14, style: .regular)
         accountIsNotRegisteredLabel.textColor = .red
         accountIsNotRegisteredLabel.numberOfLines = 1
+        accountIsNotRegisteredLabel.isHidden = true
+        
+        view.addSubview(accountIsNotRegisteredLabel)
         
         accountIsNotRegisteredLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(

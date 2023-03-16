@@ -21,6 +21,7 @@ class AuthorizationCoordinator: BaseCoordinator {
             authorizationViewModel: authorizationViewModel,
             didFinishAuthorizationBlock: nil
         )
+        authorizationViewController.modalPresentationStyle = .fullScreen
         
         authorizationViewController.didFinishAuthorizationBlock = { [weak self] in
             self?.closeAuthorizationViewController(authorizationViewController)

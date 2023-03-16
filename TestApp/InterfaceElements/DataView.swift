@@ -31,7 +31,7 @@ final class DataView: UIView {
     private func configurePasswordView() {
         textField.placeholder = placeholder
         textField.textAlignment = .center
-        textField.font = UIFont.specialFont(size: 23)
+        textField.font = UIFont.specialFont(size: 23, style: .regular)
         textField.backgroundColor = UIColor(named: "DataTextField")
         textField.layer.cornerRadius = 14.5
         textField.layer.masksToBounds = true
@@ -41,7 +41,7 @@ final class DataView: UIView {
         
         textField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
-            [textField.widthAnchor.constraint(equalToConstant: width.rawValue),
+            [textField.widthAnchor.constraint(equalToConstant: 289),
              textField.topAnchor.constraint(equalTo: self.topAnchor),
              textField.bottomAnchor.constraint(equalTo: self.bottomAnchor),
              textField.leftAnchor.constraint(equalTo: self.leftAnchor)])

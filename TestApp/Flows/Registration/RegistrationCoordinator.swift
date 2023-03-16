@@ -21,6 +21,7 @@ final class RegistrationCoordinator: BaseCoordinator {
             registrationViewModel: registrationViewModel,
             didFinishRegistrationBlock: nil
             )
+        registrationViewController.modalPresentationStyle = .fullScreen
         
         registrationViewController.didFinishRegistrationBlock = { [weak self] in
             self?.closeRegistrationViewController(registrationViewController)
