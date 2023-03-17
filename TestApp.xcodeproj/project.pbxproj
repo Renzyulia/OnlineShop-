@@ -25,6 +25,7 @@
 		A33C591429BF244D009A74F9 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33C591329BF244D009A74F9 /* RegistrationViewModel.swift */; };
 		A33C591629BF2614009A74F9 /* AuthorizationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33C591529BF2614009A74F9 /* AuthorizationViewModel.swift */; };
 		A33C591829BF7BF7009A74F9 /* RegistrationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33C591729BF7BF7009A74F9 /* RegistrationCoordinator.swift */; };
+		A33F492F29C4766B004A9FF1 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33F492E29C4766B004A9FF1 /* ProfileViewModel.swift */; };
 		A369BFA529C36D4A00D980F1 /* UploadItemButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A369BFA429C36D4A00D980F1 /* UploadItemButton.swift */; };
 		A369BFA729C383C300D980F1 /* SectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A369BFA629C383C300D980F1 /* SectionView.swift */; };
 		A369BFA929C39FDF00D980F1 /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A369BFA829C39FDF00D980F1 /* Montserrat-Medium.ttf */; };
@@ -60,6 +61,7 @@
 		A33C591329BF244D009A74F9 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		A33C591529BF2614009A74F9 /* AuthorizationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewModel.swift; sourceTree = "<group>"; };
 		A33C591729BF7BF7009A74F9 /* RegistrationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCoordinator.swift; sourceTree = "<group>"; };
+		A33F492E29C4766B004A9FF1 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		A369BFA429C36D4A00D980F1 /* UploadItemButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadItemButton.swift; sourceTree = "<group>"; };
 		A369BFA629C383C300D980F1 /* SectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionView.swift; sourceTree = "<group>"; };
 		A369BFA829C39FDF00D980F1 /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Medium.ttf"; path = "../../../../Downloads/Montserrat/static/Montserrat-Medium.ttf"; sourceTree = "<group>"; };
@@ -148,6 +150,16 @@
 			path = CoreData;
 			sourceTree = "<group>";
 		};
+		A33F493029C486A4004A9FF1 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				A38E661229C326E400D2D0BC /* ProfileCoordinator.swift */,
+				A33F492E29C4766B004A9FF1 /* ProfileViewModel.swift */,
+				A38E661429C326FD00D2D0BC /* ProfileViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		A369BFA129C3623700D980F1 /* Font */ = {
 			isa = PBXGroup;
 			children = (
@@ -190,8 +202,6 @@
 				A369BFA829C39FDF00D980F1 /* Montserrat-Medium.ttf */,
 				A38E661A29C34CC900D2D0BC /* Montserrat-Bold.ttf */,
 				A3958EBC29BB5B300080541E /* TestApp.xcdatamodeld */,
-				A38E661229C326E400D2D0BC /* ProfileCoordinator.swift */,
-				A38E661429C326FD00D2D0BC /* ProfileViewController.swift */,
 			);
 			path = TestApp;
 			sourceTree = "<group>";
@@ -203,6 +213,7 @@
 				A3958ECD29BB5E550080541E /* AppCoordinator.swift */,
 				A32023E729C1E73B00230214 /* Registration */,
 				A32023E629C1E6F200230214 /* Authorization */,
+				A33F493029C486A4004A9FF1 /* Profile */,
 			);
 			path = Flows;
 			sourceTree = "<group>";
@@ -294,6 +305,7 @@
 				A3958EB829BB5B300080541E /* ViewController.swift in Sources */,
 				A32023F929C1EFD400230214 /* CoreData.swift in Sources */,
 				A3958EBE29BB5B300080541E /* TestApp.xcdatamodeld in Sources */,
+				A33F492F29C4766B004A9FF1 /* ProfileViewModel.swift in Sources */,
 				A38E661529C326FD00D2D0BC /* ProfileViewController.swift in Sources */,
 				A33C591429BF244D009A74F9 /* RegistrationViewModel.swift in Sources */,
 				A32023EA29C1E80E00230214 /* LogInAndSignInButton.swift in Sources */,

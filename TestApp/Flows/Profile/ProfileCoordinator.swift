@@ -19,9 +19,12 @@ final class ProfileCoordinator: BaseCoordinator {
     override func start() {
         super.start()
         
+        let profileViewModel = ProfileViewModel(login: login)
+        
         let profileViewController = ProfileViewController(
             login: login,
-            didFinishProfileBlock: nil)
+            didFinishProfileBlock: nil,
+            viewModel: profileViewModel)
         
         profileViewController.modalPresentationStyle = .fullScreen
         

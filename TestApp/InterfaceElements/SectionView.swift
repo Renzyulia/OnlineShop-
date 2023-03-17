@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class SectonView: UIView {
+final class SectonView: UIControl {
     private let title: String
     private let iconStyle: Icons
     private let sectionStyle: SectionStyle?

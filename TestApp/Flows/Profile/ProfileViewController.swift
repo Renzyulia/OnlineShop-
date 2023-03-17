@@ -6,10 +6,15 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class ProfileViewController: UIViewController {
-    let login: String
     var didFinishProfileBlock: (() -> ())?
+    
+    private let login: String
+    private let profileViewModel: ProfileViewModel
+    private let disposeBag = DisposeBag()
     
     private let scrollView = UIScrollView()
     private let backIcon = UIImageView(image: UIImage(named: "Back"))
@@ -25,9 +30,10 @@ class ProfileViewController: UIViewController {
     private let helpSection = SectonView(title: "Help", iconStyle: .help, sectionStyle: nil)
     private let logOutSection = SectonView(title: "Log out", iconStyle: .logOut, sectionStyle: nil)
     
-    init(login: String, didFinishProfileBlock: (() -> ())?) {
+    init(login: String, didFinishProfileBlock: (() -> ())?, viewModel: ProfileViewModel) {
         self.login = login
         self.didFinishProfileBlock = didFinishProfileBlock
+        self.profileViewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -51,9 +57,19 @@ class ProfileViewController: UIViewController {
         configureRestoreSection()
         configureHelpSection()
         configureLogOutSection()
+        
+        let input = ProfileViewModelInput(
+            logOutClick: logOutSection.rx.controlEvent(.touchUpInside).asObservable())
+        
+        let output = profileViewModel.bind(input)
+        
+        output.logOutCompleted.drive(onNext: { [weak self] in
+            self?.didFinishProfileBlock?()
+        })
+        .disposed(by: disposeBag)
     }
     
-    func configureScrollView() {
+    private func configureScrollView() {
         scrollView.backgroundColor = UIColor(named: "BackgroundColor")
         
         view.addSubview(scrollView)
@@ -66,7 +82,7 @@ class ProfileViewController: UIViewController {
              scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
     }
     
-    func configureBackIcon() {
+    private func configureBackIcon() {
         scrollView.addSubview(backIcon)
         
         backIcon.translatesAutoresizingMaskIntoConstraints = false
@@ -78,7 +94,7 @@ class ProfileViewController: UIViewController {
     ])
     }
     
-    func configureTitleLabel() {
+    private func configureTitleLabel() {
         titleLabel.text = "Profile"
         titleLabel.font = UIFont.specialFont(size: 15, style: .bold)
         titleLabel.numberOfLines = 1
@@ -91,7 +107,7 @@ class ProfileViewController: UIViewController {
              titleLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 166.25)])
     }
     
-    func configurePhotoView() {
+    private func configurePhotoView() {
         scrollView.addSubview(photoView)
         
         photoView.translatesAutoresizingMaskIntoConstraints = false
@@ -100,7 +116,7 @@ class ProfileViewController: UIViewController {
              photoView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 157.5)])
     }
     
-    func configureLoginLabel() {
+    private func configureLoginLabel() {
         loginLabel.text = login
         loginLabel.font = UIFont.specialFont(size: 16, style: .bold)
         
@@ -112,7 +128,7 @@ class ProfileViewController: UIViewController {
              loginLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)])
     }
     
-    func configureUploadItemButton() {
+    private func configureUploadItemButton() {
         scrollView.addSubview(uploadItemButton)
         
         uploadItemButton.translatesAutoresizingMaskIntoConstraints = false
@@ -121,7 +137,7 @@ class ProfileViewController: UIViewController {
              uploadItemButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 43)])
     }
     
-    func configureStoreSection() {
+    private func configureStoreSection() {
         scrollView.addSubview(storeSection)
         
         storeSection.translatesAutoresizingMaskIntoConstraints = false
@@ -130,7 +146,7 @@ class ProfileViewController: UIViewController {
              storeSection.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 32)])
     }
     
-    func configurePaymentSection() {
+    private func configurePaymentSection() {
         scrollView.addSubview(paymentSection)
         
         paymentSection.translatesAutoresizingMaskIntoConstraints = false
@@ -139,7 +155,7 @@ class ProfileViewController: UIViewController {
              paymentSection.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 32)])
     }
     
-    func configureBalanceSection() {
+    private func configureBalanceSection() {
         scrollView.addSubview(balanceSection)
         
         balanceSection.translatesAutoresizingMaskIntoConstraints = false
@@ -148,7 +164,7 @@ class ProfileViewController: UIViewController {
              balanceSection.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 32)])
     }
     
-    func configureTradeHistorySection() {
+    private func configureTradeHistorySection() {
         scrollView.addSubview(tradeHistorySection)
         
         tradeHistorySection.translatesAutoresizingMaskIntoConstraints = false
@@ -157,7 +173,7 @@ class ProfileViewController: UIViewController {
              tradeHistorySection.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 32)])
     }
     
-    func configureRestoreSection() {
+    private func configureRestoreSection() {
         scrollView.addSubview(restoreSection)
         
         restoreSection.translatesAutoresizingMaskIntoConstraints = false
@@ -166,7 +182,7 @@ class ProfileViewController: UIViewController {
              restoreSection.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 32)])
     }
     
-    func configureHelpSection() {
+    private func configureHelpSection() {
         scrollView.addSubview(helpSection)
         
         helpSection.translatesAutoresizingMaskIntoConstraints = false
@@ -175,9 +191,7 @@ class ProfileViewController: UIViewController {
              helpSection.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 32)])
     }
     
-    func configureLogOutSection() {
-        // сделать выход по нажатию
-        
+    private func configureLogOutSection() {
         scrollView.addSubview(logOutSection)
         
         logOutSection.translatesAutoresizingMaskIntoConstraints = false
