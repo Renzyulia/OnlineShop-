@@ -42,16 +42,21 @@ final class SectonView: UIView {
             [icon.widthAnchor.constraint(equalToConstant: 40),
              icon.heightAnchor.constraint(equalToConstant: 40),
              icon.topAnchor.constraint(equalTo: self.topAnchor),
-             icon.leftAnchor.constraint(equalTo: self.leftAnchor)])
+             icon.leftAnchor.constraint(equalTo: self.leftAnchor),
+             icon.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+             icon.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -270)])
         
     }
     
     private func configureTitle() {
         let titleLabel = UILabel()
         titleLabel.text = title
-        titleLabel.font = UIFont.specialFont(size: 12, style: .regular)
+        titleLabel.font = UIFont.specialFont(size: 14, style: .medium)
+        titleLabel.textColor = .black
         
         self.addSubview(titleLabel)
+        
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
             [titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 11),
              titleLabel.leftAnchor.constraint(equalTo: icon.rightAnchor, constant: 8.5)])
@@ -67,9 +72,11 @@ final class SectonView: UIView {
         }
         
         self.addSubview(detailView)
+        
+        detailView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
             [detailView.topAnchor.constraint(equalTo: self.topAnchor, constant: 11),
-             detailView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 45.5)])
+             detailView.rightAnchor.constraint(equalTo: self.rightAnchor)])
     }
     
     enum Icons {

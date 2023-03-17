@@ -40,7 +40,7 @@ final class UploadItemButton: UIControl {
     private func configureLabel() {
         label.text = "Upload Item"
         label.textColor = .white
-        label.font = UIFont.specialFont(size: 15, style: .bold)
+        label.font = UIFont.specialFont(size: 15, style: .medium)
         label.numberOfLines = 1
         
         self.addSubview(label)

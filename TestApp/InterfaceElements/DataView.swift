@@ -31,7 +31,7 @@ final class DataView: UIView {
     private func configurePasswordView() {
         textField.placeholder = placeholder
         textField.textAlignment = .center
-        textField.font = UIFont.specialFont(size: 23, style: .regular)
+        textField.font = UIFont.specialFont(size: 23, style: .medium)
         textField.backgroundColor = UIColor(named: "DataTextField")
         textField.layer.cornerRadius = 14.5
         textField.layer.masksToBounds = true

@@ -150,7 +150,7 @@ class RegistrationViewController: UIViewController {
     
     private func configureHaveAccountLabel() {
         haveAccountLabel.text = "Already have an account?"
-        haveAccountLabel.font = UIFont.specialFont(size: 9, style: .regular)
+        haveAccountLabel.font = UIFont.specialFont(size: 9, style: .medium)
         haveAccountLabel.textColor = UIColor(named: "HaveAccountLabel")
         haveAccountLabel.numberOfLines = 1
         
@@ -200,7 +200,7 @@ class RegistrationViewController: UIViewController {
     
     private func configureInvalidEmailLabel() {
         invalidEmailLabel.text = "Invalid e-mail form"
-        invalidEmailLabel.font = UIFont.specialFont(size: 9, style: .regular)
+        invalidEmailLabel.font = UIFont.specialFont(size: 9, style: .medium)
         invalidEmailLabel.textColor = .red
         invalidEmailLabel.numberOfLines = 1
         invalidEmailLabel.isHidden = true
@@ -215,7 +215,7 @@ class RegistrationViewController: UIViewController {
     
     private func configureDuplicateAccountLabel() {
         duplicateAccountLabel.text = "The account already exists. Log in."
-        duplicateAccountLabel.font = UIFont.specialFont(size: 9, style: .regular)
+        duplicateAccountLabel.font = UIFont.specialFont(size: 9, style: .medium)
         duplicateAccountLabel.textColor = .red
         duplicateAccountLabel.numberOfLines = 1
         duplicateAccountLabel.isHidden = true

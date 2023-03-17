@@ -24,7 +24,7 @@ final class SignInWithView: UIControl {
     
     private func configureView() {
         textField.text = company.text
-        textField.font = UIFont.specialFont(size: 11, style: .regular)
+        textField.font = UIFont.specialFont(size: 11, style: .medium)
         icon.image = company.image
         
         textField.translatesAutoresizingMaskIntoConstraints = false

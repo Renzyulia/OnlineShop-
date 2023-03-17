@@ -110,7 +110,7 @@ final class AuthorizationViewController: UIViewController {
     
     private func configureAccountIsNotRegisteredLabel() {
         accountIsNotRegisteredLabel.text = "The account was not found"
-        accountIsNotRegisteredLabel.font = UIFont.specialFont(size: 14, style: .regular)
+        accountIsNotRegisteredLabel.font = UIFont.specialFont(size: 14, style: .medium)
         accountIsNotRegisteredLabel.textColor = .red
         accountIsNotRegisteredLabel.numberOfLines = 1
         accountIsNotRegisteredLabel.isHidden = true

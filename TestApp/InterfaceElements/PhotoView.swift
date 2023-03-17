@@ -47,7 +47,7 @@ final class PhotoView: UIView {
     func configureButton() {
         button.setTitle("Change photo", for: .normal)
         button.setTitleColor(UIColor(named: "ChangePhoto"), for: .normal)
-        button.titleLabel?.font = UIFont.specialFont(size: 9, style: .regular)
+        button.titleLabel?.font = UIFont.specialFont(size: 9, style: .medium)
         
         self.addSubview(button)
         

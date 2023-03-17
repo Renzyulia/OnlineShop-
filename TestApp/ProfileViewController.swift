@@ -11,6 +11,8 @@ class ProfileViewController: UIViewController {
     let login: String
     var didFinishProfileBlock: (() -> ())?
     
+    private let scrollView = UIScrollView()
+    private let backIcon = UIImageView(image: UIImage(named: "Back"))
     private let titleLabel = UILabel()
     private let photoView = PhotoView(photo: nil)
     private let loginLabel = UILabel()
@@ -37,21 +39,21 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         
         configureScrollView()
+        configureBackIcon()
         configureTitleLabel()
         configurePhotoView()
         configureLoginLabel()
         configureUploadItemButton()
-//        configureStoreSection()
-//        configurePaymentSection()
-//        configureBalanceSection()
-//        configureTradeHistorySection()
-//        configureRestoreSection()
-//        configureHelpSection()
-//        configureLogOutSection()
+        configureStoreSection()
+        configurePaymentSection()
+        configureBalanceSection()
+        configureTradeHistorySection()
+        configureRestoreSection()
+        configureHelpSection()
+        configureLogOutSection()
     }
     
     func configureScrollView() {
-        let scrollView = UIScrollView()
         scrollView.backgroundColor = UIColor(named: "BackgroundColor")
         
         view.addSubview(scrollView)
@@ -64,12 +66,24 @@ class ProfileViewController: UIViewController {
              scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
     }
     
+    func configureBackIcon() {
+        scrollView.addSubview(backIcon)
+        
+        backIcon.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate(
+            [backIcon.widthAnchor.constraint(equalToConstant: 14),
+             backIcon.heightAnchor.constraint(equalToConstant: 14),
+             backIcon.topAnchor.constraint(equalTo: view.topAnchor, constant: 63),
+             backIcon.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20)
+    ])
+    }
+    
     func configureTitleLabel() {
         titleLabel.text = "Profile"
         titleLabel.font = UIFont.specialFont(size: 15, style: .bold)
         titleLabel.numberOfLines = 1
         
-        view.addSubview(titleLabel)
+        scrollView.addSubview(titleLabel)
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
@@ -78,7 +92,7 @@ class ProfileViewController: UIViewController {
     }
     
     func configurePhotoView() {
-        view.addSubview(photoView)
+        scrollView.addSubview(photoView)
         
         photoView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
@@ -90,7 +104,7 @@ class ProfileViewController: UIViewController {
         loginLabel.text = login
         loginLabel.font = UIFont.specialFont(size: 16, style: .bold)
         
-        view.addSubview(loginLabel)
+        scrollView.addSubview(loginLabel)
         
         loginLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
@@ -99,7 +113,7 @@ class ProfileViewController: UIViewController {
     }
     
     func configureUploadItemButton() {
-        view.addSubview(uploadItemButton)
+        scrollView.addSubview(uploadItemButton)
         
         uploadItemButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
@@ -108,7 +122,7 @@ class ProfileViewController: UIViewController {
     }
     
     func configureStoreSection() {
-        view.addSubview(storeSection)
+        scrollView.addSubview(storeSection)
         
         storeSection.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
@@ -117,7 +131,7 @@ class ProfileViewController: UIViewController {
     }
     
     func configurePaymentSection() {
-        view.addSubview(paymentSection)
+        scrollView.addSubview(paymentSection)
         
         paymentSection.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
@@ -126,7 +140,7 @@ class ProfileViewController: UIViewController {
     }
     
     func configureBalanceSection() {
-        view.addSubview(balanceSection)
+        scrollView.addSubview(balanceSection)
         
         balanceSection.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
@@ -135,7 +149,7 @@ class ProfileViewController: UIViewController {
     }
     
     func configureTradeHistorySection() {
-        view.addSubview(tradeHistorySection)
+        scrollView.addSubview(tradeHistorySection)
         
         tradeHistorySection.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
@@ -144,7 +158,7 @@ class ProfileViewController: UIViewController {
     }
     
     func configureRestoreSection() {
-        view.addSubview(restoreSection)
+        scrollView.addSubview(restoreSection)
         
         restoreSection.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
@@ -153,7 +167,7 @@ class ProfileViewController: UIViewController {
     }
     
     func configureHelpSection() {
-        view.addSubview(helpSection)
+        scrollView.addSubview(helpSection)
         
         helpSection.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
@@ -164,7 +178,7 @@ class ProfileViewController: UIViewController {
     func configureLogOutSection() {
         // сделать выход по нажатию
         
-        view.addSubview(logOutSection)
+        scrollView.addSubview(logOutSection)
         
         logOutSection.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
