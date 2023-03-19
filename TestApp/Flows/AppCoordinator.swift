@@ -22,7 +22,7 @@ class AppCoordinator: BaseCoordinator {
             //запускаем окно аккаунта
         } else {
             let login = "Satria Adhi Pradana"
-            let registrationCoordinator = ProfileCoordinator(rootViewController: viewController, login: login)
+            let registrationCoordinator = TabBarCoordinator(rootViewController: viewController, login: login)
             addChildCoordinator(registrationCoordinator)
             registrationCoordinator.start()
         }

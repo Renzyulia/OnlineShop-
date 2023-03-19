@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class DataView: UIView {
+final class DataTextField: UIView {
     let textField = UITextField()
     let securityButton: UIButton?
     private let width: Width

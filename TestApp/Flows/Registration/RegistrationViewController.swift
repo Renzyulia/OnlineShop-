@@ -12,9 +12,9 @@ import RxCocoa
 class RegistrationViewController: UIViewController {
     
     private let signInLabel = UILabel()
-    private let firstNameTextField = DataView(isSecureText: false, placeholder: "First name", securityButton: nil, width: .fullWidth)
-    private let lastNameTextField = DataView(isSecureText: false, placeholder: "Last name", securityButton: nil, width: .fullWidth)
-    private let emailTextField = DataView(isSecureText: false, placeholder: "Email", securityButton: nil, width: .fullWidth)
+    private let firstNameTextField = DataTextField(isSecureText: false, placeholder: "First name", securityButton: nil, width: .fullWidth)
+    private let lastNameTextField = DataTextField(isSecureText: false, placeholder: "Last name", securityButton: nil, width: .fullWidth)
+    private let emailTextField = DataTextField(isSecureText: false, placeholder: "Email", securityButton: nil, width: .fullWidth)
     private let signInButton = LoginAndSignInButton(title: "Sign in")
     private let haveAccountLabel = UILabel()
     private let logInButton = UIButton()

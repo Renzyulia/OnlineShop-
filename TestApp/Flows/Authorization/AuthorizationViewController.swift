@@ -11,8 +11,8 @@ import RxCocoa
 
 final class AuthorizationViewController: UIViewController {
     private let welcomeLabel = UILabel()
-    private let nameTextField = DataView(isSecureText: false, placeholder: "First name", securityButton: nil, width: .fullWidth)
-    private let passwordTextField = DataView(isSecureText: true, placeholder: "Password", securityButton: UIButton(), width: .shortWidth)
+    private let nameTextField = DataTextField(isSecureText: false, placeholder: "First name", securityButton: nil, width: .fullWidth)
+    private let passwordTextField = DataTextField(isSecureText: true, placeholder: "Password", securityButton: UIButton(), width: .shortWidth)
     private let loginButton = LoginAndSignInButton(title: "Login")
     private let accountIsNotRegisteredLabel = UILabel()
     private let authorizationViewModel: AuthorizationViewModel

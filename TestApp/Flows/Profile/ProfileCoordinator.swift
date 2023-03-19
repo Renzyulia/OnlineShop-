@@ -8,11 +8,11 @@
 import UIKit
 
 final class ProfileCoordinator: BaseCoordinator {
-    let rootViewController: UIViewController
+    let containerViewController: UIViewController
     let login: String
     
-    init(rootViewController: UIViewController, login: String) {
-        self.rootViewController = rootViewController
+    init(containerViewController: UIViewController, login: String) {
+        self.containerViewController = containerViewController
         self.login = login
     }
     
@@ -32,7 +32,7 @@ final class ProfileCoordinator: BaseCoordinator {
             self?.closeProfileViewController(profileViewController)
         }
         
-        rootViewController.present(profileViewController, animated: true)
+        containerViewController.embed(profileViewController)
     }
     
     func closeProfileViewController(_ viewController: ProfileViewController) {

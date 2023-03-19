@@ -10,10 +10,10 @@ import RxSwift
 import RxCocoa
 
 class ProfileViewController: UIViewController {
+    var profileViewModel: ProfileViewModel
     var didFinishProfileBlock: (() -> ())?
     
     private let login: String
-    private let profileViewModel: ProfileViewModel
     private let disposeBag = DisposeBag()
     
     private let scrollView = UIScrollView()

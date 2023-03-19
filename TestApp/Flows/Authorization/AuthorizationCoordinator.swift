@@ -8,10 +8,10 @@
 import UIKit
 
 class AuthorizationCoordinator: BaseCoordinator {
-    let rootViewController: UIViewController
+    let containerViewController: UIViewController
     
-    init(rootViewController: UIViewController) {
-        self.rootViewController = rootViewController
+    init(containerViewController: UIViewController) {
+        self.containerViewController = containerViewController
     }
     
     override func start() {
@@ -27,7 +27,7 @@ class AuthorizationCoordinator: BaseCoordinator {
             self?.closeAuthorizationViewController(authorizationViewController)
         }
         
-        rootViewController.present(authorizationViewController, animated: true)
+        containerViewController.present(authorizationViewController, animated: true)
     }
     
     private func closeAuthorizationViewController(_ viewController: AuthorizationViewController) {

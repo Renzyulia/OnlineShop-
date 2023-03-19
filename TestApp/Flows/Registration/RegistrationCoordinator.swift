@@ -8,10 +8,10 @@
 import UIKit
 
 final class RegistrationCoordinator: BaseCoordinator {
-    let rootViewController: UIViewController
+    let containerViewController: UIViewController
     
-    init(rootViewController: UIViewController) {
-        self.rootViewController = rootViewController
+    init(containerViewController: UIViewController) {
+        self.containerViewController = containerViewController
     }
     
     override func start() {
@@ -27,7 +27,7 @@ final class RegistrationCoordinator: BaseCoordinator {
             self?.closeRegistrationViewController(registrationViewController)
         }
         
-        rootViewController.present(registrationViewController, animated: true)
+        containerViewController.present(registrationViewController, animated: true)
     }
     
     func closeRegistrationViewController(_ viewController: RegistrationViewController) {
