@@ -20,6 +20,8 @@ final class MainPageCoordinator: BaseCoordinator {
         let mainPageViewController = MainPageViewController()
         mainPageViewController.modalPresentationStyle = .fullScreen
         
-        containerViewController.embed(mainPageViewController)
+        let navigationMainPageViewController = UINavigationController(rootViewController: mainPageViewController)
+        
+        containerViewController.embed(navigationMainPageViewController)
     }
 }

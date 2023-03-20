@@ -34,9 +34,11 @@
 		A33F493C29C495B5004A9FF1 /* PlaceholderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33F493B29C495B5004A9FF1 /* PlaceholderViewController.swift */; };
 		A33F493E29C49D97004A9FF1 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33F493D29C49D97004A9FF1 /* TabBarViewController.swift */; };
 		A362421B29C6FBDC0035FF99 /* UIViewController+embedFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A362421A29C6FBDC0035FF99 /* UIViewController+embedFunction.swift */; };
+		A362421E29C741310035FF99 /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A362421D29C741310035FF99 /* CategoriesView.swift */; };
 		A369BFA529C36D4A00D980F1 /* UploadItemButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A369BFA429C36D4A00D980F1 /* UploadItemButton.swift */; };
 		A369BFA729C383C300D980F1 /* SectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A369BFA629C383C300D980F1 /* SectionView.swift */; };
 		A369BFA929C39FDF00D980F1 /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A369BFA829C39FDF00D980F1 /* Montserrat-Medium.ttf */; };
+		A36D73F929C857CE00D0AB24 /* MainPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36D73F829C857CE00D0AB24 /* MainPageViewModel.swift */; };
 		A38E661329C326E400D2D0BC /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38E661229C326E400D2D0BC /* ProfileCoordinator.swift */; };
 		A38E661529C326FD00D2D0BC /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38E661429C326FD00D2D0BC /* ProfileViewController.swift */; };
 		A38E661729C3360500D2D0BC /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38E661629C3360500D2D0BC /* PhotoView.swift */; };
@@ -78,9 +80,11 @@
 		A33F493B29C495B5004A9FF1 /* PlaceholderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderViewController.swift; sourceTree = "<group>"; };
 		A33F493D29C49D97004A9FF1 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		A362421A29C6FBDC0035FF99 /* UIViewController+embedFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+embedFunction.swift"; sourceTree = "<group>"; };
+		A362421D29C741310035FF99 /* CategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
 		A369BFA429C36D4A00D980F1 /* UploadItemButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadItemButton.swift; sourceTree = "<group>"; };
 		A369BFA629C383C300D980F1 /* SectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionView.swift; sourceTree = "<group>"; };
 		A369BFA829C39FDF00D980F1 /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Medium.ttf"; path = "../../../../Downloads/Montserrat/static/Montserrat-Medium.ttf"; sourceTree = "<group>"; };
+		A36D73F829C857CE00D0AB24 /* MainPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageViewModel.swift; sourceTree = "<group>"; };
 		A38E661229C326E400D2D0BC /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
 		A38E661429C326FD00D2D0BC /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		A38E661629C3360500D2D0BC /* PhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
@@ -142,6 +146,7 @@
 				A38E661629C3360500D2D0BC /* PhotoView.swift */,
 				A369BFA429C36D4A00D980F1 /* UploadItemButton.swift */,
 				A369BFA629C383C300D980F1 /* SectionView.swift */,
+				A362421D29C741310035FF99 /* CategoriesView.swift */,
 			);
 			path = InterfaceElements;
 			sourceTree = "<group>";
@@ -180,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				A33F493429C48C0D004A9FF1 /* MainPageCoordinator.swift */,
+				A36D73F829C857CE00D0AB24 /* MainPageViewModel.swift */,
 				A33F493629C48C23004A9FF1 /* MainPageViewController.swift */,
 			);
 			path = MainPage;
@@ -192,6 +198,16 @@
 				A33F493B29C495B5004A9FF1 /* PlaceholderViewController.swift */,
 			);
 			path = Placeholder;
+			sourceTree = "<group>";
+		};
+		A362421C29C7018C0035FF99 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				A33F493129C488C3004A9FF1 /* TabBarCoordinator.swift */,
+				A33F493D29C49D97004A9FF1 /* TabBarViewController.swift */,
+				A317A4DE29C4FA6700E665C5 /* TabBarDelegate.swift */,
+			);
+			path = TabBar;
 			sourceTree = "<group>";
 		};
 		A369BFA129C3623700D980F1 /* Extension */ = {
@@ -222,6 +238,7 @@
 		A3958EB229BB5B300080541E /* TestApp */ = {
 			isa = PBXGroup;
 			children = (
+				A362421C29C7018C0035FF99 /* TabBar */,
 				A369BFA129C3623700D980F1 /* Extension */,
 				A32023F029C1EC7B00230214 /* CoreData */,
 				A32023EF29C1EA7200230214 /* KeyChain */,
@@ -237,9 +254,6 @@
 				A369BFA829C39FDF00D980F1 /* Montserrat-Medium.ttf */,
 				A38E661A29C34CC900D2D0BC /* Montserrat-Bold.ttf */,
 				A3958EBC29BB5B300080541E /* TestApp.xcdatamodeld */,
-				A33F493129C488C3004A9FF1 /* TabBarCoordinator.swift */,
-				A33F493D29C49D97004A9FF1 /* TabBarViewController.swift */,
-				A317A4DE29C4FA6700E665C5 /* TabBarDelegate.swift */,
 			);
 			path = TestApp;
 			sourceTree = "<group>";
@@ -342,10 +356,12 @@
 				A32023EE29C1E87300230214 /* DataTextField.swift in Sources */,
 				A33F493C29C495B5004A9FF1 /* PlaceholderViewController.swift in Sources */,
 				A3958ECE29BB5E550080541E /* AppCoordinator.swift in Sources */,
+				A362421E29C741310035FF99 /* CategoriesView.swift in Sources */,
 				A33F493729C48C23004A9FF1 /* MainPageViewController.swift in Sources */,
 				A3958ECC29BB5C840080541E /* BaseCoordinator.swift in Sources */,
 				A3958EB829BB5B300080541E /* ViewController.swift in Sources */,
 				A32023F929C1EFD400230214 /* CoreData.swift in Sources */,
+				A36D73F929C857CE00D0AB24 /* MainPageViewModel.swift in Sources */,
 				A33F493229C488C3004A9FF1 /* TabBarCoordinator.swift in Sources */,
 				A3958EBE29BB5B300080541E /* TestApp.xcdatamodeld in Sources */,
 				A33F492F29C4766B004A9FF1 /* ProfileViewModel.swift in Sources */,
