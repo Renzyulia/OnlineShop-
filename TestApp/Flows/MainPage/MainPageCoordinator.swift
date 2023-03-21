@@ -17,11 +17,21 @@ final class MainPageCoordinator: BaseCoordinator {
     override func start() {
         super.start()
         
-        let mainPageViewController = MainPageViewController()
+        let mainPageViewModel = MainPageViewModel()
+        
+        let mainPageViewController = MainPageViewController(mainPageViewModel: mainPageViewModel)
         mainPageViewController.modalPresentationStyle = .fullScreen
         
         let navigationMainPageViewController = UINavigationController(rootViewController: mainPageViewController)
         
+        mainPageViewController.didFinishMainPageBlock = { [weak self] in
+            self?.closeProfileViewController(mainPageViewController)
+        }
+        
         containerViewController.embed(navigationMainPageViewController)
+    }
+    
+    private func closeProfileViewController(_ viewController: MainPageViewController) {
+        viewController.dismiss(animated: true, completion: { self.onFinish!() })
     }
 }

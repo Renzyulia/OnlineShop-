@@ -6,20 +6,54 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 final class MainPageViewController: UIViewController {
+    private let mainPageViewModel: MainPageViewModel
+    var didFinishMainPageBlock: (() -> ())?
+    
     private let tableView = UITableView(frame: .zero, style: .grouped)
     private let identifierCell = "identifierCell"
+    var dataLatest: (Data)? = nil
+    private let disposeBag = DisposeBag()
+    
+    init(mainPageViewModel: MainPageViewModel) {
+        self.mainPageViewModel = mainPageViewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        view.backgroundColor = UIColor(named: "BackgroundColor")
         view.backgroundColor = UIColor(named: "BackgroundColor")
         navigationItem.title = "Trade by bata"
         
         configureTableView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
+        let input = MainPageViewModelInput(
+            viewWillAppear: self.rx.deallocated.asObservable()) //правильно ли я выбрала метод и расположение в viewWillAppear
+        
+        let output = mainPageViewModel.bind(input)
+        
+        output.data.drive{ (result: Result<Data,Error>) -> Void in
+            switch result {
+            case let .success(dataForUser):
+                self.dataLatest = dataForUser
+                print("Success! \(dataForUser)")
+            case let .failure(error):
+                print("Bad day! \(error)")
+            }
+        }
+        .disposed(by: disposeBag)
     }
     
     func configureTableView() {
@@ -207,13 +241,169 @@ final class CategoriesCell: UITableViewCell {
 }
 
 final class LatestCell: UITableViewCell {
+    private let content: Data
+    private let rightLabel = UILabel()
+    private let leftLabel = UILabel()
+    private let scrollView = UIScrollView()
     
+    init(conteent: Data) {
+        self.content = conteent
+        super.init()
+        configureScrollView()
+        configureLeftLabel()
+        configureRightLabel()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configureScrollView() {
+        contentView.addSubview(scrollView)
+        
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate(
+            [scrollView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
+             scrollView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+             scrollView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+             scrollView.rightAnchor.constraint(equalTo: contentView.rightAnchor)])
+    }
+    
+    func configureLeftLabel() {
+        leftLabel.text = "Latest"
+        leftLabel.textColor = .black
+        leftLabel.font = UIFont.specialFont(size: 13, style: .bold)
+        
+        contentView.addSubview(leftLabel)
+        
+        leftLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate(
+            [leftLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
+             leftLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 11.55)])
+    }
+    
+    func configureRightLabel() {
+        rightLabel.text = "View all"
+        rightLabel.textColor = UIColor(named: "ViewAllLabel")
+        rightLabel.font = UIFont.specialFont(size: 9, style: .medium)
+        
+        contentView.addSubview(rightLabel)
+        
+        rightLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate(
+            [rightLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
+             rightLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: 12.98)])
+    }
+    
+    func configureFirstProduct() {
+    }
 }
 
 final class LatestView: UIView {
+    private let image: UIImage
+    private let categoryLabelText: String
+    private let nameLabelText: String
+    private let priceLabelText: String
+    
     private let imageView = UIImageView()
     private let categoryLabel = UILabel()
     private let nameLabel = UILabel()
     private let priceLabel = UILabel()
-    private let addView = UIImageView()
+    private let addView = UIImageView(image: UIImage(named: "Add"))
+    
+    init(image: UIImage, categoryLabelText: String, nameLabelText: String, priceLabelText: String) {
+        self.image = image
+        self.categoryLabelText = categoryLabelText
+        self.nameLabelText = nameLabelText
+        self.priceLabelText = priceLabelText
+        super.init()
+        
+        configureImage()
+        configureCategoryLabel()
+        configureNameLabel()
+        configurePriceLabel()
+        configureAddView()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configureImage() {
+        imageView.image = image
+        imageView.layer.cornerRadius = 25
+        imageView.layer.masksToBounds = true
+        
+        self.addSubview(imageView)
+        
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate(
+            [imageView.widthAnchor.constraint(equalToConstant: 114),
+             imageView.heightAnchor.constraint(equalToConstant: 149),
+             imageView.topAnchor.constraint(equalTo: self.topAnchor),
+             imageView.leftAnchor.constraint(equalTo: self.leftAnchor),
+             imageView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+             imageView.rightAnchor.constraint(equalTo: self.rightAnchor)])
+    }
+    
+    func configureCategoryLabel() {
+        categoryLabel.text = categoryLabelText
+        categoryLabel.textColor = .black
+        categoryLabel.font = UIFont.specialFont(size: 6.5, style: .bold)
+        categoryLabel.textAlignment = .center
+        categoryLabel.backgroundColor = UIColor(named: "LatestCategoryColor")
+        categoryLabel.layer.opacity = 85
+        categoryLabel.clipsToBounds = true
+        categoryLabel.layer.cornerRadius = 25
+        
+        self.addSubview(categoryLabel)
+        
+        categoryLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate(
+            [categoryLabel.widthAnchor.constraint(equalToConstant: 35),
+             categoryLabel.heightAnchor.constraint(equalToConstant: 12),
+             categoryLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 91),
+             categoryLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 7)])
+    }
+    
+    func configureNameLabel() {
+        nameLabel.text = nameLabelText
+        nameLabel.textColor = .white
+        nameLabel.font = UIFont.specialFont(size: 12, style: .bold)
+        
+        self.addSubview(nameLabel)
+        
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate(
+            [nameLabel.widthAnchor.constraint(equalToConstant: 57),
+             nameLabel.heightAnchor.constraint(equalToConstant: 9.14),
+             nameLabel.topAnchor.constraint(equalTo: categoryLabel.bottomAnchor, constant: 6.31),
+             nameLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 7.46)])
+    }
+    
+    func configurePriceLabel() {
+        priceLabel.text = "$ \(priceLabelText)"
+        priceLabel.font = UIFont.specialFont(size: 8.45, style: .bold)
+        priceLabel.textColor = .white
+        
+        self.addSubview(priceLabel)
+        
+        priceLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate(
+            [priceLabel.widthAnchor.constraint(equalToConstant: 30.02),
+             priceLabel.heightAnchor.constraint(equalToConstant: 8.45),
+             priceLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -7.06),
+             priceLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 7.37)])
+    }
+    
+    func configureAddView() {
+        self.addSubview(addView)
+        
+        addView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate(
+            [addView.widthAnchor.constraint(equalToConstant: 20),
+             addView.heightAnchor.constraint(equalToConstant: 20),
+             addView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -5),
+             addView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5)])
+    }
 }

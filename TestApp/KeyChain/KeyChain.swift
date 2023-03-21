@@ -34,7 +34,7 @@ final class KeyChain {
         var result: AnyObject?
         let _ = SecItemCopyMatching(query, &result)
         
-        guard let data = result as? Data else {return nil}
+        guard let data = result as? Foundation.Data else {return nil}
         return String(data: data, encoding: String.Encoding.utf8)
     }
     

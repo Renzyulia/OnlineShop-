@@ -99,8 +99,7 @@ class RegistrationViewController: UIViewController {
     
     private func configureSignInLabel() {
         signInLabel.text = "Sign in"
-        signInLabel.font = UIFont.specialFont(size: 25, style: .bold)
-        signInLabel.textAlignment = .center
+        signInLabel.font = UIFont.specialFont(size: 25, style: .medium)
         signInLabel.textColor = .black
         
         view.addSubview(signInLabel)
@@ -108,8 +107,7 @@ class RegistrationViewController: UIViewController {
         signInLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
             [signInLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 155.93),
-             signInLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 142.7),
-             signInLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -144.78)])
+             signInLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 142.7)])
     }
     
     private func configureFirstNameTF() {
