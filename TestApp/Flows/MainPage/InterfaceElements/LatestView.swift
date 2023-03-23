@@ -37,7 +37,7 @@ final class LatestView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureImage() {
+    private func configureImage() {
         imageView.loadImage(with: url)
         imageView.contentMode = .scaleAspectFit
         imageView.layer.cornerRadius = 16
@@ -56,7 +56,7 @@ final class LatestView: UIView {
              imageView.rightAnchor.constraint(equalTo: self.rightAnchor)])
     }
     
-    func configureCategoryLabel() {
+    private func configureCategoryLabel() {
         categoryLabel.text = categoryLabelText
         categoryLabel.textColor = .black
         categoryLabel.font = UIFont.specialFont(size: 6.5, style: .bold)
@@ -76,7 +76,7 @@ final class LatestView: UIView {
              categoryLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 7)])
     }
     
-    func configureNameLabel() {
+    private func configureNameLabel() {
         nameLabel.text = nameLabelText
         nameLabel.textColor = .black
         nameLabel.textAlignment = .left
@@ -93,7 +93,7 @@ final class LatestView: UIView {
              nameLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 7.46)])
     }
     
-    func configurePriceLabel() {
+    private func configurePriceLabel() {
         priceLabel.text = "$ \(priceLabelPrice)"
         priceLabel.font = UIFont.specialFont(size: 8.45, style: .bold)
         priceLabel.textColor = .black
@@ -106,7 +106,7 @@ final class LatestView: UIView {
              priceLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 7.37)])
     }
     
-    func configureAddView() {
+    private func configureAddView() {
         self.addSubview(addView)
         
         addView.translatesAutoresizingMaskIntoConstraints = false

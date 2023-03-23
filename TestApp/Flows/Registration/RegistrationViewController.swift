@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class RegistrationViewController: UIViewController {
+final class RegistrationViewController: UIViewController {
     var didFinishRegistrationBlock: ((String?) -> Void)?
     private let registrationViewModel: RegistrationViewModel
     private let disposeBag = DisposeBag()
@@ -76,11 +76,17 @@ class RegistrationViewController: UIViewController {
         
         output.shouldShowInvalidEmailError.drive(onNext: { [weak self] in
             self?.invalidEmailLabel.isHidden = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                self?.invalidEmailLabel.isHidden = true
+            }
         })
         .disposed(by: disposeBag)
         
         output.shouldShowExisitingLoginError.drive(onNext: { [weak self] (shouldShowError: Bool) in
             self?.duplicateAccountLabel.isHidden = (shouldShowError == false)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                self?.duplicateAccountLabel.isHidden = true
+            }
         })
         .disposed(by: disposeBag)
         

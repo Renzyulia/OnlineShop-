@@ -8,12 +8,12 @@
 import UIKit
 
 final class PhotoView: UIView {
+    let button = UIButton()
     var photo: UIImage? {
         didSet {
             photoView.image = photo
         }
     }
-    let button = UIButton()
     private let photoView = UIImageView()
     
     init() {
@@ -26,7 +26,7 @@ final class PhotoView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configurePhoto() {
+    private func configurePhoto() {
         photoView.image = UIImage(named: "DefaultPhoto")
         photoView.frame = CGRect(x: 100, y: 100, width: 60.07, height: 60.06)
         photoView.layer.cornerRadius = 0.5 * photoView.bounds.size.width
@@ -43,7 +43,7 @@ final class PhotoView: UIView {
              photoView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8)])
     }
     
-    func configureButton() {
+    private func configureButton() {
         button.setTitle("Change photo", for: .normal)
         button.setTitleColor(UIColor(named: "ChangePhoto"), for: .normal)
         button.titleLabel?.font = UIFont.specialFont(size: 9, style: .medium)

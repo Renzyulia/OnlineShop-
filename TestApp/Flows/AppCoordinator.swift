@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AppCoordinator: BaseCoordinator {
+final class AppCoordinator: BaseCoordinator {
     let window: UIWindow
     
     init(window: UIWindow) {

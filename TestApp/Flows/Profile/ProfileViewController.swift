@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+final class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     var profileViewModel: ProfileViewModel
     var didFinishProfileBlock: ((String?) -> ())?
     let viewWillAppear = PublishRelay<Void>()
@@ -160,7 +160,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let image = info[.originalImage] as! UIImage
         changePhotoClick.accept(image)
-//        photoView.photo = image
         
         picker.dismiss(animated: true)
     }

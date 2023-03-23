@@ -10,7 +10,7 @@ import UIKit
 final class TabBarCoordinator: BaseCoordinator, TabBarCoordinatorDelegate {
     let containerViewController: UIViewController
     let login: String
-    let tabBarDelegate = TabBarDelegate()
+    private let tabBarDelegate = TabBarDelegate()
     
     init(containerViewController: UIViewController, login: String) {
         self.containerViewController = containerViewController

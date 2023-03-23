@@ -22,7 +22,7 @@ struct ProfileViewModelOutput {
     var photoProfileChanged: Driver<UIImage>
 }
 
-class ProfileViewModel {
+final class ProfileViewModel {
     private let login: String
     
     init(login: String) {

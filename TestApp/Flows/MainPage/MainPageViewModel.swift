@@ -131,4 +131,3 @@ final class MainPageViewModel {
         return UIImage(named: "DefaultPhoto")
     }
 }
-

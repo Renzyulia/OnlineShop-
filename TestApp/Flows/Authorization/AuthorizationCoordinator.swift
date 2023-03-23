@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AuthorizationCoordinator: BaseCoordinator {
+final class AuthorizationCoordinator: BaseCoordinator {
     let containerViewController: UIViewController
     
     init(containerViewController: UIViewController) {
@@ -30,7 +30,7 @@ class AuthorizationCoordinator: BaseCoordinator {
         containerViewController.present(authorizationViewController, animated: false)
     }
     
-    func closeAuthorizationViewController(_ viewController: AuthorizationViewController, login: String?) {
+    private func closeAuthorizationViewController(_ viewController: AuthorizationViewController, login: String?) {
         viewController.dismiss(animated: false, completion: { self.onFinish!(login) })
     }
 }

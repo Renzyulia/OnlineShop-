@@ -97,7 +97,7 @@ final class MainPageViewController: UIViewController {
              titleLabel.leftAnchor.constraint(equalTo: navigationBar.leftAnchor, constant: 102)])
         
  // Mark: configure rightLabel
-        rightViewNavigationBar.frame = CGRect(x: 100, y: 100, width: 37, height: 37)
+        rightViewNavigationBar.frame = CGRect(x: 100, y: 100, width: 34, height: 34)
         rightViewNavigationBar.layer.cornerRadius = 0.5 * rightViewNavigationBar.bounds.size.width
         rightViewNavigationBar.layer.masksToBounds = true
 //        rightViewNavigationBar.image = UIImage(named: "DefaultPhoto")
@@ -105,9 +105,9 @@ final class MainPageViewController: UIViewController {
         navigationBar.addSubview(rightViewNavigationBar)
         rightViewNavigationBar.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
-            [rightViewNavigationBar.widthAnchor.constraint(equalToConstant: 37),
-             rightViewNavigationBar.heightAnchor.constraint(equalToConstant: 37),
-             rightViewNavigationBar.topAnchor.constraint(equalTo: navigationBar.topAnchor, constant: 3),
+            [rightViewNavigationBar.widthAnchor.constraint(equalToConstant: 34),
+             rightViewNavigationBar.heightAnchor.constraint(equalToConstant: 34),
+             rightViewNavigationBar.topAnchor.constraint(equalTo: navigationBar.topAnchor, constant: 10),
              rightViewNavigationBar.rightAnchor.constraint(equalTo: navigationBar.rightAnchor, constant: -47.57)])
         
 // Mark: configure leftLabel

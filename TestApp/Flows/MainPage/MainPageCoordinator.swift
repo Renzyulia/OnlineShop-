@@ -9,7 +9,7 @@ import UIKit
 
 final class MainPageCoordinator: BaseCoordinator {
     let containerViewController: UIViewController
-    let login: String
+    private let login: String
     
     init(containerViewController: UIViewController, login: String) {
         self.containerViewController = containerViewController
