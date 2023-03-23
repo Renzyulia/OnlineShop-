@@ -11,10 +11,12 @@ import RxCocoa
 
 struct ProfileViewModelInput {
     var logOutClick: Observable<Void>
+    var changePhotoClick: Observable<UIImage>
 }
 
 struct ProfileViewModelOutput {
     var logOutCompleted: Driver<Void>
+    var photoProfileChanged: Driver<UIImage>
 }
 
 class ProfileViewModel {

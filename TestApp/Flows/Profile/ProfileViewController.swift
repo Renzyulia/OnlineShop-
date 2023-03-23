@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     var profileViewModel: ProfileViewModel
     var didFinishProfileBlock: ((String?) -> ())?
     
@@ -19,7 +19,7 @@ class ProfileViewController: UIViewController {
     private let scrollView = UIScrollView()
     private let backIcon = UIImageView(image: UIImage(named: "Back"))
     private let titleLabel = UILabel()
-    private let photoView = PhotoView(photo: nil)
+    private var photoView = PhotoView()
     private let loginLabel = UILabel()
     private let uploadItemButton = UploadItemButton()
     private let storeSection = SectonView(title: "Trade store", iconStyle: .wallet, sectionStyle: .transition)
@@ -108,12 +108,44 @@ class ProfileViewController: UIViewController {
     }
     
     private func configurePhotoView() {
+        photoView.button.addTarget(self, action: #selector(changePhoto), for: .touchUpInside)
+        
         scrollView.addSubview(photoView)
         
         photoView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
-            [photoView.topAnchor.constraint(equalTo: view.topAnchor, constant: 96.5),
+            [photoView.heightAnchor.constraint(equalToConstant: 77),
+             photoView.topAnchor.constraint(equalTo: view.topAnchor, constant: 96.5),
              photoView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 157.5)])
+    }
+    
+    @objc private func changePhoto() {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        
+        let alert = UIAlertController(
+            title: "Photo Source",
+            message: "Choose a source",
+            preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { (action: UIAlertAction) in
+            imagePickerController.sourceType = .photoLibrary
+            self.present(imagePickerController, animated: true)
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        
+        self.present(alert, animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let image = info[.originalImage] as! UIImage
+        photoView.photo = image
+        
+        picker.dismiss(animated: true)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true)
     }
     
     private func configureLoginLabel() {

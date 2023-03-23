@@ -17,7 +17,7 @@ final class MainPageViewController: UIViewController {
     private let mainPageViewModel: MainPageViewModel
     private let disposeBag = DisposeBag()
     private let locationView = LocationView()
-    private let tableView = UITableView(frame: .zero, style: .grouped)
+    private let tableView = UITableView(frame: .zero, style: .plain)
     private let identifierSearchCell = "identifierSearchCell"
     private let identifierCategoriesCell = "identifierCategoriesCell"
     private let identifierLatestCell = "identifierLatestCell"
@@ -138,7 +138,7 @@ final class MainPageViewController: UIViewController {
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
-            [tableView.topAnchor.constraint(equalTo: locationView.bottomAnchor),
+            [tableView.topAnchor.constraint(equalTo: locationView.bottomAnchor, constant: 5),
              tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
              tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
              tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
