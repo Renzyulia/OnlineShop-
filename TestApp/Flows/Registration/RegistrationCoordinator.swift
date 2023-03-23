@@ -27,10 +27,10 @@ final class RegistrationCoordinator: BaseCoordinator {
             self?.closeRegistrationViewController(registrationViewController, login: login)
         }
         
-        containerViewController.present(registrationViewController, animated: false)
+        containerViewController.present(registrationViewController, animated: true)
     }
     
     func closeRegistrationViewController(_ viewController: RegistrationViewController, login: String?) {
-        viewController.dismiss(animated: true, completion: { self.onFinish!(login) })
+        viewController.dismiss(animated: false, completion: { self.onFinish!(login) })
     }
 }

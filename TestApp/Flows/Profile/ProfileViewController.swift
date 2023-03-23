@@ -11,7 +11,7 @@ import RxCocoa
 
 class ProfileViewController: UIViewController {
     var profileViewModel: ProfileViewModel
-    var didFinishProfileBlock: (() -> ())?
+    var didFinishProfileBlock: ((String?) -> ())?
     
     private let login: String
     private let disposeBag = DisposeBag()
@@ -30,7 +30,7 @@ class ProfileViewController: UIViewController {
     private let helpSection = SectonView(title: "Help", iconStyle: .help, sectionStyle: nil)
     private let logOutSection = SectonView(title: "Log out", iconStyle: .logOut, sectionStyle: nil)
     
-    init(login: String, didFinishProfileBlock: (() -> ())?, viewModel: ProfileViewModel) {
+    init(login: String, didFinishProfileBlock: ((String?) -> ())?, viewModel: ProfileViewModel) {
         self.login = login
         self.didFinishProfileBlock = didFinishProfileBlock
         self.profileViewModel = viewModel
@@ -64,7 +64,7 @@ class ProfileViewController: UIViewController {
         let output = profileViewModel.bind(input)
         
         output.logOutCompleted.drive(onNext: { [weak self] in
-            self?.didFinishProfileBlock?()
+            self?.didFinishProfileBlock?(nil)
         })
         .disposed(by: disposeBag)
     }

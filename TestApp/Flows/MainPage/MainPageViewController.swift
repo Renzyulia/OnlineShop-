@@ -12,7 +12,7 @@ import RxCocoa
 final class MainPageViewController: UIViewController {
     let viewWillAppear = PublishRelay<Void>()
     var uploadedData: (Data)? = nil
-    var didFinishMainPageBlock: (() -> ())?
+    var didFinishMainPageBlock: ((String?) -> ())?
     
     private let mainPageViewModel: MainPageViewModel
     private let disposeBag = DisposeBag()

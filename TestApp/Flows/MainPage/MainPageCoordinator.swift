@@ -24,14 +24,14 @@ final class MainPageCoordinator: BaseCoordinator {
         
         let navigationMainPageViewController = UINavigationController(rootViewController: mainPageViewController)
         
-        mainPageViewController.didFinishMainPageBlock = { [weak self] in
-            self?.closeProfileViewController(mainPageViewController)
+        mainPageViewController.didFinishMainPageBlock = { [weak self] login in
+            self?.closeMainPageViewController(mainPageViewController, login: login)
         }
         
         containerViewController.embed(navigationMainPageViewController)
     }
     
-    private func closeProfileViewController(_ viewController: MainPageViewController) {
-        viewController.dismiss(animated: true, completion: { self.onFinish!() })
+    private func closeMainPageViewController(_ viewController: MainPageViewController, login: String?) {
+        viewController.dismiss(animated: true, completion: { self.onFinish!(login) })
     }
 }

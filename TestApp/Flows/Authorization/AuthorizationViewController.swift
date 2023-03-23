@@ -10,17 +10,17 @@ import RxSwift
 import RxCocoa
 
 final class AuthorizationViewController: UIViewController {
+    var didFinishAuthorizationBlock: ((String?) -> Void)?
+    
+    private let authorizationViewModel: AuthorizationViewModel
+    private let disposeBag = DisposeBag()
     private let welcomeLabel = UILabel()
     private let nameTextField = DataTextField(isSecureText: false, placeholder: "First name", securityButton: nil)
     private let passwordTextField = DataTextField(isSecureText: true, placeholder: "Password", securityButton: UIButton())
     private let loginButton = LoginAndSignInButton(title: "Login")
     private let accountIsNotRegisteredLabel = UILabel()
-    private let authorizationViewModel: AuthorizationViewModel
-    private let disposeBag = DisposeBag()
     
-    var didFinishAuthorizationBlock: (() -> Void)?
-    
-    init(authorizationViewModel: AuthorizationViewModel, didFinishAuthorizationBlock: (() -> Void)?) {
+    init(authorizationViewModel: AuthorizationViewModel, didFinishAuthorizationBlock: ((String?) -> Void)?) {
         self.authorizationViewModel = authorizationViewModel
         self.didFinishAuthorizationBlock = didFinishAuthorizationBlock
         super.init(nibName: nil, bundle: nil)
@@ -57,7 +57,8 @@ final class AuthorizationViewController: UIViewController {
         let output = authorizationViewModel.bind(input)
         
         output.logInCompleted.drive(onNext: { [weak self] in
-            self?.didFinishAuthorizationBlock?()
+            let login = LoginStorage.shared.getLogin()
+            self?.didFinishAuthorizationBlock?(login)
         })
         .disposed(by: disposeBag)
         

@@ -38,7 +38,8 @@ final class AuthorizationViewModel {
             .withLatestFrom(input.firstName)
             .withLatestFrom(input.password, resultSelector: { firstName, password in return AuthorizationData(firstName: firstName, password: password) })
             .map{ data -> AuthorizationResult in
-                if self.accountIsRegistered(login: data.firstName) { //смотрим по базе данных есть ли такой аакаунт
+                if self.accountIsRegistered(login: data.firstName) {//смотрим по базе данных есть ли такой аакаунт
+                    LoginStorage.shared.save(login: data.firstName)
                     return .success
                 } else {
                     return .accountIsNotRegistered

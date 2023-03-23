@@ -23,14 +23,14 @@ class AuthorizationCoordinator: BaseCoordinator {
         )
         authorizationViewController.modalPresentationStyle = .fullScreen
         
-        authorizationViewController.didFinishAuthorizationBlock = { [weak self] in
-            self?.closeAuthorizationViewController(authorizationViewController)
+        authorizationViewController.didFinishAuthorizationBlock = { [weak self] login in
+            self?.closeAuthorizationViewController(authorizationViewController, login: login)
         }
         
-        containerViewController.present(authorizationViewController, animated: true)
+        containerViewController.present(authorizationViewController, animated: false)
     }
     
-    private func closeAuthorizationViewController(_ viewController: AuthorizationViewController) {
-        viewController.dismiss(animated: true, completion: { self.onFinish!() })
+    func closeAuthorizationViewController(_ viewController: AuthorizationViewController, login: String?) {
+        viewController.dismiss(animated: false, completion: { self.onFinish!(login) })
     }
 }

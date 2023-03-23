@@ -32,6 +32,10 @@ final class TabBarCoordinator: BaseCoordinator, TabBarCoordinatorDelegate {
         let placeholderThirdCoordinator = PlaceholderCoordinator(containerViewController: placeholderThirdViewController)
         let profileCoordinator = ProfileCoordinator(containerViewController: profileViewController, login: login)
         
+        profileCoordinator.onFinish = { [weak self] login in
+            self?.onFinish!(login)
+        }
+        
         addChildCoordinator(mainPageCoordinator)
         addChildCoordinator(placeholderFirstCoordinator)
         addChildCoordinator(placeholderSecondCoordinator)
@@ -39,7 +43,7 @@ final class TabBarCoordinator: BaseCoordinator, TabBarCoordinatorDelegate {
         addChildCoordinator(profileCoordinator)
         
         let tabBarViewController = TabBarViewController()
-        
+
         tabBarViewController.delegate = tabBarDelegate
         
         tabBarViewController.setViewControllers(
