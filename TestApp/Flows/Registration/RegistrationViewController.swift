@@ -10,11 +10,13 @@ import RxSwift
 import RxCocoa
 
 class RegistrationViewController: UIViewController {
-    
+    var didFinishRegistrationBlock: ((String?) -> Void)?
+    private let registrationViewModel: RegistrationViewModel
+    private let disposeBag = DisposeBag()
     private let signInLabel = UILabel()
-    private let firstNameTextField = DataTextField(isSecureText: false, placeholder: "First name", securityButton: nil, width: .fullWidth)
-    private let lastNameTextField = DataTextField(isSecureText: false, placeholder: "Last name", securityButton: nil, width: .fullWidth)
-    private let emailTextField = DataTextField(isSecureText: false, placeholder: "Email", securityButton: nil, width: .fullWidth)
+    private let firstNameTextField = DataTextField(isSecureText: false, placeholder: "First name", securityButton: nil)
+    private let lastNameTextField = DataTextField(isSecureText: false, placeholder: "Last name", securityButton: nil)
+    private let emailTextField = DataTextField(isSecureText: false, placeholder: "Email", securityButton: nil)
     private let signInButton = LoginAndSignInButton(title: "Sign in")
     private let haveAccountLabel = UILabel()
     private let logInButton = UIButton()
@@ -22,12 +24,8 @@ class RegistrationViewController: UIViewController {
     private let signInWithAppleButton = SignInWithView(company: .init(company: .apple))
     private lazy var invalidEmailLabel = UILabel()
     private lazy var duplicateAccountLabel = UILabel()
-    private let registrationViewModel: RegistrationViewModel
-    private let disposeBag = DisposeBag()
     
-    var didFinishRegistrationBlock: (() -> Void)?
-    
-    init(registrationViewModel: RegistrationViewModel, didFinishRegistrationBlock: (() -> Void)?) {
+    init(registrationViewModel: RegistrationViewModel, didFinishRegistrationBlock: ((String?) -> Void)?) {
         self.registrationViewModel = registrationViewModel
         self.didFinishRegistrationBlock = didFinishRegistrationBlock
         super.init(nibName: nil, bundle: nil)
@@ -87,7 +85,8 @@ class RegistrationViewController: UIViewController {
         .disposed(by: disposeBag)
         
         output.registrationIsCompleted.drive(onNext: { [weak self] in
-            self?.didFinishRegistrationBlock?()
+            let login = LoginStorage.shared.getLogin()
+            self?.didFinishRegistrationBlock?(login)
         })
         .disposed(by: disposeBag)
         
@@ -116,7 +115,8 @@ class RegistrationViewController: UIViewController {
         firstNameTextField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
             [firstNameTextField.topAnchor.constraint(equalTo: signInLabel.bottomAnchor, constant: 77.77),
-             firstNameTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 44)])
+             firstNameTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 44),
+             firstNameTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 42)])
     }
     
     private func configureLastNameTF() {
@@ -125,7 +125,8 @@ class RegistrationViewController: UIViewController {
         lastNameTextField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
             [lastNameTextField.topAnchor.constraint(equalTo: firstNameTextField.bottomAnchor, constant: 35),
-             lastNameTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 44)])
+             lastNameTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 44),
+             lastNameTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 42)])
     }
     
     private func configureEmailTF() {
@@ -134,7 +135,8 @@ class RegistrationViewController: UIViewController {
         emailTextField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
             [emailTextField.topAnchor.constraint(equalTo: lastNameTextField.bottomAnchor, constant: 35),
-             emailTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 44)])
+             emailTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 44),
+             emailTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 42)])
     }
     
     private func configureSignInButton() {
@@ -148,7 +150,7 @@ class RegistrationViewController: UIViewController {
     
     private func configureHaveAccountLabel() {
         haveAccountLabel.text = "Already have an account?"
-        haveAccountLabel.font = UIFont.specialFont(size: 9, style: .medium)
+        haveAccountLabel.font = UIFont.specialFont(size: 10, style: .medium)
         haveAccountLabel.textColor = UIColor(named: "HaveAccountLabel")
         haveAccountLabel.numberOfLines = 1
         
@@ -157,25 +159,26 @@ class RegistrationViewController: UIViewController {
         haveAccountLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
             [haveAccountLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 41.99),
-             haveAccountLabel.topAnchor.constraint(equalTo: signInButton.bottomAnchor, constant: 17.58)])
+             haveAccountLabel.topAnchor.constraint(equalTo: signInButton.bottomAnchor, constant: 14.58)])
     }
     
     private func configureLogInButton() {
         logInButton.setTitle("Log in", for: .normal)
         logInButton.setTitleColor(UIColor(named: "LogInButton"), for: .normal)
-        logInButton.titleLabel?.font = UIFont.specialFont(size: 9, style: .bold)
+        logInButton.titleLabel?.font = UIFont.specialFont(size: 10, style: .medium)
         logInButton.addTarget(self, action: #selector(logIn), for: .touchUpInside)
         
         view.addSubview(logInButton)
         
         logInButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
-            [logInButton.topAnchor.constraint(equalTo: signInButton.bottomAnchor, constant: 17.43),
+            [logInButton.heightAnchor.constraint(equalToConstant: 10),
+             logInButton.topAnchor.constraint(equalTo: signInButton.bottomAnchor, constant: 14.43),
              logInButton.leftAnchor.constraint(equalTo: haveAccountLabel.rightAnchor, constant: 8.7)])
     }
     
     @objc private func logIn() {
-        didFinishRegistrationBlock!()
+        didFinishRegistrationBlock!(nil)
     }
     
     private func configureSignInGoogleButton() {
@@ -192,13 +195,13 @@ class RegistrationViewController: UIViewController {
         
         signInWithAppleButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
-            [signInWithAppleButton.topAnchor.constraint(equalTo: signInWithGoogleButton.bottomAnchor, constant: 48.73),
+            [signInWithAppleButton.topAnchor.constraint(equalTo: signInWithGoogleButton.bottomAnchor, constant: 58.73),
              signInWithAppleButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 99)])
     }
     
     private func configureInvalidEmailLabel() {
         invalidEmailLabel.text = "Invalid e-mail form"
-        invalidEmailLabel.font = UIFont.specialFont(size: 9, style: .medium)
+        invalidEmailLabel.font = UIFont.specialFont(size: 11, style: .medium)
         invalidEmailLabel.textColor = .red
         invalidEmailLabel.numberOfLines = 1
         invalidEmailLabel.isHidden = true
@@ -208,12 +211,12 @@ class RegistrationViewController: UIViewController {
         invalidEmailLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
             [invalidEmailLabel.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 9),
-             invalidEmailLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 44)])
+             invalidEmailLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 49)])
     }
     
     private func configureDuplicateAccountLabel() {
         duplicateAccountLabel.text = "The account already exists. Log in."
-        duplicateAccountLabel.font = UIFont.specialFont(size: 9, style: .medium)
+        duplicateAccountLabel.font = UIFont.specialFont(size: 11, style: .medium)
         duplicateAccountLabel.textColor = .red
         duplicateAccountLabel.numberOfLines = 1
         duplicateAccountLabel.isHidden = true
@@ -222,8 +225,8 @@ class RegistrationViewController: UIViewController {
         
         duplicateAccountLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
-            [duplicateAccountLabel.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 12),
-             duplicateAccountLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 44)])
+            [duplicateAccountLabel.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 9),
+             duplicateAccountLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 49)])
     }
     
     private func configureSavingErrorAlert() {

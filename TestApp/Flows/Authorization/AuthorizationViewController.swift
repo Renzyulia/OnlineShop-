@@ -11,8 +11,8 @@ import RxCocoa
 
 final class AuthorizationViewController: UIViewController {
     private let welcomeLabel = UILabel()
-    private let nameTextField = DataTextField(isSecureText: false, placeholder: "First name", securityButton: nil, width: .fullWidth)
-    private let passwordTextField = DataTextField(isSecureText: true, placeholder: "Password", securityButton: UIButton(), width: .shortWidth)
+    private let nameTextField = DataTextField(isSecureText: false, placeholder: "First name", securityButton: nil)
+    private let passwordTextField = DataTextField(isSecureText: true, placeholder: "Password", securityButton: UIButton())
     private let loginButton = LoginAndSignInButton(title: "Login")
     private let accountIsNotRegisteredLabel = UILabel()
     private let authorizationViewModel: AuthorizationViewModel
@@ -69,7 +69,7 @@ final class AuthorizationViewController: UIViewController {
     
     private func configureLabel() {
         welcomeLabel.text = "Welcome back"
-        welcomeLabel.font = UIFont.specialFont(size: 19, style: .bold)
+        welcomeLabel.font = UIFont.specialFont(size: 27, style: .medium)
         welcomeLabel.textAlignment = .center
         welcomeLabel.numberOfLines = 1
         
@@ -87,7 +87,8 @@ final class AuthorizationViewController: UIViewController {
         nameTextField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
             [nameTextField.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 80.82),
-             nameTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 44)])
+             nameTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 44),
+             nameTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 42)])
     }
     
     private func configurePasswordTF() {
@@ -96,7 +97,8 @@ final class AuthorizationViewController: UIViewController {
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
             [passwordTextField.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 35),
-             passwordTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 43)])
+             passwordTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 44),
+             passwordTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 42)])
     }
     
     private func configureButton() {
@@ -104,8 +106,8 @@ final class AuthorizationViewController: UIViewController {
         
         loginButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
-            [loginButton.topAnchor.constraint(equalTo: passwordTextField.topAnchor, constant: 99),
-             loginButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 43)])
+            [loginButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 99),
+             loginButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 47)])
     }
     
     private func configureAccountIsNotRegisteredLabel() {
@@ -120,6 +122,6 @@ final class AuthorizationViewController: UIViewController {
         accountIsNotRegisteredLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
             [accountIsNotRegisteredLabel.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 15),
-             accountIsNotRegisteredLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 43)])
+             accountIsNotRegisteredLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)])
     }
 }

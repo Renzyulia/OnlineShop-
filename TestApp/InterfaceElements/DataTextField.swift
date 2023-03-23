@@ -10,17 +10,15 @@ import UIKit
 final class DataTextField: UIView {
     let textField = UITextField()
     let securityButton: UIButton?
-    private let width: Width
     private var isSecuryText: Bool
     private var placeholder: String
     
-    init(isSecureText: Bool, placeholder: String, securityButton: UIButton?, width: Width) {
+    init(isSecureText: Bool, placeholder: String, securityButton: UIButton?) {
         self.isSecuryText = isSecureText
         self.placeholder = placeholder
         self.securityButton = securityButton
-        self.width = width
         super.init(frame: .zero)
-        configurePasswordView()
+        configureTextFieldView()
         configureButton()
     }
     
@@ -28,7 +26,7 @@ final class DataTextField: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func configurePasswordView() {
+    private func configureTextFieldView() {
         textField.placeholder = placeholder
         textField.textAlignment = .center
         textField.font = UIFont.specialFont(size: 11, style: .medium)
@@ -41,7 +39,7 @@ final class DataTextField: UIView {
         
         textField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
-            [textField.widthAnchor.constraint(equalToConstant: 289),
+            [textField.widthAnchor.constraint(equalToConstant: 294),
              textField.heightAnchor.constraint(equalToConstant: 29),
              textField.topAnchor.constraint(equalTo: self.topAnchor),
              textField.bottomAnchor.constraint(equalTo: self.bottomAnchor),
@@ -59,9 +57,9 @@ final class DataTextField: UIView {
         NSLayoutConstraint.activate(
             [button.widthAnchor.constraint(equalToConstant: 15),
              button.heightAnchor.constraint(equalToConstant: 15),
-             button.topAnchor.constraint(equalTo: self.topAnchor, constant: 7),
-             button.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -7),
-             button.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -15)])
+             button.topAnchor.constraint(equalTo: textField.topAnchor, constant: 7),
+             button.bottomAnchor.constraint(equalTo: textField.bottomAnchor, constant: -7),
+             button.rightAnchor.constraint(equalTo: textField.rightAnchor, constant: -15)])
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap))
         button.addGestureRecognizer(tap)
@@ -75,10 +73,5 @@ final class DataTextField: UIView {
             textField.isSecureTextEntry = true
             securityButton?.setImage(UIImage(named: "SecurityOn"), for: .normal)
         }
-    }
-    
-    enum Width: CGFloat {
-        case fullWidth = 289
-        case shortWidth = 259
     }
 }

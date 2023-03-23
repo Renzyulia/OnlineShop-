@@ -51,7 +51,7 @@ final class TabBarCoordinator: BaseCoordinator, TabBarCoordinatorDelegate {
             animated: false)
         
         guard let viewControllers = tabBarViewController.tabBar.items else { return }
-        
+
         let icons = ["MainPage", "FirstPlaceholder", "SecondPlaceholder", "ThirdPlaceholder", "Profile"]
         
         for item in 0..<viewControllers.count {

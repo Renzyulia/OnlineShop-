@@ -24,7 +24,7 @@ final class SignInWithView: UIControl {
     
     private func configureView() {
         textField.text = company.text
-        textField.font = UIFont.specialFont(size: 11, style: .medium)
+        textField.font = UIFont.specialFont(size: 13, style: .medium)
         icon.image = company.image
         
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -35,10 +35,10 @@ final class SignInWithView: UIControl {
         
         NSLayoutConstraint.activate(
             [icon.widthAnchor.constraint(equalToConstant: 23.83),
-             icon.heightAnchor.constraint(equalToConstant: 24.22)])
+             icon.heightAnchor.constraint(equalToConstant: 26.22)])
         
         NSLayoutConstraint.activate(
-            [textField.widthAnchor.constraint(equalToConstant: 112.82),
+            [textField.topAnchor.constraint(equalTo: self.topAnchor, constant: 5),
              textField.leftAnchor.constraint(equalTo: icon.rightAnchor, constant: 11.66)])
     }
     

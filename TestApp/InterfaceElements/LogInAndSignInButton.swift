@@ -25,7 +25,7 @@ final class LoginAndSignInButton: UIControl {
     private func configureButton() {
         self.backgroundColor = UIColor(named: "LoginAndSignInButton")
         self.layer.masksToBounds = true
-        self.layer.cornerRadius = 23
+        self.layer.cornerRadius = 17
         self.contentHorizontalAlignment = .center
     }
     
@@ -40,8 +40,8 @@ final class LoginAndSignInButton: UIControl {
         label.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
             [label.topAnchor.constraint(equalTo: self.topAnchor, constant: 16.98),
-             label.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 121.05),
+             label.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 126.05),
              label.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -15.17),
-             label.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -120.63)])
+             label.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -125.63)])
     }
 }
