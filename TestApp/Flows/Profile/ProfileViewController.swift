@@ -12,6 +12,8 @@ import RxCocoa
 class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     var profileViewModel: ProfileViewModel
     var didFinishProfileBlock: ((String?) -> ())?
+    let viewWillAppear = PublishRelay<Void>()
+    let changePhotoClick = PublishRelay<UIImage>()
     
     private let login: String
     private let disposeBag = DisposeBag()
@@ -59,14 +61,33 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         configureLogOutSection()
         
         let input = ProfileViewModelInput(
-            logOutClick: logOutSection.rx.controlEvent(.touchUpInside).asObservable())
-        
+            logOutClick: logOutSection.rx.controlEvent(.touchUpInside).asObservable(),
+            viewWillAppear: viewWillAppear.asObservable(),
+            changePhotoClick: changePhotoClick.asObservable()
+        )
+            
         let output = profileViewModel.bind(input)
         
         output.logOutCompleted.drive(onNext: { [weak self] in
             self?.didFinishProfileBlock?(nil)
         })
         .disposed(by: disposeBag)
+        
+        output.photoProfile.drive(onNext: { [photoView] image in
+            photoView.photo = image
+        })
+        .disposed(by: disposeBag)
+        
+        output.photoProfileChanged.drive(onNext: { [photoView] image in
+            photoView.photo = image
+        })
+        .disposed(by: disposeBag)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        viewWillAppear.accept(())
     }
     
     private func configureScrollView() {
@@ -90,8 +111,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             [backIcon.widthAnchor.constraint(equalToConstant: 14),
              backIcon.heightAnchor.constraint(equalToConstant: 14),
              backIcon.topAnchor.constraint(equalTo: view.topAnchor, constant: 63),
-             backIcon.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20)
-    ])
+             backIcon.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20)])
     }
     
     private func configureTitleLabel() {
@@ -104,7 +124,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
             [titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 65.2),
-             titleLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 166.25)])
+             titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)])
     }
     
     private func configurePhotoView() {
@@ -139,7 +159,8 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let image = info[.originalImage] as! UIImage
-        photoView.photo = image
+        changePhotoClick.accept(image)
+//        photoView.photo = image
         
         picker.dismiss(animated: true)
     }

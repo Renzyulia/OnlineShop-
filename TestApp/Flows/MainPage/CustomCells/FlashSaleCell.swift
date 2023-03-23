@@ -51,7 +51,7 @@ final class FlashSaleCell: UITableViewCell {
         
         leftLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
-            [leftLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 14.9),
+            [leftLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 18.9),
              leftLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 11)])
     }
     
@@ -64,7 +64,7 @@ final class FlashSaleCell: UITableViewCell {
         
         rightLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
-            [rightLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 14.9),
+            [rightLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20.9),
              rightLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -12.98)])
     }
     
@@ -73,7 +73,7 @@ final class FlashSaleCell: UITableViewCell {
         
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
-            [scrollView.topAnchor.constraint(equalTo: rightLabel.topAnchor, constant: 20.92),
+            [scrollView.topAnchor.constraint(equalTo: rightLabel.topAnchor, constant: 25.92),
              scrollView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
              scrollView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
              scrollView.rightAnchor.constraint(equalTo: contentView.rightAnchor)])
@@ -98,6 +98,6 @@ final class FlashSaleCell: UITableViewCell {
         secondProduct.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
             [secondProduct.topAnchor.constraint(equalTo: scrollView.topAnchor),
-             secondProduct.leftAnchor.constraint(equalTo: firstProduct.rightAnchor, constant: 14)])
+             secondProduct.leftAnchor.constraint(equalTo: firstProduct.rightAnchor, constant: 10)])
     }
 }

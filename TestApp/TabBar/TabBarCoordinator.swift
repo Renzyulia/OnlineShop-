@@ -26,7 +26,7 @@ final class TabBarCoordinator: BaseCoordinator, TabBarCoordinatorDelegate {
         let placeholderThirdViewController = UIViewController()
         let profileViewController = UIViewController()
         
-        let mainPageCoordinator = MainPageCoordinator(containerViewController: mainPageViewController)
+        let mainPageCoordinator = MainPageCoordinator(containerViewController: mainPageViewController, login: login)
         let placeholderFirstCoordinator = PlaceholderCoordinator(containerViewController: placeholderFirstViewController)
         let placeholderSecondCoordinator = PlaceholderCoordinator(containerViewController: placeholderSecondViewController)
         let placeholderThirdCoordinator = PlaceholderCoordinator(containerViewController: placeholderThirdViewController)

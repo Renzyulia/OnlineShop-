@@ -53,6 +53,7 @@ final class PhotoView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
             [button.heightAnchor.constraint(equalToConstant: 7.54),
-             button.topAnchor.constraint(equalTo: photoView.bottomAnchor, constant: 8.5)])
+             button.topAnchor.constraint(equalTo: photoView.bottomAnchor, constant: 8.5),
+             button.centerXAnchor.constraint(equalTo: self.centerXAnchor)])
     }
 }

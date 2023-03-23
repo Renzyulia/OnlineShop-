@@ -9,15 +9,17 @@ import UIKit
 
 final class MainPageCoordinator: BaseCoordinator {
     let containerViewController: UIViewController
+    let login: String
     
-    init(containerViewController: UIViewController) {
+    init(containerViewController: UIViewController, login: String) {
         self.containerViewController = containerViewController
+        self.login = login
     }
     
     override func start() {
         super.start()
         
-        let mainPageViewModel = MainPageViewModel()
+        let mainPageViewModel = MainPageViewModel(login: login)
         
         let mainPageViewController = MainPageViewController(mainPageViewModel: mainPageViewModel)
         mainPageViewController.modalPresentationStyle = .fullScreen

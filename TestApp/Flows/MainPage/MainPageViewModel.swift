@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import CoreData
 
 struct MainPageViewModelInput {
     var viewWillAppear: Observable<Void>
@@ -15,6 +16,7 @@ struct MainPageViewModelInput {
 
 struct MainPageViewModelOutput {
     var data: Driver<Result<Data, Error>>
+    var photoProfile: Driver<UIImage?>
 }
 
 struct Data: Decodable {
@@ -45,16 +47,17 @@ struct FlashSale: Decodable {
     let image_url: URL
 }
 
-//enum DataLoadingResult {
-//    case success
-//    case error
-//}
-
 enum LoadingError: Error {
     case unknown
 }
 
 final class MainPageViewModel {
+    private let login: String
+    
+    init(login: String) {
+        self.login = login
+    }
+    
     func bind(_ input: MainPageViewModelInput) -> MainPageViewModelOutput {
         let latestRequest = URLRequest(url: URL(string: "https://run.mocky.io/v3/cc0071a1-f06e-48fa-9e90-b1c2a61eaca7")!)
         let saleRequest = URLRequest(url: URL(string: "https://run.mocky.io/v3/a9ceeb6e-416d-4352-bde6-2203416576ac")!)
@@ -95,7 +98,37 @@ final class MainPageViewModel {
             }
             .asDriver(onErrorJustReturn: Result.failure(LoadingError.unknown))
         
-        return MainPageViewModelOutput(data: viewWillAppear)
+        let photoProfileInstall = input.viewWillAppear
+            .map {() -> UIImage? in
+                return self.photoInstalled(login: self.login)
+            }
+            .asDriver(onErrorJustReturn: UIImage())
+        
+        return MainPageViewModelOutput(data: viewWillAppear, photoProfile: photoProfileInstall)
+    }
+    
+    private func fetchData(_ context: NSManagedObjectContext) -> [Users] {
+        var usersData = [Users]()
+        do {
+            usersData = try context.fetch(Users.fetchRequest())
+        } catch {
+            print("error")
+        }
+        return usersData
+    }
+    
+    private func photoInstalled(login: String) -> UIImage? {
+        let context = CoreData.shared.viewContext
+        let fetchResult = fetchData(context)
+
+        for user in fetchResult {
+            if login == user.firstName {
+                if user.photo != nil {
+                    return UIImage(data: user.photo!)
+                }
+            }
+        }
+        return UIImage(named: "DefaultPhoto")
     }
 }
 

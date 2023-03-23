@@ -16,6 +16,7 @@ final class MainPageViewController: UIViewController {
     
     private let mainPageViewModel: MainPageViewModel
     private let disposeBag = DisposeBag()
+    private let rightViewNavigationBar = UIImageView()
     private let locationView = LocationView()
     private let tableView = UITableView(frame: .zero, style: .plain)
     private let identifierSearchCell = "identifierSearchCell"
@@ -58,6 +59,11 @@ final class MainPageViewController: UIViewController {
             }
         }
         .disposed(by: disposeBag)
+        
+        output.photoProfile.drive(onNext: { [rightViewNavigationBar] image in
+            rightViewNavigationBar.image = image
+        })
+        .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -88,34 +94,32 @@ final class MainPageViewController: UIViewController {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
             [titleLabel.topAnchor.constraint(equalTo: navigationBar.topAnchor, constant: 10),
-             titleLabel.leftAnchor.constraint(equalTo: navigationBar.leftAnchor, constant: 102)
-    ])
+             titleLabel.leftAnchor.constraint(equalTo: navigationBar.leftAnchor, constant: 102)])
         
  // Mark: configure rightLabel
-        let rightView = UIImageView()
-        rightView.frame = CGRect(x: 100, y: 100, width: 37, height: 37)
-        rightView.layer.cornerRadius = 0.5 * rightView.bounds.size.width
-        rightView.layer.masksToBounds = true
-        rightView.image = UIImage(named: "DefaultPhoto")
+        rightViewNavigationBar.frame = CGRect(x: 100, y: 100, width: 37, height: 37)
+        rightViewNavigationBar.layer.cornerRadius = 0.5 * rightViewNavigationBar.bounds.size.width
+        rightViewNavigationBar.layer.masksToBounds = true
+//        rightViewNavigationBar.image = UIImage(named: "DefaultPhoto")
         
-        navigationBar.addSubview(rightView)
-        rightView.translatesAutoresizingMaskIntoConstraints = false
+        navigationBar.addSubview(rightViewNavigationBar)
+        rightViewNavigationBar.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
-            [rightView.widthAnchor.constraint(equalToConstant: 37),
-             rightView.heightAnchor.constraint(equalToConstant: 37),
-             rightView.topAnchor.constraint(equalTo: navigationBar.topAnchor, constant: 3),
-             rightView.rightAnchor.constraint(equalTo: navigationBar.rightAnchor, constant: -47.57)])
+            [rightViewNavigationBar.widthAnchor.constraint(equalToConstant: 37),
+             rightViewNavigationBar.heightAnchor.constraint(equalToConstant: 37),
+             rightViewNavigationBar.topAnchor.constraint(equalTo: navigationBar.topAnchor, constant: 3),
+             rightViewNavigationBar.rightAnchor.constraint(equalTo: navigationBar.rightAnchor, constant: -47.57)])
         
 // Mark: configure leftLabel
-        let leftView = UIImageView(image: UIImage(named: "Menu"))
+        let leftViewNavigationBar = UIImageView(image: UIImage(named: "Menu"))
         
-        navigationBar.addSubview(leftView)
-        leftView.translatesAutoresizingMaskIntoConstraints = false
+        navigationBar.addSubview(leftViewNavigationBar)
+        leftViewNavigationBar.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
-            [leftView.widthAnchor.constraint(equalToConstant: 24),
-             leftView.heightAnchor.constraint(equalToConstant: 26),
-             leftView.topAnchor.constraint(equalTo: navigationBar.topAnchor, constant: 12),
-             leftView.leftAnchor.constraint(equalTo: navigationBar.leftAnchor, constant: 20)])
+            [leftViewNavigationBar.widthAnchor.constraint(equalToConstant: 24),
+             leftViewNavigationBar.heightAnchor.constraint(equalToConstant: 26),
+             leftViewNavigationBar.topAnchor.constraint(equalTo: navigationBar.topAnchor, constant: 12),
+             leftViewNavigationBar.leftAnchor.constraint(equalTo: navigationBar.leftAnchor, constant: 20)])
     }
     
     private func configureLocationView() {
@@ -138,7 +142,7 @@ final class MainPageViewController: UIViewController {
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
-            [tableView.topAnchor.constraint(equalTo: locationView.bottomAnchor, constant: 5),
+            [tableView.topAnchor.constraint(equalTo: locationView.bottomAnchor, constant: 8),
              tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
              tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
              tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
@@ -188,7 +192,7 @@ extension MainPageViewController: UITableViewDelegate {
         case (0,0): return 24
         case (0,1): return 80
         case (0,2): return 210
-        case (0,3): return 260
+        case (0,3): return 270
         case (0,4): return 200
         default: return 0
         }

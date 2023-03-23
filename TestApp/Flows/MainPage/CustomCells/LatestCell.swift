@@ -68,7 +68,7 @@ final class LatestCell: UITableViewCell {
         
         rightLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
-            [rightLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 25.5),
+            [rightLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 28.5),
              rightLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -12.98)])
     }
     
@@ -77,7 +77,7 @@ final class LatestCell: UITableViewCell {
         
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
-            [scrollView.topAnchor.constraint(equalTo: rightLabel.topAnchor, constant: 20.92),
+            [scrollView.topAnchor.constraint(equalTo: rightLabel.topAnchor, constant: 23.92),
              scrollView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
              scrollView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
              scrollView.rightAnchor.constraint(equalTo: contentView.rightAnchor)])

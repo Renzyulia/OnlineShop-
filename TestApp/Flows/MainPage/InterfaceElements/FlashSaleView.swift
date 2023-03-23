@@ -58,8 +58,8 @@ final class FlashSaleView: UIView {
         
         imageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
-            [imageView.widthAnchor.constraint(equalToConstant: 178),
-             imageView.heightAnchor.constraint(equalToConstant: 225),
+            [imageView.widthAnchor.constraint(equalToConstant: 180),
+             imageView.heightAnchor.constraint(equalToConstant: 235),
              imageView.topAnchor.constraint(equalTo: self.topAnchor),
              imageView.leftAnchor.constraint(equalTo: self.leftAnchor),
              imageView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
@@ -121,7 +121,7 @@ final class FlashSaleView: UIView {
         
         priceLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
-            [priceLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16.66),
+            [priceLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -25.66),
              priceLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10.53)])
     }
     
