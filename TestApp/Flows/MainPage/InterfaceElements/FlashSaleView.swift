@@ -54,27 +54,29 @@ final class FlashSaleView: UIView {
         imageView.layer.masksToBounds = true
         imageView.backgroundColor = .white
         
-        self.addSubview(imageView)
+        addSubview(imageView)
         
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [imageView.widthAnchor.constraint(equalToConstant: 180),
-             imageView.heightAnchor.constraint(equalToConstant: 235),
-             imageView.topAnchor.constraint(equalTo: self.topAnchor),
-             imageView.leftAnchor.constraint(equalTo: self.leftAnchor),
-             imageView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-             imageView.rightAnchor.constraint(equalTo: self.rightAnchor)])
+        NSLayoutConstraint.activate([
+            imageView.widthAnchor.constraint(equalToConstant: 180),
+            imageView.heightAnchor.constraint(equalToConstant: 235),
+            imageView.topAnchor.constraint(equalTo: topAnchor),
+            imageView.leftAnchor.constraint(equalTo: leftAnchor),
+            imageView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            imageView.rightAnchor.constraint(equalTo: rightAnchor)
+        ])
     }
     
     private func configureIconView() {
-        self.addSubview(iconView)
+        addSubview(iconView)
         
         iconView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [iconView.widthAnchor.constraint(equalToConstant: 24),
-             iconView.heightAnchor.constraint(equalToConstant: 24),
-             iconView.topAnchor.constraint(equalTo: self.topAnchor, constant: 7.5),
-             iconView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 7.5)])
+        NSLayoutConstraint.activate([
+            iconView.widthAnchor.constraint(equalToConstant: 24),
+            iconView.heightAnchor.constraint(equalToConstant: 24),
+            iconView.topAnchor.constraint(equalTo: topAnchor, constant: 7.5),
+            iconView.leftAnchor.constraint(equalTo: leftAnchor, constant: 7.5)
+        ])
     }
     
     private func configureCategoryLabel() {
@@ -87,14 +89,15 @@ final class FlashSaleView: UIView {
         categoryLabel.clipsToBounds = true
         categoryLabel.layer.cornerRadius = 5
         
-        self.addSubview(categoryLabel)
+        addSubview(categoryLabel)
         
         categoryLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [categoryLabel.widthAnchor.constraint(equalToConstant: 46.58),
+        NSLayoutConstraint.activate([
+            categoryLabel.widthAnchor.constraint(equalToConstant: 46.58),
              categoryLabel.heightAnchor.constraint(equalToConstant: 17),
-             categoryLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 121),
-             categoryLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10)])
+             categoryLabel.topAnchor.constraint(equalTo: topAnchor, constant: 121),
+             categoryLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 10)
+        ])
     }
     
     private func configureNameLabel() {
@@ -103,13 +106,14 @@ final class FlashSaleView: UIView {
         nameLabel.font = UIFont.specialFont(size: 13, style: .medium)
         nameLabel.numberOfLines = 0
         
-        self.addSubview(nameLabel)
+        addSubview(nameLabel)
         
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [nameLabel.widthAnchor.constraint(equalToConstant: 100),
-             nameLabel.topAnchor.constraint(equalTo: categoryLabel.bottomAnchor, constant: 11.38),
-             nameLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 9.51)])
+        NSLayoutConstraint.activate([
+            nameLabel.widthAnchor.constraint(equalToConstant: 100),
+            nameLabel.topAnchor.constraint(equalTo: categoryLabel.bottomAnchor, constant: 11.38),
+            nameLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 9.51)
+        ])
     }
     
     private func configurePriceLabel() {
@@ -117,12 +121,13 @@ final class FlashSaleView: UIView {
         priceLabel.font = UIFont.specialFont(size: 11.22, style: .bold)
         priceLabel.textColor = .black
         
-        self.addSubview(priceLabel)
+        addSubview(priceLabel)
         
         priceLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [priceLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -25.66),
-             priceLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10.53)])
+        NSLayoutConstraint.activate([
+            priceLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -25.66),
+            priceLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 10.53)
+        ])
     }
     
     private func configureDiscountLabel() {
@@ -134,35 +139,38 @@ final class FlashSaleView: UIView {
         discountLabel.clipsToBounds = true
         discountLabel.layer.cornerRadius = 9
         
-        self.addSubview(discountLabel)
+        addSubview(discountLabel)
         
         discountLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [discountLabel.widthAnchor.constraint(equalToConstant: 55),
-             discountLabel.heightAnchor.constraint(equalToConstant: 18),
-             discountLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 7),
-             discountLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8)])
+        NSLayoutConstraint.activate([
+            discountLabel.widthAnchor.constraint(equalToConstant: 55),
+            discountLabel.heightAnchor.constraint(equalToConstant: 18),
+            discountLabel.topAnchor.constraint(equalTo: topAnchor, constant: 7),
+            discountLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -8)
+        ])
     }
     
     private func configureAddView() {
-        self.addSubview(addView)
+        addSubview(addView)
         
         addView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [addView.widthAnchor.constraint(equalToConstant: 35),
-             addView.heightAnchor.constraint(equalToConstant: 35),
-             addView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -4),
-             addView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -7)])
+        NSLayoutConstraint.activate([
+            addView.widthAnchor.constraint(equalToConstant: 35),
+            addView.heightAnchor.constraint(equalToConstant: 35),
+            addView.rightAnchor.constraint(equalTo: rightAnchor, constant: -4),
+            addView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -7)
+        ])
     }
     
     private func configureAddToFavoritesView() {
-        self.addSubview(addToFavoritesView)
+        addSubview(addToFavoritesView)
         
         addToFavoritesView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [addToFavoritesView.widthAnchor.constraint(equalToConstant: 28),
-             addToFavoritesView.heightAnchor.constraint(equalToConstant: 28),
-             addToFavoritesView.rightAnchor.constraint(equalTo: addView.leftAnchor, constant: -5),
-             addToFavoritesView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10)])
+        NSLayoutConstraint.activate([
+            addToFavoritesView.widthAnchor.constraint(equalToConstant: 28),
+            addToFavoritesView.heightAnchor.constraint(equalToConstant: 28),
+            addToFavoritesView.rightAnchor.constraint(equalTo: addView.leftAnchor, constant: -5),
+            addToFavoritesView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)
+        ])
     }
 }

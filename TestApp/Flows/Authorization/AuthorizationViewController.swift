@@ -20,9 +20,8 @@ final class AuthorizationViewController: UIViewController {
     private let loginButton = LoginAndSignInButton(title: "Login")
     private let accountIsNotRegisteredLabel = UILabel()
     
-    init(authorizationViewModel: AuthorizationViewModel, didFinishAuthorizationBlock: ((String?) -> Void)?) {
+    init(authorizationViewModel: AuthorizationViewModel) {
         self.authorizationViewModel = authorizationViewModel
-        self.didFinishAuthorizationBlock = didFinishAuthorizationBlock
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -36,28 +35,28 @@ final class AuthorizationViewController: UIViewController {
         view.backgroundColor = UIColor(named: "BackgroundColor")
         
         configureLabel()
-        congfigureNameTF()
+        configureNameTF()
         configurePasswordTF()
         configureButton()
         configureAccountIsNotRegisteredLabel()
         
         let name = nameTextField.textField.rx.text
             .asObservable()
-            .map({ (string: String?) -> String in return string ?? "" })
+            .map { string in return string ?? "" }
         
         let password = passwordTextField.textField.rx.text
             .asObservable()
-            .map({ (string: String?) -> String in return string ?? "" })
+            .map { string in return string ?? "" }
         
         let input = AuthorizationViewModelInput(
             loginClick: loginButton.rx.controlEvent(.touchUpInside).asObservable(),
             firstName: name,
-            password: password)
+            password: password
+        )
         
         let output = authorizationViewModel.bind(input)
         
-        output.logInCompleted.drive(onNext: { [weak self] in
-            let login = LoginStorage.shared.getLogin()
+        output.logInCompleted.drive(onNext: { [weak self] login in
             self?.didFinishAuthorizationBlock?(login)
         })
         .disposed(by: disposeBag)
@@ -77,38 +76,42 @@ final class AuthorizationViewController: UIViewController {
         view.addSubview(welcomeLabel)
         
         welcomeLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [welcomeLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 158.71),
-             welcomeLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 90.05)])
+        NSLayoutConstraint.activate([
+            welcomeLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 158.71),
+            welcomeLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 90.05)
+        ])
     }
     
-    private func congfigureNameTF() {
+    private func configureNameTF() {
         view.addSubview(nameTextField)
         
         nameTextField.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [nameTextField.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 80.82),
-             nameTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 44),
-             nameTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 42)])
+        NSLayoutConstraint.activate([
+            nameTextField.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 80.82),
+            nameTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 44),
+            nameTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 42)
+        ])
     }
     
     private func configurePasswordTF() {
         view.addSubview(passwordTextField)
         
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [passwordTextField.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 35),
-             passwordTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 44),
-             passwordTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 42)])
+        NSLayoutConstraint.activate([
+            passwordTextField.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 35),
+            passwordTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 44),
+            passwordTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 42)
+        ])
     }
     
     private func configureButton() {
         view.addSubview(loginButton)
         
         loginButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [loginButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 99),
-             loginButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 47)])
+        NSLayoutConstraint.activate([
+            loginButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 99),
+            loginButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 47)
+        ])
     }
     
     private func configureAccountIsNotRegisteredLabel() {
@@ -121,8 +124,9 @@ final class AuthorizationViewController: UIViewController {
         view.addSubview(accountIsNotRegisteredLabel)
         
         accountIsNotRegisteredLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [accountIsNotRegisteredLabel.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 15),
-             accountIsNotRegisteredLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)])
+        NSLayoutConstraint.activate([
+            accountIsNotRegisteredLabel.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 15),
+            accountIsNotRegisteredLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
     }
 }

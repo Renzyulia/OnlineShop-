@@ -9,7 +9,8 @@ import UIKit
 
 extension UIImageView {
     func loadImage(with url: URL) {
-        ImageManager.shared.loadImage(url: url, completion: { image in
-            self.image = image })
+        ImageManager.shared.loadImage(url: url) { [weak self] image in
+            self?.image = image
+        }
     }
 }

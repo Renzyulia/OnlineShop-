@@ -50,9 +50,10 @@ final class FlashSaleCell: UITableViewCell {
         contentView.addSubview(leftLabel)
         
         leftLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [leftLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 18.9),
-             leftLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 11)])
+        NSLayoutConstraint.activate([
+            leftLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 18.9),
+            leftLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 11)
+        ])
     }
     
     private func configureRightLabel() {
@@ -63,20 +64,22 @@ final class FlashSaleCell: UITableViewCell {
         contentView.addSubview(rightLabel)
         
         rightLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [rightLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20.9),
-             rightLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -12.98)])
+        NSLayoutConstraint.activate([
+            rightLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20.9),
+            rightLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -12.98)
+        ])
     }
     
     private func configureScrollView() {
         contentView.addSubview(scrollView)
         
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [scrollView.topAnchor.constraint(equalTo: rightLabel.topAnchor, constant: 25.92),
-             scrollView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
-             scrollView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-             scrollView.rightAnchor.constraint(equalTo: contentView.rightAnchor)])
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: rightLabel.topAnchor, constant: 25.92),
+            scrollView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            scrollView.rightAnchor.constraint(equalTo: contentView.rightAnchor)
+        ])
     }
     
     private func configureFirstProduct() {
@@ -85,9 +88,10 @@ final class FlashSaleCell: UITableViewCell {
         scrollView.addSubview(firstProduct)
         
         firstProduct.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [firstProduct.topAnchor.constraint(equalTo: scrollView.topAnchor),
-             firstProduct.leftAnchor.constraint(equalTo: scrollView.leftAnchor, constant: 11)])
+        NSLayoutConstraint.activate([
+            firstProduct.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            firstProduct.leftAnchor.constraint(equalTo: scrollView.leftAnchor, constant: 11)
+        ])
     }
     
     private func configureSecondProduct() {
@@ -96,8 +100,9 @@ final class FlashSaleCell: UITableViewCell {
         scrollView.addSubview(secondProduct)
         
         secondProduct.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [secondProduct.topAnchor.constraint(equalTo: scrollView.topAnchor),
-             secondProduct.leftAnchor.constraint(equalTo: firstProduct.rightAnchor, constant: 10)])
+        NSLayoutConstraint.activate([
+            secondProduct.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            secondProduct.leftAnchor.constraint(equalTo: firstProduct.rightAnchor, constant: 10)
+        ])
     }
 }

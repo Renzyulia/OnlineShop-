@@ -20,7 +20,9 @@ final class KeyChain {
         ] as! CFDictionary
                      
         let status = SecItemAdd(query, nil)
-        guard status == errSecSuccess else { return print("save error") }
+        guard status == errSecSuccess else { return
+            print("save error")
+        }
     }
     
     func get(key: String, service: String) -> String? {
@@ -34,7 +36,7 @@ final class KeyChain {
         var result: AnyObject?
         let _ = SecItemCopyMatching(query, &result)
         
-        guard let data = result as? Foundation.Data else {return nil}
+        guard let data = result as? Foundation.Data else { return nil }
         return String(data: data, encoding: String.Encoding.utf8)
     }
     
@@ -46,6 +48,7 @@ final class KeyChain {
         ] as! CFDictionary
         
         let status = SecItemDelete(query)
-        guard status == errSecSuccess else { return print("delete error") }
+        guard status == errSecSuccess else { return
+            print("delete error") }
     }
 }

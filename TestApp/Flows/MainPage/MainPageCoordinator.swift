@@ -9,6 +9,7 @@ import UIKit
 
 final class MainPageCoordinator: BaseCoordinator {
     let containerViewController: UIViewController
+    
     private let login: String
     
     init(containerViewController: UIViewController, login: String) {
@@ -22,18 +23,13 @@ final class MainPageCoordinator: BaseCoordinator {
         let mainPageViewModel = MainPageViewModel(login: login)
         
         let mainPageViewController = MainPageViewController(mainPageViewModel: mainPageViewModel)
-        mainPageViewController.modalPresentationStyle = .fullScreen
         
         let navigationMainPageViewController = UINavigationController(rootViewController: mainPageViewController)
         
         mainPageViewController.didFinishMainPageBlock = { [weak self] login in
-            self?.closeMainPageViewController(mainPageViewController, login: login)
+            self?.onFinish?(login)
         }
         
         containerViewController.embed(navigationMainPageViewController)
-    }
-    
-    private func closeMainPageViewController(_ viewController: MainPageViewController, login: String?) {
-        viewController.dismiss(animated: true, completion: { self.onFinish!(login) })
     }
 }

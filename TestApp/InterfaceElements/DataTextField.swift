@@ -10,11 +10,12 @@ import UIKit
 final class DataTextField: UIView {
     let textField = UITextField()
     let securityButton: UIButton?
-    private var isSecuryText: Bool
+    
+    private var isSecureText: Bool
     private var placeholder: String
     
     init(isSecureText: Bool, placeholder: String, securityButton: UIButton?) {
-        self.isSecuryText = isSecureText
+        self.isSecureText = isSecureText
         self.placeholder = placeholder
         self.securityButton = securityButton
         super.init(frame: .zero)
@@ -33,17 +34,18 @@ final class DataTextField: UIView {
         textField.backgroundColor = UIColor(named: "DataTextField")
         textField.layer.cornerRadius = 14.5
         textField.layer.masksToBounds = true
-        textField.isSecureTextEntry = isSecuryText
+        textField.isSecureTextEntry = isSecureText
         
         self.addSubview(textField)
         
         textField.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [textField.widthAnchor.constraint(equalToConstant: 294),
-             textField.heightAnchor.constraint(equalToConstant: 29),
-             textField.topAnchor.constraint(equalTo: self.topAnchor),
-             textField.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-             textField.leftAnchor.constraint(equalTo: self.leftAnchor)])
+        NSLayoutConstraint.activate([
+            textField.widthAnchor.constraint(equalToConstant: 294),
+            textField.heightAnchor.constraint(equalToConstant: 29),
+            textField.topAnchor.constraint(equalTo: topAnchor),
+            textField.bottomAnchor.constraint(equalTo: bottomAnchor),
+            textField.leftAnchor.constraint(equalTo: leftAnchor)
+        ])
     }
     
     private func configureButton() {
@@ -51,15 +53,16 @@ final class DataTextField: UIView {
         
         button.setImage(UIImage(named: "SecurityOn"), for: .normal)
         
-        self.addSubview(button)
+        addSubview(button)
         
         button.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [button.widthAnchor.constraint(equalToConstant: 15),
-             button.heightAnchor.constraint(equalToConstant: 15),
-             button.topAnchor.constraint(equalTo: textField.topAnchor, constant: 7),
-             button.bottomAnchor.constraint(equalTo: textField.bottomAnchor, constant: -7),
-             button.rightAnchor.constraint(equalTo: textField.rightAnchor, constant: -15)])
+        NSLayoutConstraint.activate([
+            button.widthAnchor.constraint(equalToConstant: 15),
+            button.heightAnchor.constraint(equalToConstant: 15),
+            button.topAnchor.constraint(equalTo: textField.topAnchor, constant: 7),
+            button.bottomAnchor.constraint(equalTo: textField.bottomAnchor, constant: -7),
+            button.rightAnchor.constraint(equalTo: textField.rightAnchor, constant: -15)
+        ])
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap))
         button.addGestureRecognizer(tap)

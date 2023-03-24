@@ -16,10 +16,7 @@ final class PlaceholderCoordinator: BaseCoordinator {
     
     override func start() {
         super.start()
-        
         let placeholderViewController = PlaceholderViewController(backgroundColor: .lightGray)
-        placeholderViewController.modalPresentationStyle = .fullScreen
-        
         containerViewController.embed(placeholderViewController)
     }
 }

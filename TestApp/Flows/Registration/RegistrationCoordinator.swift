@@ -20,17 +20,20 @@ final class RegistrationCoordinator: BaseCoordinator {
         let registrationViewController = RegistrationViewController(
             registrationViewModel: registrationViewModel,
             didFinishRegistrationBlock: nil
-            )
+        )
         registrationViewController.modalPresentationStyle = .fullScreen
         
-        registrationViewController.didFinishRegistrationBlock = { [weak self] login in
-            self?.closeRegistrationViewController(registrationViewController, login: login)
+        registrationViewController.didFinishRegistrationBlock = { [weak self, weak registrationViewController] login in
+            guard let self = self, let registrationViewController = registrationViewController else { return }
+            self.close(registrationViewController, login: login)
         }
         
         containerViewController.present(registrationViewController, animated: true)
     }
     
-    private func closeRegistrationViewController(_ viewController: RegistrationViewController, login: String?) {
-        viewController.dismiss(animated: false, completion: { self.onFinish!(login) })
+    private func close(_ viewController: RegistrationViewController, login: String?) {
+        viewController.dismiss(animated: false) {
+            self.onFinish?(login)
+        }
     }
 }

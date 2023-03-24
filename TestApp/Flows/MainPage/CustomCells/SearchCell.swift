@@ -12,8 +12,8 @@ final class SearchCell: UITableViewCell {
     private let icon = UIImageView(image: UIImage(named: "Search"))
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-      super.init(style: style, reuseIdentifier: reuseIdentifier)
-      configureCell()
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        configureCell()
     }
     
     required init?(coder: NSCoder) {
@@ -35,17 +35,19 @@ final class SearchCell: UITableViewCell {
         textField.translatesAutoresizingMaskIntoConstraints = false
         icon.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate(
-            [textField.topAnchor.constraint(equalTo: contentView.topAnchor),
-             textField.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 57),
-             textField.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -56),
-             textField.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)])
+        NSLayoutConstraint.activate([
+            textField.topAnchor.constraint(equalTo: contentView.topAnchor),
+            textField.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 57),
+            textField.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -56),
+            textField.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+        ])
         
-        NSLayoutConstraint.activate(
-            [icon.widthAnchor.constraint(equalToConstant: 9),
-             icon.heightAnchor.constraint(equalToConstant: 9),
-             icon.rightAnchor.constraint(equalTo: textField.rightAnchor, constant: -17.5),
-             icon.topAnchor.constraint(equalTo: textField.topAnchor, constant: 7.5),
-             icon.bottomAnchor.constraint(equalTo: textField.bottomAnchor, constant: -7.5)])
+        NSLayoutConstraint.activate([
+            icon.widthAnchor.constraint(equalToConstant: 9),
+            icon.heightAnchor.constraint(equalToConstant: 9),
+            icon.rightAnchor.constraint(equalTo: textField.rightAnchor, constant: -17.5),
+            icon.topAnchor.constraint(equalTo: textField.topAnchor, constant: 7.5),
+            icon.bottomAnchor.constraint(equalTo: textField.bottomAnchor, constant: -7.5)
+        ])
     }
 }

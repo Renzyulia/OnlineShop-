@@ -25,10 +25,10 @@ final class UploadItemButton: UIControl {
     private func configureIcon() {
         self.addSubview(icon)
         icon.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [
-             icon.topAnchor.constraint(equalTo: self.topAnchor, constant: 14.25),
-             icon.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 52.5)])
+        NSLayoutConstraint.activate([
+            icon.topAnchor.constraint(equalTo: topAnchor, constant: 14.25),
+            icon.leftAnchor.constraint(equalTo: leftAnchor, constant: 52.5)
+        ])
     }
     
     private func configureButton() {
@@ -43,13 +43,14 @@ final class UploadItemButton: UIControl {
         label.font = UIFont.specialFont(size: 15, style: .medium)
         label.numberOfLines = 1
         
-        self.addSubview(label)
+        addSubview(label)
         
         label.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [label.topAnchor.constraint(equalTo: self.topAnchor, constant: 14.19),
-             label.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 103.3),
-             label.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -12.28),
-             label.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -103.16)])
+        NSLayoutConstraint.activate([
+            label.topAnchor.constraint(equalTo: topAnchor, constant: 14.19),
+            label.leftAnchor.constraint(equalTo: leftAnchor, constant: 103.3),
+            label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -12.28),
+            label.rightAnchor.constraint(equalTo: rightAnchor, constant: -103.16)
+        ])
     }
 }

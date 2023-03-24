@@ -44,16 +44,17 @@ final class LatestView: UIView {
         imageView.layer.masksToBounds = true
         imageView.backgroundColor = .white
         
-        self.addSubview(imageView)
+        addSubview(imageView)
         
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [imageView.widthAnchor.constraint(equalToConstant: 114),
-             imageView.heightAnchor.constraint(equalToConstant: 160),
-             imageView.topAnchor.constraint(equalTo: self.topAnchor),
-             imageView.leftAnchor.constraint(equalTo: self.leftAnchor),
-             imageView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-             imageView.rightAnchor.constraint(equalTo: self.rightAnchor)])
+        NSLayoutConstraint.activate([
+            imageView.widthAnchor.constraint(equalToConstant: 114),
+            imageView.heightAnchor.constraint(equalToConstant: 160),
+            imageView.topAnchor.constraint(equalTo: topAnchor),
+            imageView.leftAnchor.constraint(equalTo: leftAnchor),
+            imageView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            imageView.rightAnchor.constraint(equalTo: rightAnchor)
+        ])
     }
     
     private func configureCategoryLabel() {
@@ -66,14 +67,15 @@ final class LatestView: UIView {
         categoryLabel.clipsToBounds = true
         categoryLabel.layer.cornerRadius = 5
         
-        self.addSubview(categoryLabel)
+        addSubview(categoryLabel)
         
         categoryLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [categoryLabel.widthAnchor.constraint(equalToConstant: 40),
-             categoryLabel.heightAnchor.constraint(equalToConstant: 12),
-             categoryLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 91),
-             categoryLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 7)])
+        NSLayoutConstraint.activate([
+            categoryLabel.widthAnchor.constraint(equalToConstant: 40),
+            categoryLabel.heightAnchor.constraint(equalToConstant: 12),
+            categoryLabel.topAnchor.constraint(equalTo: topAnchor, constant: 91),
+            categoryLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 7)
+        ])
     }
     
     private func configureNameLabel() {
@@ -83,14 +85,15 @@ final class LatestView: UIView {
         nameLabel.font = UIFont.specialFont(size: 9, style: .medium)
         nameLabel.numberOfLines = 0
         
-        self.addSubview(nameLabel)
+        addSubview(nameLabel)
         
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [nameLabel.widthAnchor.constraint(equalToConstant: 70),
-             nameLabel.heightAnchor.constraint(equalToConstant: 25.14),
-             nameLabel.topAnchor.constraint(equalTo: categoryLabel.bottomAnchor, constant: 2.31),
-             nameLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 7.46)])
+        NSLayoutConstraint.activate([
+            nameLabel.widthAnchor.constraint(equalToConstant: 70),
+            nameLabel.heightAnchor.constraint(equalToConstant: 25.14),
+            nameLabel.topAnchor.constraint(equalTo: categoryLabel.bottomAnchor, constant: 2.31),
+            nameLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 7.46)
+        ])
     }
     
     private func configurePriceLabel() {
@@ -98,22 +101,24 @@ final class LatestView: UIView {
         priceLabel.font = UIFont.specialFont(size: 8.45, style: .bold)
         priceLabel.textColor = .black
         
-        self.addSubview(priceLabel)
+        addSubview(priceLabel)
         
         priceLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [priceLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -7.06),
-             priceLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 7.37)])
+        NSLayoutConstraint.activate([
+            priceLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -7.06),
+            priceLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 7.37)
+        ])
     }
     
     private func configureAddView() {
-        self.addSubview(addView)
+        addSubview(addView)
         
         addView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [addView.widthAnchor.constraint(equalToConstant: 20),
-             addView.heightAnchor.constraint(equalToConstant: 20),
-             addView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -5),
-             addView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5)])
+        NSLayoutConstraint.activate([
+            addView.widthAnchor.constraint(equalToConstant: 20),
+            addView.heightAnchor.constraint(equalToConstant: 20),
+            addView.rightAnchor.constraint(equalTo: rightAnchor, constant: -5),
+            addView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5)
+        ])
     }
 }

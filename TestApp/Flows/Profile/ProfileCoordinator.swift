@@ -21,21 +21,12 @@ final class ProfileCoordinator: BaseCoordinator {
         
         let profileViewModel = ProfileViewModel(login: login)
         
-        let profileViewController = ProfileViewController(
-            login: login,
-            didFinishProfileBlock: nil,
-            viewModel: profileViewModel)
-        
-        profileViewController.modalPresentationStyle = .fullScreen
+        let profileViewController = ProfileViewController(login: login, viewModel: profileViewModel)
         
         profileViewController.didFinishProfileBlock = { [weak self] login in
-            self?.closeProfileViewController(profileViewController, login: login)
+            self?.onFinish?(login)
         }
         
         containerViewController.embed(profileViewController)
-    }
-    
-    private func closeProfileViewController(_ viewController: ProfileViewController, login: String?) {
-        viewController.dismiss(animated: false, completion: { self.onFinish!(login) })
     }
 }

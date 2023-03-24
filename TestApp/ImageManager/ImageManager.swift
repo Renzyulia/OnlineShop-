@@ -12,23 +12,23 @@ final class ImageManager {
     
     private var images = [URL: UIImage]()
     
-    init() {}
+    private init() {}
     
-    func loadImage(url: URL, completion: @escaping (UIImage) -> ()) {
+    func loadImage(url: URL, completion: @escaping (UIImage?) -> Void) {
         if let image = images[url] {
             completion(image)
         } else {
-            getData(from: url, completion: { data, response, error in
-                guard let data = data, error == nil else { return }
-                DispatchQueue.main.async() { [weak self] in
-                    self?.images[url] = UIImage(data: data)
-                    completion((self?.images[url])!)
+            URLSession.shared.dataTask(with: url) { data, response, error in
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    guard let data = data, error == nil else {
+                        completion(nil)
+                        return
+                    }
+                    self.images[url] = UIImage(data: data)
+                    completion(self.images[url]!)
                 }
-            })
+            }.resume()
         }
-    }
-    
-    private func getData(from url: URL, completion: @escaping (Foundation.Data?, URLResponse?, Error?) -> ()) {
-        URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
     }
 }

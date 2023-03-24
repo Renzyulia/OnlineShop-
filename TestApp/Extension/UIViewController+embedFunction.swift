@@ -9,9 +9,9 @@ import UIKit
 
 extension UIViewController {
     func embed(_ viewController: UIViewController) {
-        self.addChild(viewController)
-        self.view.addSubview(viewController.view)
-        viewController.view.frame = self.view.bounds
+        addChild(viewController)
+        view.addSubview(viewController.view)
+        viewController.view.frame = view.bounds
         viewController.didMove(toParent: self)
     }
 }

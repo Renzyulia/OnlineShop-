@@ -17,7 +17,7 @@ struct AuthorizationViewModelInput {
 }
 
 struct AuthorizationViewModelOutput {
-    var logInCompleted: Driver<Void>
+    var logInCompleted: Driver<String>
     var shouldShowAccountIsNotRegistered: Driver<Bool>
 }
 
@@ -29,35 +29,58 @@ final class AuthorizationViewModel {
     }
     
     private enum AuthorizationResult {
-        case success
+        case success(login: String)
         case accountIsNotRegistered
     }
     
     func bind(_ input: AuthorizationViewModelInput) -> AuthorizationViewModelOutput {
         let logIn = input.loginClick
             .withLatestFrom(input.firstName)
-            .withLatestFrom(input.password, resultSelector: { firstName, password in return AuthorizationData(firstName: firstName, password: password) })
-            .map{ data -> AuthorizationResult in
+            .withLatestFrom(input.password) { AuthorizationData(firstName: $0, password: $1) }
+            .map { [weak self] data -> AuthorizationResult in
+                guard let self = self else { return .accountIsNotRegistered }
                 if self.accountIsRegistered(login: data.firstName) {//смотрим по базе данных есть ли такой аакаунт
                     LoginStorage.shared.save(login: data.firstName)
-                    return .success
+                    return .success(login: data.firstName)
                 } else {
                     return .accountIsNotRegistered
                 }
             }
         
         let eventOnSuccessfulAuthorization = logIn
-            .filter({ (result: AuthorizationResult) -> Bool in return result == .success })
-            .map({ (result: AuthorizationResult) -> Void in return () })
-            .asDriver(onErrorJustReturn: ())
+            .filter { result in
+                switch result {
+                case .success:
+                    return true
+                case .accountIsNotRegistered:
+                    return false
+                }
+            }
+            .map { result -> String in
+                switch result {
+                case let .success(login: login):
+                    return login
+                case .accountIsNotRegistered:
+                    fatalError("Incorrect case")
+                }
+            }
+            .asDriver(onErrorJustReturn: "")
         
         let shouldShowExistingLoginError = logIn
-            .map({ (result: AuthorizationResult) -> Bool in return result == .accountIsNotRegistered })
+            .map { result in
+                switch result {
+                case .success:
+                    return false
+                case .accountIsNotRegistered:
+                    return true
+                }
+            }
             .asDriver(onErrorJustReturn: false)
         
         return AuthorizationViewModelOutput(
             logInCompleted: eventOnSuccessfulAuthorization,
-            shouldShowAccountIsNotRegistered: shouldShowExistingLoginError)
+            shouldShowAccountIsNotRegistered: shouldShowExistingLoginError
+        )
     }
     
     private func fetchData(_ context: NSManagedObjectContext) -> [Users] {
@@ -65,7 +88,7 @@ final class AuthorizationViewModel {
         do {
             usersData = try context.fetch(Users.fetchRequest())
         } catch {
-            print("error")
+            print("Error: \(error)")
         }
         return usersData
     }
@@ -74,13 +97,11 @@ final class AuthorizationViewModel {
         let context = CoreData.shared.viewContext
         let fetchResult = fetchData(context)
         
-        var isRegistered = false
         for user in fetchResult {
             if login == user.firstName {
-                isRegistered = true
-                break
+                return true
             }
         }
-        return isRegistered
+        return false
     }
 }

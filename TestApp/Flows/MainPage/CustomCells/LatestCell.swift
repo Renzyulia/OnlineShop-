@@ -54,9 +54,10 @@ final class LatestCell: UITableViewCell {
         contentView.addSubview(leftLabel)
         
         leftLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [leftLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 25.5),
-             leftLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 11)])
+        NSLayoutConstraint.activate([
+            leftLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 25.5),
+            leftLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 11)
+        ])
     }
     
     private func configureRightLabel() {
@@ -67,20 +68,22 @@ final class LatestCell: UITableViewCell {
         contentView.addSubview(rightLabel)
         
         rightLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [rightLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 28.5),
-             rightLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -12.98)])
+        NSLayoutConstraint.activate([
+            rightLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 28.5),
+            rightLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -12.98)
+        ])
     }
     
     private func configureScrollView() {
         contentView.addSubview(scrollView)
         
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [scrollView.topAnchor.constraint(equalTo: rightLabel.topAnchor, constant: 23.92),
-             scrollView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
-             scrollView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-             scrollView.rightAnchor.constraint(equalTo: contentView.rightAnchor)])
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: rightLabel.topAnchor, constant: 23.92),
+            scrollView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            scrollView.rightAnchor.constraint(equalTo: contentView.rightAnchor)
+        ])
     }
     
     private func configureFirstProduct() {
@@ -89,9 +92,10 @@ final class LatestCell: UITableViewCell {
         scrollView.addSubview(firstProduct)
         
         firstProduct.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [firstProduct.topAnchor.constraint(equalTo: scrollView.topAnchor),
-             firstProduct.leftAnchor.constraint(equalTo: scrollView.leftAnchor, constant: 11)])
+        NSLayoutConstraint.activate([
+            firstProduct.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            firstProduct.leftAnchor.constraint(equalTo: scrollView.leftAnchor, constant: 11)
+        ])
     }
     
     private func configureSecondProduct() {
@@ -100,9 +104,10 @@ final class LatestCell: UITableViewCell {
         scrollView.addSubview(secondProduct)
         
         secondProduct.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [secondProduct.topAnchor.constraint(equalTo: scrollView.topAnchor),
-             secondProduct.leftAnchor.constraint(equalTo: firstProduct.rightAnchor, constant: 12)])
+        NSLayoutConstraint.activate([
+            secondProduct.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            secondProduct.leftAnchor.constraint(equalTo: firstProduct.rightAnchor, constant: 12)
+        ])
     }
     
     private func configureThirdProduct() {
@@ -111,8 +116,9 @@ final class LatestCell: UITableViewCell {
         scrollView.addSubview(thirdProduct)
         
         thirdProduct.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [thirdProduct.topAnchor.constraint(equalTo: scrollView.topAnchor),
-             thirdProduct.leftAnchor.constraint(equalTo: secondProduct.rightAnchor, constant: 12)])
+        NSLayoutConstraint.activate([
+            thirdProduct.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            thirdProduct.leftAnchor.constraint(equalTo: secondProduct.rightAnchor, constant: 12)
+        ])
     }
 }

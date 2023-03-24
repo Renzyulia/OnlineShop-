@@ -7,7 +7,20 @@
 
 import UIKit
 
-final class SectonView: UIControl {
+final class SectionView: UIControl {
+    
+    enum Icons {
+        case wallet
+        case restore
+        case help
+        case logOut
+    }
+
+    enum SectionStyle {
+        case information
+        case transition
+    }
+    
     private let title: String
     private let iconStyle: Icons
     private let sectionStyle: SectionStyle?
@@ -35,17 +48,17 @@ final class SectonView: UIControl {
         case .logOut: icon.image = UIImage(named: "LogOut")!
         }
         
-        self.addSubview(icon)
+        addSubview(icon)
         
         icon.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [icon.widthAnchor.constraint(equalToConstant: 40),
-             icon.heightAnchor.constraint(equalToConstant: 40),
-             icon.topAnchor.constraint(equalTo: self.topAnchor),
-             icon.leftAnchor.constraint(equalTo: self.leftAnchor),
-             icon.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-             icon.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -270)])
-        
+        NSLayoutConstraint.activate([
+            icon.widthAnchor.constraint(equalToConstant: 40),
+            icon.heightAnchor.constraint(equalToConstant: 40),
+            icon.topAnchor.constraint(equalTo: topAnchor),
+            icon.leftAnchor.constraint(equalTo: leftAnchor),
+            icon.bottomAnchor.constraint(equalTo: bottomAnchor),
+            icon.rightAnchor.constraint(equalTo: rightAnchor, constant: -270)
+        ])
     }
     
     private func configureTitle() {
@@ -54,12 +67,13 @@ final class SectonView: UIControl {
         titleLabel.font = UIFont.specialFont(size: 14, style: .medium)
         titleLabel.textColor = .black
         
-        self.addSubview(titleLabel)
+        addSubview(titleLabel)
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 11),
-             titleLabel.leftAnchor.constraint(equalTo: icon.rightAnchor, constant: 8.5)])
+        NSLayoutConstraint.activate([
+            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 11),
+            titleLabel.leftAnchor.constraint(equalTo: icon.rightAnchor, constant: 8.5)
+        ])
     }
     
     private func configureDetailInfo() {
@@ -71,23 +85,12 @@ final class SectonView: UIControl {
         case .transition: detailView.image = UIImage(named: "TransitionSection")
         }
         
-        self.addSubview(detailView)
+        addSubview(detailView)
         
         detailView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [detailView.topAnchor.constraint(equalTo: self.topAnchor, constant: 11),
-             detailView.rightAnchor.constraint(equalTo: self.rightAnchor)])
-    }
-    
-    enum Icons {
-        case wallet
-        case restore
-        case help
-        case logOut
-    }
-
-    enum SectionStyle {
-        case information
-        case transition
+        NSLayoutConstraint.activate([
+            detailView.topAnchor.constraint(equalTo: topAnchor, constant: 11),
+            detailView.rightAnchor.constraint(equalTo: rightAnchor)
+        ])
     }
 }

@@ -23,6 +23,11 @@ struct ProfileViewModelOutput {
 }
 
 final class ProfileViewModel {
+    
+    private enum LogOutResult {
+        case success
+    }
+    
     private let login: String
     
     init(login: String) {
@@ -30,20 +35,22 @@ final class ProfileViewModel {
     }
     
     func bind(_ input: ProfileViewModelInput) -> ProfileViewModelOutput {
-        let handlelogOutTap = input.logOutClick
-            .map { () -> LogOutResult in
+        let handleLogOutTap = input.logOutClick
+            .map { _ -> LogOutResult in
                 LoginStorage().delete(login: self.login)
                 return .success
             }
         
         let viewWillAppear = input.viewWillAppear
-            .map {() -> UIImage? in
+            .map { [weak self] _ -> UIImage? in
+                guard let self = self else { return nil }
                 return self.photoInstalled(login: self.login)
             }
-            .asDriver(onErrorJustReturn: UIImage())
+            .asDriver(onErrorJustReturn: nil)
         
         let handleChangePhotoTap = input.changePhotoClick
-            .map { (image: UIImage) -> UIImage in
+            .map { [weak self] image in
+                guard let self = self else { return image }
                 if self.savePhoto(login: self.login, image) {
                     return image
                 } else {
@@ -52,12 +59,16 @@ final class ProfileViewModel {
             }
             .asDriver(onErrorJustReturn: UIImage(named: "DefaultPhoto")!)
         
-        let eventOnSuccessfulLogOut = handlelogOutTap
-            .filter({ (result: LogOutResult) -> Bool in return result == .success })
-            .map({ (result: LogOutResult) -> Void in return () })
+        let eventOnSuccessfulLogOut = handleLogOutTap
+            .filter { result in result == .success }
+            .map { _ in return () }
             .asDriver(onErrorJustReturn: ())
         
-        return ProfileViewModelOutput(logOutCompleted: eventOnSuccessfulLogOut, photoProfile: viewWillAppear, photoProfileChanged: handleChangePhotoTap)
+        return ProfileViewModelOutput(
+            logOutCompleted: eventOnSuccessfulLogOut,
+            photoProfile: viewWillAppear,
+            photoProfileChanged: handleChangePhotoTap
+        )
     }
     
     private func fetchData(_ context: NSManagedObjectContext) -> [Users] {
@@ -65,7 +76,7 @@ final class ProfileViewModel {
         do {
             usersData = try context.fetch(Users.fetchRequest())
         } catch {
-            print("error")
+            print("Error: \(error)")
         }
         return usersData
     }
@@ -76,8 +87,8 @@ final class ProfileViewModel {
 
         for user in fetchResult {
             if login == user.firstName {
-                if user.photo != nil {
-                    return UIImage(data: user.photo!)
+                if let photo = user.photo {
+                    return UIImage(data: photo)
                 }
             }
         }
@@ -88,24 +99,19 @@ final class ProfileViewModel {
         let context = CoreData.shared.viewContext
         let fetchResult = fetchData(context)
         
-        var success = false
-        
         for user in fetchResult {
             if login == user.firstName {
                 user.photo = image.jpegData(compressionQuality: 0.8)
                 do {
                     try context.save()
-                    success = true
+                    return true
                 } catch {
-                    print("save error")
-                    success = false
+                    print("Save error: \(error)")
+                    return false
                 }
             }
         }
-        return success
-    }
-    
-    private enum LogOutResult {
-        case success
+        
+        return false
     }
 }

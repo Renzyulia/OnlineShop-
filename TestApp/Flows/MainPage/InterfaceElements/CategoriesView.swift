@@ -8,48 +8,6 @@
 import UIKit
 
 final class CategoriesView: UIView {
-    private let category: Category
-    private let icon = UIImageView()
-    private let label = UILabel()
-    
-    init(category: Category) {
-        self.category = category
-        super.init(frame: .zero)
-        
-        configureView()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    private func configureView() {
-        icon.image = category.image
-        
-        label.text = category.text
-        label.textAlignment = .center
-        label.textColor = UIColor(named: "CategoryColor")
-        label.font = UIFont.specialFont(size: 9, style: .medium)
-        
-        self.addSubview(icon)
-        self.addSubview(label)
-        
-        icon.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [icon.widthAnchor.constraint(equalToConstant: 42.11),
-             icon.heightAnchor.constraint(equalToConstant: 38),
-             icon.topAnchor.constraint(equalTo: self.topAnchor),
-             icon.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 8),
-             icon.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8),
-             icon.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20)])
-
-        label.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [label.heightAnchor.constraint(equalToConstant: 7),
-             label.topAnchor.constraint(equalTo: icon.bottomAnchor, constant: 12.98),
-             label.leftAnchor.constraint(equalTo: self.leftAnchor),
-             label.rightAnchor.constraint(equalTo: self.rightAnchor)])
-    }
     
     enum Categories {
         case phones
@@ -86,5 +44,50 @@ final class CategoriesView: UIView {
                 text = "Kids"
             }
         }
+    }
+    
+    private let category: Category
+    private let icon = UIImageView()
+    private let label = UILabel()
+    
+    init(category: Category) {
+        self.category = category
+        super.init(frame: .zero)
+        
+        configureView()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func configureView() {
+        icon.image = category.image
+        
+        label.text = category.text
+        label.textAlignment = .center
+        label.textColor = UIColor(named: "CategoryColor")
+        label.font = UIFont.specialFont(size: 9, style: .medium)
+        
+        addSubview(icon)
+        addSubview(label)
+        
+        icon.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            icon.widthAnchor.constraint(equalToConstant: 42.11),
+            icon.heightAnchor.constraint(equalToConstant: 38),
+            icon.topAnchor.constraint(equalTo: topAnchor),
+            icon.leftAnchor.constraint(equalTo: leftAnchor, constant: 8),
+            icon.rightAnchor.constraint(equalTo: rightAnchor, constant: -8),
+            icon.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20)
+        ])
+
+        label.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            label.heightAnchor.constraint(equalToConstant: 7),
+            label.topAnchor.constraint(equalTo: icon.bottomAnchor, constant: 12.98),
+            label.leftAnchor.constraint(equalTo: leftAnchor),
+            label.rightAnchor.constraint(equalTo: rightAnchor)
+        ])
     }
 }

@@ -25,15 +25,16 @@ final class BrandsView: UIView {
         imageView.layer.cornerRadius = 10
         imageView.layer.masksToBounds = true
         
-        self.addSubview(imageView)
+        addSubview(imageView)
         
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [imageView.widthAnchor.constraint(equalToConstant: 120),
-             imageView.heightAnchor.constraint(equalToConstant: 149),
-             imageView.topAnchor.constraint(equalTo: self.topAnchor),
-             imageView.leftAnchor.constraint(equalTo: self.leftAnchor),
-             imageView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-             imageView.rightAnchor.constraint(equalTo: self.rightAnchor)])
+        NSLayoutConstraint.activate([
+            imageView.widthAnchor.constraint(equalToConstant: 120),
+            imageView.heightAnchor.constraint(equalToConstant: 149),
+            imageView.topAnchor.constraint(equalTo: topAnchor),
+            imageView.leftAnchor.constraint(equalTo: leftAnchor),
+            imageView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            imageView.rightAnchor.constraint(equalTo: rightAnchor)
+        ])
     }
 }

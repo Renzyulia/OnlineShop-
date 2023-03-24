@@ -19,22 +19,22 @@ final class ProfileViewController: UIViewController, UIImagePickerControllerDele
     private let disposeBag = DisposeBag()
     
     private let scrollView = UIScrollView()
+    private let contentView = UIView()
     private let backIcon = UIImageView(image: UIImage(named: "Back"))
     private let titleLabel = UILabel()
     private var photoView = PhotoView()
     private let loginLabel = UILabel()
     private let uploadItemButton = UploadItemButton()
-    private let storeSection = SectonView(title: "Trade store", iconStyle: .wallet, sectionStyle: .transition)
-    private let paymentSection = SectonView(title: "Payment method", iconStyle: .wallet, sectionStyle: .transition)
-    private let balanceSection = SectonView(title: "Balance", iconStyle: .wallet, sectionStyle: .information)
-    private let tradeHistorySection = SectonView(title: "Trade history", iconStyle: .wallet, sectionStyle: .transition)
-    private let restoreSection = SectonView(title: "Restore Purchase", iconStyle: .restore, sectionStyle: .transition)
-    private let helpSection = SectonView(title: "Help", iconStyle: .help, sectionStyle: nil)
-    private let logOutSection = SectonView(title: "Log out", iconStyle: .logOut, sectionStyle: nil)
+    private let storeSection = SectionView(title: "Trade store", iconStyle: .wallet, sectionStyle: .transition)
+    private let paymentSection = SectionView(title: "Payment method", iconStyle: .wallet, sectionStyle: .transition)
+    private let balanceSection = SectionView(title: "Balance", iconStyle: .wallet, sectionStyle: .information)
+    private let tradeHistorySection = SectionView(title: "Trade history", iconStyle: .wallet, sectionStyle: .transition)
+    private let restoreSection = SectionView(title: "Restore Purchase", iconStyle: .restore, sectionStyle: .transition)
+    private let helpSection = SectionView(title: "Help", iconStyle: .help, sectionStyle: nil)
+    private let logOutSection = SectionView(title: "Log out", iconStyle: .logOut, sectionStyle: nil)
     
-    init(login: String, didFinishProfileBlock: ((String?) -> ())?, viewModel: ProfileViewModel) {
+    init(login: String, viewModel: ProfileViewModel) {
         self.login = login
-        self.didFinishProfileBlock = didFinishProfileBlock
         self.profileViewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -92,26 +92,38 @@ final class ProfileViewController: UIViewController, UIImagePickerControllerDele
     
     private func configureScrollView() {
         scrollView.backgroundColor = UIColor(named: "BackgroundColor")
+        scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 100, right: 0)
         
         view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
         
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [scrollView.topAnchor.constraint(equalTo: view.topAnchor),
-             scrollView.rightAnchor.constraint(equalTo: view.rightAnchor),
-             scrollView.leftAnchor.constraint(equalTo: view.leftAnchor),
-             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            scrollView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        NSLayoutConstraint.activate([
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+        ])
     }
     
     private func configureBackIcon() {
-        scrollView.addSubview(backIcon)
+        contentView.addSubview(backIcon)
         
         backIcon.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [backIcon.widthAnchor.constraint(equalToConstant: 14),
-             backIcon.heightAnchor.constraint(equalToConstant: 14),
-             backIcon.topAnchor.constraint(equalTo: view.topAnchor, constant: 63),
-             backIcon.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20)])
+        NSLayoutConstraint.activate([
+            backIcon.widthAnchor.constraint(equalToConstant: 14),
+            backIcon.heightAnchor.constraint(equalToConstant: 14),
+            backIcon.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 63),
+            backIcon.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20)
+        ])
     }
     
     private func configureTitleLabel() {
@@ -119,42 +131,45 @@ final class ProfileViewController: UIViewController, UIImagePickerControllerDele
         titleLabel.font = UIFont.specialFont(size: 15, style: .bold)
         titleLabel.numberOfLines = 1
         
-        scrollView.addSubview(titleLabel)
+        contentView.addSubview(titleLabel)
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 65.2),
-             titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)])
+        NSLayoutConstraint.activate([
+            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 65.2),
+            titleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
+        ])
     }
     
     private func configurePhotoView() {
         photoView.button.addTarget(self, action: #selector(changePhoto), for: .touchUpInside)
         
-        scrollView.addSubview(photoView)
+        contentView.addSubview(photoView)
         
         photoView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [photoView.heightAnchor.constraint(equalToConstant: 77),
-             photoView.topAnchor.constraint(equalTo: view.topAnchor, constant: 96.5),
-             photoView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 157.5)])
+        NSLayoutConstraint.activate([
+            photoView.heightAnchor.constraint(equalToConstant: 77),
+            photoView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 96.5),
+            photoView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 157.5)
+        ])
     }
     
     @objc private func changePhoto() {
-        let imagePickerController = UIImagePickerController()
-        imagePickerController.delegate = self
-        
         let alert = UIAlertController(
             title: "Photo Source",
             message: "Choose a source",
-            preferredStyle: .alert)
+            preferredStyle: .alert
+        )
         
-        alert.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { (action: UIAlertAction) in
+        alert.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { [weak self] (action: UIAlertAction) in
+            guard let self = self else { return }
+            let imagePickerController = UIImagePickerController()
+            imagePickerController.delegate = self
             imagePickerController.sourceType = .photoLibrary
             self.present(imagePickerController, animated: true)
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         
-        self.present(alert, animated: true)
+        present(alert, animated: true)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -172,83 +187,93 @@ final class ProfileViewController: UIViewController, UIImagePickerControllerDele
         loginLabel.text = login
         loginLabel.font = UIFont.specialFont(size: 16, style: .bold)
         
-        scrollView.addSubview(loginLabel)
+        contentView.addSubview(loginLabel)
         
         loginLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [loginLabel.topAnchor.constraint(equalTo: photoView.button.bottomAnchor, constant: 19.6),
-             loginLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)])
+        NSLayoutConstraint.activate([
+            loginLabel.topAnchor.constraint(equalTo: photoView.button.bottomAnchor, constant: 19.6),
+            loginLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
+        ])
     }
     
     private func configureUploadItemButton() {
-        scrollView.addSubview(uploadItemButton)
+        contentView.addSubview(uploadItemButton)
         
         uploadItemButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [uploadItemButton.topAnchor.constraint(equalTo: loginLabel.bottomAnchor, constant: 37.82),
-             uploadItemButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 43)])
+        NSLayoutConstraint.activate([
+            uploadItemButton.topAnchor.constraint(equalTo: loginLabel.bottomAnchor, constant: 37.82),
+            uploadItemButton.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 43)
+        ])
     }
     
     private func configureStoreSection() {
-        scrollView.addSubview(storeSection)
+        contentView.addSubview(storeSection)
         
         storeSection.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [storeSection.topAnchor.constraint(equalTo: uploadItemButton.bottomAnchor, constant: 14),
-             storeSection.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 32)])
+        NSLayoutConstraint.activate([
+            storeSection.topAnchor.constraint(equalTo: uploadItemButton.bottomAnchor, constant: 14),
+            storeSection.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 32)
+        ])
     }
     
     private func configurePaymentSection() {
-        scrollView.addSubview(paymentSection)
+        contentView.addSubview(paymentSection)
         
         paymentSection.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [paymentSection.topAnchor.constraint(equalTo: storeSection.bottomAnchor, constant: 25),
-             paymentSection.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 32)])
+        NSLayoutConstraint.activate([
+            paymentSection.topAnchor.constraint(equalTo: storeSection.bottomAnchor, constant: 25),
+            paymentSection.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 32)
+        ])
     }
     
     private func configureBalanceSection() {
-        scrollView.addSubview(balanceSection)
+        contentView.addSubview(balanceSection)
         
         balanceSection.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [balanceSection.topAnchor.constraint(equalTo: paymentSection.bottomAnchor, constant: 25),
-             balanceSection.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 32)])
+        NSLayoutConstraint.activate([
+            balanceSection.topAnchor.constraint(equalTo: paymentSection.bottomAnchor, constant: 25),
+            balanceSection.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 32)
+        ])
     }
     
     private func configureTradeHistorySection() {
-        scrollView.addSubview(tradeHistorySection)
+        contentView.addSubview(tradeHistorySection)
         
         tradeHistorySection.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [tradeHistorySection.topAnchor.constraint(equalTo: balanceSection.bottomAnchor, constant: 25),
-             tradeHistorySection.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 32)])
+        NSLayoutConstraint.activate([
+            tradeHistorySection.topAnchor.constraint(equalTo: balanceSection.bottomAnchor, constant: 25),
+            tradeHistorySection.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 32)
+        ])
     }
     
     private func configureRestoreSection() {
-        scrollView.addSubview(restoreSection)
+        contentView.addSubview(restoreSection)
         
         restoreSection.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [restoreSection.topAnchor.constraint(equalTo: tradeHistorySection.bottomAnchor, constant: 25),
-             restoreSection.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 32)])
+        NSLayoutConstraint.activate([
+            restoreSection.topAnchor.constraint(equalTo: tradeHistorySection.bottomAnchor, constant: 25),
+            restoreSection.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 32)
+        ])
     }
     
     private func configureHelpSection() {
-        scrollView.addSubview(helpSection)
+        contentView.addSubview(helpSection)
         
         helpSection.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [helpSection.topAnchor.constraint(equalTo: restoreSection.bottomAnchor, constant: 25),
-             helpSection.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 32)])
+        NSLayoutConstraint.activate([
+            helpSection.topAnchor.constraint(equalTo: restoreSection.bottomAnchor, constant: 25),
+            helpSection.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 32)
+        ])
     }
     
     private func configureLogOutSection() {
-        scrollView.addSubview(logOutSection)
+        contentView.addSubview(logOutSection)
         
         logOutSection.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [logOutSection.topAnchor.constraint(equalTo: helpSection.bottomAnchor, constant: 25),
-             logOutSection.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 32)])
+        NSLayoutConstraint.activate([
+            logOutSection.topAnchor.constraint(equalTo: helpSection.bottomAnchor, constant: 25),
+            logOutSection.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 32),
+            logOutSection.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16)
+        ])
     }
 }

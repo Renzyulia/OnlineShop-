@@ -11,7 +11,7 @@ import CoreData
 class CoreData {
     static let shared = CoreData()
     
-    private init() {}
+    var viewContext: NSManagedObjectContext { CoreData.shared.persistentContainer.viewContext }
     
     lazy private var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "ModelCoreData")
@@ -23,5 +23,5 @@ class CoreData {
         return container
     }()
     
-    var viewContext: NSManagedObjectContext { CoreData.shared.persistentContainer.viewContext }
+    private init() {}
 }

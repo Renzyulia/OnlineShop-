@@ -9,11 +9,13 @@ import UIKit
 
 final class PhotoView: UIView {
     let button = UIButton()
+    
     var photo: UIImage? {
         didSet {
             photoView.image = photo
         }
     }
+    
     private let photoView = UIImageView()
     
     init() {
@@ -32,15 +34,16 @@ final class PhotoView: UIView {
         photoView.layer.cornerRadius = 0.5 * photoView.bounds.size.width
         photoView.layer.masksToBounds = true
         
-        self.addSubview(photoView)
+        addSubview(photoView)
         
         photoView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [photoView.widthAnchor.constraint(equalToConstant: 60.07),
-             photoView.heightAnchor.constraint(equalToConstant: 60.06),
-             photoView.topAnchor.constraint(equalTo: self.topAnchor),
-             photoView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 8),
-             photoView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8)])
+        NSLayoutConstraint.activate([
+            photoView.widthAnchor.constraint(equalToConstant: 60.07),
+            photoView.heightAnchor.constraint(equalToConstant: 60.06),
+            photoView.topAnchor.constraint(equalTo: topAnchor),
+            photoView.leftAnchor.constraint(equalTo: leftAnchor, constant: 8),
+            photoView.rightAnchor.constraint(equalTo: rightAnchor, constant: -8)
+        ])
     }
     
     private func configureButton() {
@@ -48,12 +51,13 @@ final class PhotoView: UIView {
         button.setTitleColor(UIColor(named: "ChangePhoto"), for: .normal)
         button.titleLabel?.font = UIFont.specialFont(size: 9, style: .medium)
 
-        self.addSubview(button)
+        addSubview(button)
 
         button.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [button.heightAnchor.constraint(equalToConstant: 7.54),
-             button.topAnchor.constraint(equalTo: photoView.bottomAnchor, constant: 8.5),
-             button.centerXAnchor.constraint(equalTo: self.centerXAnchor)])
+        NSLayoutConstraint.activate([
+            button.heightAnchor.constraint(equalToConstant: 7.54),
+            button.topAnchor.constraint(equalTo: photoView.bottomAnchor, constant: 8.5),
+            button.centerXAnchor.constraint(equalTo: centerXAnchor)
+        ])
     }
 }

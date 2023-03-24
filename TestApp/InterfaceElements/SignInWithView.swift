@@ -8,6 +8,28 @@
 import UIKit
 
 final class SignInWithView: UIControl {
+    
+    enum Company {
+        case apple
+        case google
+    }
+    
+    struct CompanyDetails {
+        let image: UIImage
+        var text: String
+        
+        init(company: Company) {
+            switch company {
+            case .apple:
+                image = UIImage(named: "AppleIcon")!
+                text = "Sign in with Apple"
+            case .google:
+                image = UIImage(named: "GoogleIcon")!
+                text = "Sign in with Google"
+            }
+        }
+    }
+    
     private let company: CompanyDetails
     private let textField = UITextField()
     private let icon = UIImageView()
@@ -30,36 +52,17 @@ final class SignInWithView: UIControl {
         textField.translatesAutoresizingMaskIntoConstraints = false
         icon.translatesAutoresizingMaskIntoConstraints = false
         
-        self.addSubview(icon)
-        self.addSubview(textField)
+        addSubview(icon)
+        addSubview(textField)
         
-        NSLayoutConstraint.activate(
-            [icon.widthAnchor.constraint(equalToConstant: 23.83),
-             icon.heightAnchor.constraint(equalToConstant: 26.22)])
+        NSLayoutConstraint.activate([
+            icon.widthAnchor.constraint(equalToConstant: 23.83),
+            icon.heightAnchor.constraint(equalToConstant: 26.22)
+        ])
         
-        NSLayoutConstraint.activate(
-            [textField.topAnchor.constraint(equalTo: self.topAnchor, constant: 5),
-             textField.leftAnchor.constraint(equalTo: icon.rightAnchor, constant: 11.66)])
-    }
-    
-    enum Company {
-        case apple
-        case google
-    }
-    
-    struct CompanyDetails {
-        let image: UIImage
-        var text: String
-        
-        init(company: Company) {
-            switch company {
-            case .apple:
-                image = UIImage(named: "AppleIcon")!
-                text = "Sign in with Apple"
-            case .google:
-                image = UIImage(named: "GoogleIcon")!
-                text = "Sign in with Google"
-            }
-        }
+        NSLayoutConstraint.activate([
+            textField.topAnchor.constraint(equalTo: topAnchor, constant: 5),
+            textField.leftAnchor.constraint(equalTo: icon.rightAnchor, constant: 11.66)
+        ])
     }
 }

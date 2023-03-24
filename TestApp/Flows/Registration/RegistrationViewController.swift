@@ -10,7 +10,9 @@ import RxSwift
 import RxCocoa
 
 final class RegistrationViewController: UIViewController {
+    
     var didFinishRegistrationBlock: ((String?) -> Void)?
+    
     private let registrationViewModel: RegistrationViewModel
     private let disposeBag = DisposeBag()
     private let signInLabel = UILabel()
@@ -55,15 +57,15 @@ final class RegistrationViewController: UIViewController {
         
         let firstName = firstNameTextField.textField.rx.text
             .asObservable()
-            .map({ (string: String?) -> String in return string ?? "" })
+            .map { string in return string ?? "" }
         
         let lastName = lastNameTextField.textField.rx.text
             .asObservable()
-            .map({ (string: String?) -> String in return string ?? "" })
+            .map { string in return string ?? "" }
         
         let email = emailTextField.textField.rx.text
             .asObservable()
-            .map({ (string: String?) -> String in return string ?? "" })
+            .map { string in return string ?? "" }
         
         let input = RegistrationViewModelInput(
             signInClick: signInButton.rx.controlEvent(.touchUpInside).asObservable(),
@@ -82,7 +84,7 @@ final class RegistrationViewController: UIViewController {
         })
         .disposed(by: disposeBag)
         
-        output.shouldShowExisitingLoginError.drive(onNext: { [weak self] (shouldShowError: Bool) in
+        output.shouldShowExistingLoginError.drive(onNext: { [weak self] shouldShowError in
             self?.duplicateAccountLabel.isHidden = (shouldShowError == false)
             DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                 self?.duplicateAccountLabel.isHidden = true
@@ -110,48 +112,53 @@ final class RegistrationViewController: UIViewController {
         view.addSubview(signInLabel)
 
         signInLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [signInLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 155.93),
-             signInLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 142.7)])
+        NSLayoutConstraint.activate([
+            signInLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 155.93),
+            signInLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 142.7)
+        ])
     }
     
     private func configureFirstNameTF() {
         view.addSubview(firstNameTextField)
         
         firstNameTextField.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [firstNameTextField.topAnchor.constraint(equalTo: signInLabel.bottomAnchor, constant: 77.77),
-             firstNameTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 44),
-             firstNameTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 42)])
+        NSLayoutConstraint.activate([
+            firstNameTextField.topAnchor.constraint(equalTo: signInLabel.bottomAnchor, constant: 77.77),
+            firstNameTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 44),
+            firstNameTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 42)
+        ])
     }
     
     private func configureLastNameTF() {
         view.addSubview(lastNameTextField)
         
         lastNameTextField.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [lastNameTextField.topAnchor.constraint(equalTo: firstNameTextField.bottomAnchor, constant: 35),
-             lastNameTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 44),
-             lastNameTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 42)])
+        NSLayoutConstraint.activate([
+            lastNameTextField.topAnchor.constraint(equalTo: firstNameTextField.bottomAnchor, constant: 35),
+            lastNameTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 44),
+            lastNameTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 42)
+        ])
     }
     
     private func configureEmailTF() {
         view.addSubview(emailTextField)
         
         emailTextField.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [emailTextField.topAnchor.constraint(equalTo: lastNameTextField.bottomAnchor, constant: 35),
-             emailTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 44),
-             emailTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 42)])
+        NSLayoutConstraint.activate([
+            emailTextField.topAnchor.constraint(equalTo: lastNameTextField.bottomAnchor, constant: 35),
+            emailTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 44),
+            emailTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 42)
+        ])
     }
     
     private func configureSignInButton() {
         view.addSubview(signInButton)
         
         signInButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [signInButton.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 35),
-             signInButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 43)])
+        NSLayoutConstraint.activate([
+            signInButton.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 35),
+            signInButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 43)
+        ])
     }
     
     private func configureHaveAccountLabel() {
@@ -163,9 +170,10 @@ final class RegistrationViewController: UIViewController {
         view.addSubview(haveAccountLabel)
         
         haveAccountLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [haveAccountLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 41.99),
-             haveAccountLabel.topAnchor.constraint(equalTo: signInButton.bottomAnchor, constant: 14.58)])
+        NSLayoutConstraint.activate([
+            haveAccountLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 41.99),
+            haveAccountLabel.topAnchor.constraint(equalTo: signInButton.bottomAnchor, constant: 14.58)
+        ])
     }
     
     private func configureLogInButton() {
@@ -177,32 +185,35 @@ final class RegistrationViewController: UIViewController {
         view.addSubview(logInButton)
         
         logInButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [logInButton.heightAnchor.constraint(equalToConstant: 10),
-             logInButton.topAnchor.constraint(equalTo: signInButton.bottomAnchor, constant: 14.43),
-             logInButton.leftAnchor.constraint(equalTo: haveAccountLabel.rightAnchor, constant: 8.7)])
+        NSLayoutConstraint.activate([
+            logInButton.heightAnchor.constraint(equalToConstant: 10),
+            logInButton.topAnchor.constraint(equalTo: signInButton.bottomAnchor, constant: 14.43),
+            logInButton.leftAnchor.constraint(equalTo: haveAccountLabel.rightAnchor, constant: 8.7)
+        ])
     }
     
     @objc private func logIn() {
-        didFinishRegistrationBlock!(nil)
+        didFinishRegistrationBlock?(nil)
     }
     
     private func configureSignInGoogleButton() {
         view.addSubview(signInWithGoogleButton)
         
         signInWithGoogleButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [signInWithGoogleButton.topAnchor.constraint(equalTo: signInButton.bottomAnchor, constant: 109.92),
-             signInWithGoogleButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 99)])
+        NSLayoutConstraint.activate([
+            signInWithGoogleButton.topAnchor.constraint(equalTo: signInButton.bottomAnchor, constant: 109.92),
+            signInWithGoogleButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 99)
+        ])
     }
     
     private func configureSignInAppleButton() {
         view.addSubview(signInWithAppleButton)
         
         signInWithAppleButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [signInWithAppleButton.topAnchor.constraint(equalTo: signInWithGoogleButton.bottomAnchor, constant: 58.73),
-             signInWithAppleButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 99)])
+        NSLayoutConstraint.activate([
+            signInWithAppleButton.topAnchor.constraint(equalTo: signInWithGoogleButton.bottomAnchor, constant: 58.73),
+            signInWithAppleButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 99)
+        ])
     }
     
     private func configureInvalidEmailLabel() {
@@ -215,9 +226,10 @@ final class RegistrationViewController: UIViewController {
         view.addSubview(invalidEmailLabel)
         
         invalidEmailLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [invalidEmailLabel.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 9),
-             invalidEmailLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 49)])
+        NSLayoutConstraint.activate([
+            invalidEmailLabel.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 9),
+            invalidEmailLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 49)
+        ])
     }
     
     private func configureDuplicateAccountLabel() {
@@ -230,14 +242,15 @@ final class RegistrationViewController: UIViewController {
         view.addSubview(duplicateAccountLabel)
         
         duplicateAccountLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [duplicateAccountLabel.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 9),
-             duplicateAccountLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 49)])
+        NSLayoutConstraint.activate([
+            duplicateAccountLabel.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 9),
+            duplicateAccountLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 49)
+        ])
     }
     
     private func configureSavingErrorAlert() {
         let alert = UIAlertController(title: nil, message: "Error saving account", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))
-        self.present(alert, animated: true)
+        present(alert, animated: true)
     }
 }

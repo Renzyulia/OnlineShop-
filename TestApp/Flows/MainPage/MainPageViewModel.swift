@@ -16,7 +16,7 @@ struct MainPageViewModelInput {
 
 struct MainPageViewModelOutput {
     var data: Driver<Result<Data, Error>>
-    var photoProfile: Driver<UIImage?>
+    var photoProfile: Driver<UIImage>
 }
 
 struct Data: Decodable {
@@ -67,40 +67,31 @@ final class MainPageViewModel {
                 let dataLatest = URLSession.shared.rx.data(request: latestRequest)
                     .map { (rawData: Foundation.Data) throws -> LatestResponse in
                         let jsonDecoder = JSONDecoder()
-                        var response: LatestResponse? = nil
-                        do {
-                            response = try jsonDecoder.decode(LatestResponse.self, from: rawData)
-                        } catch {
-                            print(error)
-                        }
-                        return response!
+                        let response = try jsonDecoder.decode(LatestResponse.self, from: rawData)
+                        return response
                     }
                 let dataFlashSale = URLSession.shared.rx.data(request: saleRequest)
                     .map { (rawData: Foundation.Data) throws -> FlashSaleResponse in
                         let jsonDecoder = JSONDecoder()
-                        var response: FlashSaleResponse? = nil
-                        do {
-                            response = try jsonDecoder.decode(FlashSaleResponse.self, from: rawData)
-                        } catch {
-                            print(error)
-                        }
-                        return response!
+                        let response = try jsonDecoder.decode(FlashSaleResponse.self, from: rawData)
+                        return response
                     }
                 
                 return Observable.zip(dataLatest, dataFlashSale)
                     .map { (response1: LatestResponse, response2: FlashSaleResponse) -> Data in
                         return Data(latest: response1.latest, flashSale: response2.flash_sale)
                     }
-                    .map { (data: Data) -> Result<Data, Error> in
+                    .map { data in
                         return Result.success(data)
                     }
-                    .catchAndReturn(Result.failure(LoadingError.unknown))
+                    .catchAndReturn(.failure(LoadingError.unknown))
             }
-            .asDriver(onErrorJustReturn: Result.failure(LoadingError.unknown))
+            .asDriver(onErrorJustReturn: .failure(LoadingError.unknown))
         
         let photoProfileInstall = input.viewWillAppear
-            .map {() -> UIImage? in
-                return self.photoInstalled(login: self.login)
+            .map { [weak self] in
+                guard let self = self else { return UIImage(named: "DefaultPhoto")! }
+                return self.photoInstalled(login: self.login) ?? UIImage(named: "DefaultPhoto")!
             }
             .asDriver(onErrorJustReturn: UIImage())
         
@@ -128,6 +119,6 @@ final class MainPageViewModel {
                 }
             }
         }
-        return UIImage(named: "DefaultPhoto")
+        return nil
     }
 }

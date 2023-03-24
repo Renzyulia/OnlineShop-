@@ -10,6 +10,7 @@ import UIKit
 final class TabBarCoordinator: BaseCoordinator, TabBarCoordinatorDelegate {
     let containerViewController: UIViewController
     let login: String
+    
     private let tabBarDelegate = TabBarDelegate()
     
     init(containerViewController: UIViewController, login: String) {
@@ -33,7 +34,9 @@ final class TabBarCoordinator: BaseCoordinator, TabBarCoordinatorDelegate {
         let profileCoordinator = ProfileCoordinator(containerViewController: profileViewController, login: login)
         
         profileCoordinator.onFinish = { [weak self] login in
-            self?.onFinish!(login)
+            self?.containerViewController.presentedViewController!.dismiss(animated: false) {
+                self?.onFinish?(login)
+            }
         }
         
         addChildCoordinator(mainPageCoordinator)
@@ -47,12 +50,15 @@ final class TabBarCoordinator: BaseCoordinator, TabBarCoordinatorDelegate {
         tabBarViewController.delegate = tabBarDelegate
         
         tabBarViewController.setViewControllers(
-            [mainPageViewController,
-             placeholderFirstViewController,
-             placeholderSecondViewController,
-             placeholderThirdViewController,
-             profileViewController],
-            animated: false)
+            [
+                mainPageViewController,
+                placeholderFirstViewController,
+                placeholderSecondViewController,
+                placeholderThirdViewController,
+                profileViewController
+            ],
+            animated: false
+        )
         
         guard let viewControllers = tabBarViewController.tabBar.items else { return }
 
@@ -68,6 +74,6 @@ final class TabBarCoordinator: BaseCoordinator, TabBarCoordinatorDelegate {
     }
     
     func didSelect(item: Int) {
-        self.childCoordinators[item].start()
+        childCoordinators[item].start()
     }
 }

@@ -10,10 +10,10 @@ import RxSwift
 import RxCocoa
 
 final class MainPageViewController: UIViewController {
-    let viewWillAppear = PublishRelay<Void>()
-    var uploadedData: (Data)? = nil
+    var uploadedData: Data? = nil
     var didFinishMainPageBlock: ((String?) -> ())?
     
+    private let viewWillAppear = PublishRelay<Void>()
     private let mainPageViewModel: MainPageViewModel
     private let disposeBag = DisposeBag()
     private let rightViewNavigationBar = UIImageView()
@@ -45,19 +45,20 @@ final class MainPageViewController: UIViewController {
         configureTableView()
         
         let input = MainPageViewModelInput(
-            viewWillAppear: viewWillAppear.asObservable())
+            viewWillAppear: viewWillAppear.asObservable()
+        )
         
         let output = mainPageViewModel.bind(input)
         
-        output.data.drive{ (result: Result<Data,Error>) -> Void in
+        output.data.drive(onNext: { result in
             switch result {
             case let .success(dataForUser):
                 self.uploadedData = dataForUser
                 self.tableView.reloadData()
             case let .failure(error):
-                print("\(error)")
+                print(error)
             }
-        }
+        })
         .disposed(by: disposeBag)
         
         output.photoProfile.drive(onNext: { [rightViewNavigationBar] image in
@@ -73,18 +74,24 @@ final class MainPageViewController: UIViewController {
     }
     
     private func configureNavigationBar() {
-        guard let navigationBar = self.navigationController?.navigationBar else { return }
-// Mark: configure title
+        guard let navigationBar = navigationController?.navigationBar else { return }
+// MARK: - configure title
         let titleLabel = UILabel()
         
         let title = NSMutableAttributedString(
             string: "Trade by ",
-            attributes: [.font: UIFont.specialFont(size: 21, style: .bold),
-                         .foregroundColor: UIColor.black])
+            attributes: [
+                .font: UIFont.specialFont(size: 21, style: .bold),
+                .foregroundColor: UIColor.black
+            ]
+        )
         let secondPart = NSAttributedString(
             string: "bata",
-            attributes: [.font: UIFont.specialFont(size: 21, style: .bold),
-                         .foregroundColor: UIColor(named: "NavigationTitleColor")!])
+            attributes: [
+                .font: UIFont.specialFont(size: 21, style: .bold),
+                .foregroundColor: UIColor(named: "NavigationTitleColor")!
+            ]
+        )
         title.append(secondPart)
                 
         titleLabel.textAlignment = .center
@@ -92,43 +99,46 @@ final class MainPageViewController: UIViewController {
         
         navigationBar.addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [titleLabel.topAnchor.constraint(equalTo: navigationBar.topAnchor, constant: 10),
-             titleLabel.leftAnchor.constraint(equalTo: navigationBar.leftAnchor, constant: 102)])
+        NSLayoutConstraint.activate([
+            titleLabel.topAnchor.constraint(equalTo: navigationBar.topAnchor, constant: 10),
+            titleLabel.leftAnchor.constraint(equalTo: navigationBar.leftAnchor, constant: 102)
+        ])
         
- // Mark: configure rightLabel
+// MARK: - configure rightLabel
         rightViewNavigationBar.frame = CGRect(x: 100, y: 100, width: 34, height: 34)
         rightViewNavigationBar.layer.cornerRadius = 0.5 * rightViewNavigationBar.bounds.size.width
         rightViewNavigationBar.layer.masksToBounds = true
-//        rightViewNavigationBar.image = UIImage(named: "DefaultPhoto")
         
         navigationBar.addSubview(rightViewNavigationBar)
         rightViewNavigationBar.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [rightViewNavigationBar.widthAnchor.constraint(equalToConstant: 34),
-             rightViewNavigationBar.heightAnchor.constraint(equalToConstant: 34),
-             rightViewNavigationBar.topAnchor.constraint(equalTo: navigationBar.topAnchor, constant: 10),
-             rightViewNavigationBar.rightAnchor.constraint(equalTo: navigationBar.rightAnchor, constant: -47.57)])
+        NSLayoutConstraint.activate([
+            rightViewNavigationBar.widthAnchor.constraint(equalToConstant: 34),
+            rightViewNavigationBar.heightAnchor.constraint(equalToConstant: 34),
+            rightViewNavigationBar.topAnchor.constraint(equalTo: navigationBar.topAnchor, constant: 10),
+            rightViewNavigationBar.rightAnchor.constraint(equalTo: navigationBar.rightAnchor, constant: -47.57)
+        ])
         
-// Mark: configure leftLabel
+// MARK: - configure leftLabel
         let leftViewNavigationBar = UIImageView(image: UIImage(named: "Menu"))
         
         navigationBar.addSubview(leftViewNavigationBar)
         leftViewNavigationBar.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [leftViewNavigationBar.widthAnchor.constraint(equalToConstant: 24),
-             leftViewNavigationBar.heightAnchor.constraint(equalToConstant: 26),
-             leftViewNavigationBar.topAnchor.constraint(equalTo: navigationBar.topAnchor, constant: 12),
-             leftViewNavigationBar.leftAnchor.constraint(equalTo: navigationBar.leftAnchor, constant: 20)])
+        NSLayoutConstraint.activate([
+            leftViewNavigationBar.widthAnchor.constraint(equalToConstant: 24),
+            leftViewNavigationBar.heightAnchor.constraint(equalToConstant: 26),
+            leftViewNavigationBar.topAnchor.constraint(equalTo: navigationBar.topAnchor, constant: 12),
+            leftViewNavigationBar.leftAnchor.constraint(equalTo: navigationBar.leftAnchor, constant: 20)
+        ])
     }
     
     private func configureLocationView() {
         view.addSubview(locationView)
         
         locationView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [locationView.topAnchor.constraint(equalTo: view.topAnchor, constant: 97),
-             locationView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -37)])
+        NSLayoutConstraint.activate([
+            locationView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
+            locationView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -37)
+        ])
     }
     
     private func configureTableView() {
@@ -141,16 +151,16 @@ final class MainPageViewController: UIViewController {
         view.addSubview(tableView)
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [tableView.topAnchor.constraint(equalTo: locationView.bottomAnchor, constant: 8),
-             tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
-             tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
-             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: locationView.bottomAnchor, constant: 8),
+            tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
     }
 }
 
 extension MainPageViewController: UITableViewDataSource {
-    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.contentView.backgroundColor = UIColor(named: "BackgroundColor")
     }
@@ -163,24 +173,35 @@ extension MainPageViewController: UITableViewDataSource {
         var cell = UITableViewCell()
         
         switch (indexPath.section, indexPath.row) {
-        case (0,0): cell = SearchCell(
-            style: .default,
-            reuseIdentifier: identifierSearchCell)
-        case (0,1): cell = CategoriesCell(
-            style: .default,
-            reuseIdentifier: identifierCategoriesCell)
-        case (0,2): cell = LatestCell(
-            style: .default,
-            reuseIdentifier: identifierLatestCell,
-            content: uploadedData)
-        case (0,3): cell = FlashSaleCell(
-            style: .default,
-            reuseIdentifier: identifierFlashSaleCell,
-            content: uploadedData)
-        case (0,4): cell = BrandsCell(
-            style: .default,
-            reuseIdentifier: identifierBrandCell)
-        default: cell = UITableViewCell()
+        case (0,0):
+            cell = SearchCell(
+                style: .default,
+                reuseIdentifier: identifierSearchCell
+            )
+        case (0,1):
+            cell = CategoriesCell(
+                style: .default,
+                reuseIdentifier: identifierCategoriesCell
+            )
+        case (0,2):
+            cell = LatestCell(
+                style: .default,
+                reuseIdentifier: identifierLatestCell,
+                content: uploadedData
+            )
+        case (0,3):
+            cell = FlashSaleCell(
+                style: .default,
+                reuseIdentifier: identifierFlashSaleCell,
+                content: uploadedData
+            )
+        case (0,4):
+            cell = BrandsCell(
+                style: .default,
+                reuseIdentifier: identifierBrandCell
+            )
+        default:
+            cell = UITableViewCell()
         }
         return cell
     }

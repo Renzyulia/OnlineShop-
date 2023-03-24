@@ -9,7 +9,7 @@ import Foundation
 
 class BaseCoordinator {
     var childCoordinators = [BaseCoordinator]()
-    var onFinish: ((String?) -> ())?
+    var onFinish: ((String?) -> Void)?
     
     func addChildCoordinator(_ coordinator: BaseCoordinator) {
         childCoordinators.append(coordinator)
