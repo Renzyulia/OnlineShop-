@@ -11,6 +11,7 @@ final class BrandsCell: UITableViewCell {
     private let rightLabel = UILabel()
     private let leftLabel = UILabel()
     private let scrollView = UIScrollView()
+    private let contentScrollView = UIView()
     private let firstProduct = BrandsView()
     private let secondProduct = BrandsView()
     private let thirdProduct = BrandsView()
@@ -59,44 +60,59 @@ final class BrandsCell: UITableViewCell {
     }
     
     private func configureScrollView() {
+        scrollView.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        scrollView.showsHorizontalScrollIndicator = false
+        
         contentView.addSubview(scrollView)
+        scrollView.addSubview(contentScrollView)
         
         scrollView.translatesAutoresizingMaskIntoConstraints = false
+        contentScrollView.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: rightLabel.topAnchor, constant: 22.92),
             scrollView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
             scrollView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             scrollView.rightAnchor.constraint(equalTo: contentView.rightAnchor)
         ])
+        
+        NSLayoutConstraint.activate([
+            contentScrollView.heightAnchor.constraint(equalTo: scrollView.heightAnchor),
+            contentScrollView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentScrollView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentScrollView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentScrollView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+        ])
     }
     
     private func configureFirstProduct() {
-        scrollView.addSubview(firstProduct)
+        contentScrollView.addSubview(firstProduct)
         
         firstProduct.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            firstProduct.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            firstProduct.leftAnchor.constraint(equalTo: scrollView.leftAnchor, constant: 11)
+            firstProduct.topAnchor.constraint(equalTo: contentScrollView.topAnchor),
+            firstProduct.leftAnchor.constraint(equalTo: contentScrollView.leftAnchor, constant: 5)
         ])
     }
     
     private func configureSecondProduct() {
-        scrollView.addSubview(secondProduct)
+        contentScrollView.addSubview(secondProduct)
         
         secondProduct.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            secondProduct.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            secondProduct.topAnchor.constraint(equalTo: contentScrollView.topAnchor),
             secondProduct.leftAnchor.constraint(equalTo: firstProduct.rightAnchor, constant: 9)
         ])
     }
     
     private func configureThirdProduct() {
-        scrollView.addSubview(thirdProduct)
+        contentScrollView.addSubview(thirdProduct)
         
         thirdProduct.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            thirdProduct.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            thirdProduct.leftAnchor.constraint(equalTo: secondProduct.rightAnchor, constant: 9)
+            thirdProduct.topAnchor.constraint(equalTo: contentScrollView.topAnchor),
+            thirdProduct.leftAnchor.constraint(equalTo: secondProduct.rightAnchor, constant: 9),
+            thirdProduct.rightAnchor.constraint(equalTo: contentScrollView.rightAnchor, constant: -2)
         ])
     }
 }

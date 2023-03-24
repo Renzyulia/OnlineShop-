@@ -15,6 +15,8 @@ final class RegistrationViewController: UIViewController {
     
     private let registrationViewModel: RegistrationViewModel
     private let disposeBag = DisposeBag()
+    private let scrollView = UIScrollView()
+    private let contentView = UIView()
     private let signInLabel = UILabel()
     private let firstNameTextField = DataTextField(isSecureText: false, placeholder: "First name", securityButton: nil)
     private let lastNameTextField = DataTextField(isSecureText: false, placeholder: "Last name", securityButton: nil)
@@ -42,6 +44,7 @@ final class RegistrationViewController: UIViewController {
         
         view.backgroundColor = UIColor(named: "BackgroundColor")
         
+        configureScrollView()
         configureSignInLabel()
         configureFirstNameTF()
         configureLastNameTF()
@@ -104,60 +107,84 @@ final class RegistrationViewController: UIViewController {
         .disposed(by: disposeBag)
     }
     
+    private func configureScrollView() {
+        scrollView.backgroundColor = UIColor(named: "BackgroundColor")
+        scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 100, right: 0)
+        
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            scrollView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        NSLayoutConstraint.activate([
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+        ])
+    }
+    
     private func configureSignInLabel() {
         signInLabel.text = "Sign in"
         signInLabel.font = UIFont.specialFont(size: 25, style: .medium)
         signInLabel.textColor = .black
         
-        view.addSubview(signInLabel)
+        contentView.addSubview(signInLabel)
 
         signInLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            signInLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 155.93),
-            signInLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 142.7)
+            signInLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 155.93),
+            signInLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 142.7)
         ])
     }
     
     private func configureFirstNameTF() {
-        view.addSubview(firstNameTextField)
+        contentView.addSubview(firstNameTextField)
         
         firstNameTextField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             firstNameTextField.topAnchor.constraint(equalTo: signInLabel.bottomAnchor, constant: 77.77),
-            firstNameTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 44),
-            firstNameTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 42)
+            firstNameTextField.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 44),
+            firstNameTextField.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: 42)
         ])
     }
     
     private func configureLastNameTF() {
-        view.addSubview(lastNameTextField)
+        contentView.addSubview(lastNameTextField)
         
         lastNameTextField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             lastNameTextField.topAnchor.constraint(equalTo: firstNameTextField.bottomAnchor, constant: 35),
-            lastNameTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 44),
-            lastNameTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 42)
+            lastNameTextField.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 44),
+            lastNameTextField.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: 42)
         ])
     }
     
     private func configureEmailTF() {
-        view.addSubview(emailTextField)
+        contentView.addSubview(emailTextField)
         
         emailTextField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             emailTextField.topAnchor.constraint(equalTo: lastNameTextField.bottomAnchor, constant: 35),
-            emailTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 44),
-            emailTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 42)
+            emailTextField.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 44),
+            emailTextField.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: 42)
         ])
     }
     
     private func configureSignInButton() {
-        view.addSubview(signInButton)
+        contentView.addSubview(signInButton)
         
         signInButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             signInButton.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 35),
-            signInButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 43)
+            signInButton.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 43)
         ])
     }
     
@@ -167,11 +194,11 @@ final class RegistrationViewController: UIViewController {
         haveAccountLabel.textColor = UIColor(named: "HaveAccountLabel")
         haveAccountLabel.numberOfLines = 1
         
-        view.addSubview(haveAccountLabel)
+        contentView.addSubview(haveAccountLabel)
         
         haveAccountLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            haveAccountLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 41.99),
+            haveAccountLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 41.99),
             haveAccountLabel.topAnchor.constraint(equalTo: signInButton.bottomAnchor, constant: 14.58)
         ])
     }
@@ -182,7 +209,7 @@ final class RegistrationViewController: UIViewController {
         logInButton.titleLabel?.font = UIFont.specialFont(size: 10, style: .medium)
         logInButton.addTarget(self, action: #selector(logIn), for: .touchUpInside)
         
-        view.addSubview(logInButton)
+        contentView.addSubview(logInButton)
         
         logInButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -197,22 +224,23 @@ final class RegistrationViewController: UIViewController {
     }
     
     private func configureSignInGoogleButton() {
-        view.addSubview(signInWithGoogleButton)
+        contentView.addSubview(signInWithGoogleButton)
         
         signInWithGoogleButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             signInWithGoogleButton.topAnchor.constraint(equalTo: signInButton.bottomAnchor, constant: 109.92),
-            signInWithGoogleButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 99)
+            signInWithGoogleButton.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 99)
         ])
     }
     
     private func configureSignInAppleButton() {
-        view.addSubview(signInWithAppleButton)
+        contentView.addSubview(signInWithAppleButton)
         
         signInWithAppleButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             signInWithAppleButton.topAnchor.constraint(equalTo: signInWithGoogleButton.bottomAnchor, constant: 58.73),
-            signInWithAppleButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 99)
+            signInWithAppleButton.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 99),
+            signInWithAppleButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -133)
         ])
     }
     
@@ -223,12 +251,12 @@ final class RegistrationViewController: UIViewController {
         invalidEmailLabel.numberOfLines = 1
         invalidEmailLabel.isHidden = true
         
-        view.addSubview(invalidEmailLabel)
+        contentView.addSubview(invalidEmailLabel)
         
         invalidEmailLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             invalidEmailLabel.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 9),
-            invalidEmailLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 49)
+            invalidEmailLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 49)
         ])
     }
     
@@ -239,12 +267,12 @@ final class RegistrationViewController: UIViewController {
         duplicateAccountLabel.numberOfLines = 1
         duplicateAccountLabel.isHidden = true
         
-        view.addSubview(duplicateAccountLabel)
+        contentView.addSubview(duplicateAccountLabel)
         
         duplicateAccountLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             duplicateAccountLabel.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 9),
-            duplicateAccountLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 49)
+            duplicateAccountLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 49)
         ])
     }
     

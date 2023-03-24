@@ -149,7 +149,7 @@ final class ProfileViewController: UIViewController, UIImagePickerControllerDele
         NSLayoutConstraint.activate([
             photoView.heightAnchor.constraint(equalToConstant: 77),
             photoView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 96.5),
-            photoView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 157.5)
+            photoView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
         ])
     }
     

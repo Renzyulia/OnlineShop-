@@ -65,7 +65,7 @@ final class CategoriesCell: UITableViewCell {
         phonesView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             phonesView.topAnchor.constraint(equalTo: contentScrollView.topAnchor, constant: 17),
-            phonesView.leftAnchor.constraint(equalTo: contentScrollView.leftAnchor, constant: 12)
+            phonesView.leftAnchor.constraint(equalTo: contentScrollView.leftAnchor, constant: 5)
         ])
     }
     
