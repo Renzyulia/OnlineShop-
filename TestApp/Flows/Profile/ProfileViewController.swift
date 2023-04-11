@@ -154,6 +154,7 @@ final class ProfileViewController: UIViewController, UIImagePickerControllerDele
     }
     
     @objc private func changePhoto() {
+        
         let alert = UIAlertController(
             title: "Photo Source",
             message: "Choose a source",
@@ -202,7 +203,8 @@ final class ProfileViewController: UIViewController, UIImagePickerControllerDele
         uploadItemButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             uploadItemButton.topAnchor.constraint(equalTo: loginLabel.bottomAnchor, constant: 37.82),
-            uploadItemButton.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 43)
+            uploadItemButton.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 43),
+            uploadItemButton.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -42)
         ])
     }
     
@@ -212,7 +214,8 @@ final class ProfileViewController: UIViewController, UIImagePickerControllerDele
         storeSection.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             storeSection.topAnchor.constraint(equalTo: uploadItemButton.bottomAnchor, constant: 14),
-            storeSection.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 32)
+            storeSection.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 32),
+            storeSection.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -32)
         ])
     }
     
@@ -222,7 +225,8 @@ final class ProfileViewController: UIViewController, UIImagePickerControllerDele
         paymentSection.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             paymentSection.topAnchor.constraint(equalTo: storeSection.bottomAnchor, constant: 25),
-            paymentSection.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 32)
+            paymentSection.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 32),
+            paymentSection.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -32)
         ])
     }
     
@@ -232,7 +236,8 @@ final class ProfileViewController: UIViewController, UIImagePickerControllerDele
         balanceSection.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             balanceSection.topAnchor.constraint(equalTo: paymentSection.bottomAnchor, constant: 25),
-            balanceSection.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 32)
+            balanceSection.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 32),
+            balanceSection.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -32)
         ])
     }
     
@@ -242,7 +247,8 @@ final class ProfileViewController: UIViewController, UIImagePickerControllerDele
         tradeHistorySection.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             tradeHistorySection.topAnchor.constraint(equalTo: balanceSection.bottomAnchor, constant: 25),
-            tradeHistorySection.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 32)
+            tradeHistorySection.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 32),
+            tradeHistorySection.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -32)
         ])
     }
     
@@ -252,7 +258,8 @@ final class ProfileViewController: UIViewController, UIImagePickerControllerDele
         restoreSection.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             restoreSection.topAnchor.constraint(equalTo: tradeHistorySection.bottomAnchor, constant: 25),
-            restoreSection.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 32)
+            restoreSection.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 32),
+            restoreSection.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -32)
         ])
     }
     
@@ -262,7 +269,8 @@ final class ProfileViewController: UIViewController, UIImagePickerControllerDele
         helpSection.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             helpSection.topAnchor.constraint(equalTo: restoreSection.bottomAnchor, constant: 25),
-            helpSection.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 32)
+            helpSection.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 32),
+            helpSection.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -32)
         ])
     }
     
@@ -273,7 +281,8 @@ final class ProfileViewController: UIViewController, UIImagePickerControllerDele
         NSLayoutConstraint.activate([
             logOutSection.topAnchor.constraint(equalTo: helpSection.bottomAnchor, constant: 25),
             logOutSection.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 32),
-            logOutSection.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16)
+            logOutSection.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -32),
+            logOutSection.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }
 }

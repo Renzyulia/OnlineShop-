@@ -56,13 +56,18 @@ final class SignInWithView: UIControl {
         addSubview(textField)
         
         NSLayoutConstraint.activate([
-            icon.widthAnchor.constraint(equalToConstant: 23.83),
-            icon.heightAnchor.constraint(equalToConstant: 26.22)
+            textField.widthAnchor.constraint(equalToConstant: 150),
+            textField.topAnchor.constraint(equalTo: topAnchor, constant: 3),
+            textField.leftAnchor.constraint(equalTo: leftAnchor, constant: 33.66),
+            textField.rightAnchor.constraint(equalTo: rightAnchor),
+            textField.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
         
         NSLayoutConstraint.activate([
-            textField.topAnchor.constraint(equalTo: topAnchor, constant: 5),
-            textField.leftAnchor.constraint(equalTo: icon.rightAnchor, constant: 11.66)
+            icon.widthAnchor.constraint(equalToConstant: 23.83),
+            icon.heightAnchor.constraint(equalToConstant: 26.22),
+            icon.leftAnchor.constraint(equalTo: leftAnchor),
+            icon.topAnchor.constraint(equalTo: topAnchor)
         ])
     }
 }

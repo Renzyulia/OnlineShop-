@@ -40,11 +40,12 @@ final class DataTextField: UIView {
         
         textField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            textField.widthAnchor.constraint(equalToConstant: 294),
+//            textField.widthAnchor.constraint(equalToConstant: 294),
             textField.heightAnchor.constraint(equalToConstant: 29),
             textField.topAnchor.constraint(equalTo: topAnchor),
             textField.bottomAnchor.constraint(equalTo: bottomAnchor),
-            textField.leftAnchor.constraint(equalTo: leftAnchor)
+            textField.leftAnchor.constraint(equalTo: leftAnchor),
+            textField.rightAnchor.constraint(equalTo: rightAnchor)
         ])
     }
     

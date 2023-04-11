@@ -57,7 +57,7 @@ final class SectionView: UIControl {
             icon.topAnchor.constraint(equalTo: topAnchor),
             icon.leftAnchor.constraint(equalTo: leftAnchor),
             icon.bottomAnchor.constraint(equalTo: bottomAnchor),
-            icon.rightAnchor.constraint(equalTo: rightAnchor, constant: -270)
+//            icon.rightAnchor.constraint(equalTo: rightAnchor, constant: -270)
         ])
     }
     

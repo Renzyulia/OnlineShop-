@@ -10,48 +10,12 @@ import RxSwift
 import RxCocoa
 import CoreData
 
-struct MainPageViewModelInput {
-    var viewWillAppear: Observable<Void>
-}
-
-struct MainPageViewModelOutput {
-    var data: Driver<Result<Data, Error>>
-    var photoProfile: Driver<UIImage>
-}
-
-struct Data: Decodable {
-    var latest: [Latest]
-    var flashSale: [FlashSale]
-}
-
-struct LatestResponse: Decodable {
-    var latest: [Latest]
-}
-
-struct Latest: Decodable {
-    let category: String
-    let name: String
-    let price: Int
-    let image_url: URL
-}
-
-struct FlashSaleResponse: Decodable {
-    var flash_sale: [FlashSale]
-}
-
-struct FlashSale: Decodable {
-    let category: String
-    let name: String
-    let price: Double
-    let discount: Int
-    let image_url: URL
-}
-
-enum LoadingError: Error {
-    case unknown
-}
-
 final class MainPageViewModel {
+    
+    enum LoadingError: Error {
+        case unknown
+    }
+    
     private let login: String
     
     init(login: String) {

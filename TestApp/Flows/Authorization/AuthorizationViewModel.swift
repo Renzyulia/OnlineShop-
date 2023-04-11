@@ -10,17 +10,6 @@ import RxSwift
 import RxCocoa
 import CoreData
 
-struct AuthorizationViewModelInput {
-    var loginClick: Observable<Void>
-    var firstName: Observable<String>
-    var password: Observable<String>
-}
-
-struct AuthorizationViewModelOutput {
-    var logInCompleted: Driver<String>
-    var shouldShowAccountIsNotRegistered: Driver<Bool>
-}
-
 final class AuthorizationViewModel {
     
     private struct AuthorizationData {

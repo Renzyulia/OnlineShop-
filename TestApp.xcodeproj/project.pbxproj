@@ -12,6 +12,14 @@
 		A30D971929BE59EE00AEF4C0 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = A30D971829BE59EE00AEF4C0 /* RxRelay */; };
 		A311A35929CC58FB00CD8995 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A311A35829CC58FB00CD8995 /* Montserrat-Bold.ttf */; };
 		A311A35B29CC590400CD8995 /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A311A35A29CC590400CD8995 /* Montserrat-Medium.ttf */; };
+		A317606629E03B8800535AA6 /* RegistrationViewModelInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A317606529E03B8800535AA6 /* RegistrationViewModelInput.swift */; };
+		A317606829E03BAB00535AA6 /* RegistrationViewModelOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A317606729E03BAB00535AA6 /* RegistrationViewModelOutput.swift */; };
+		A317606A29E03BDE00535AA6 /* AuthorizationViewModelInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A317606929E03BDE00535AA6 /* AuthorizationViewModelInput.swift */; };
+		A317606C29E03BF700535AA6 /* AuthorizationViewModelOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A317606B29E03BF700535AA6 /* AuthorizationViewModelOutput.swift */; };
+		A317606E29E03C4600535AA6 /* MainPageViewModelInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A317606D29E03C4600535AA6 /* MainPageViewModelInput.swift */; };
+		A317607029E03C6300535AA6 /* MainPageViewModelOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A317606F29E03C6300535AA6 /* MainPageViewModelOutput.swift */; };
+		A317607229E03CA000535AA6 /* ProfileViewModelInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A317607129E03CA000535AA6 /* ProfileViewModelInput.swift */; };
+		A317607429E03CE700535AA6 /* ProfileViewModelOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A317607329E03CE700535AA6 /* ProfileViewModelOutput.swift */; };
 		A317A4DF29C4FA6700E665C5 /* TabBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A317A4DE29C4FA6700E665C5 /* TabBarDelegate.swift */; };
 		A319FBBA29BC669300B868BE /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A319FBB929BC669300B868BE /* AuthorizationViewController.swift */; };
 		A319FBBC29BC992700B868BE /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A319FBBB29BC992700B868BE /* RegistrationViewController.swift */; };
@@ -46,6 +54,7 @@
 		A33F493A29C4959A004A9FF1 /* PlaceholderCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33F493929C49599004A9FF1 /* PlaceholderCoordinator.swift */; };
 		A33F493C29C495B5004A9FF1 /* PlaceholderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33F493B29C495B5004A9FF1 /* PlaceholderViewController.swift */; };
 		A33F493E29C49D97004A9FF1 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33F493D29C49D97004A9FF1 /* TabBarViewController.swift */; };
+		A34697B929E40AF0000D1161 /* UIViewController+HidingKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34697B829E40AF0000D1161 /* UIViewController+HidingKeyboard.swift */; };
 		A362421B29C6FBDC0035FF99 /* UIViewController+embedFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A362421A29C6FBDC0035FF99 /* UIViewController+embedFunction.swift */; };
 		A362421E29C741310035FF99 /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A362421D29C741310035FF99 /* CategoriesView.swift */; };
 		A369BFA529C36D4A00D980F1 /* UploadItemButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A369BFA429C36D4A00D980F1 /* UploadItemButton.swift */; };
@@ -64,11 +73,20 @@
 		A3958ECC29BB5C840080541E /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3958ECB29BB5C840080541E /* BaseCoordinator.swift */; };
 		A3958ECE29BB5E550080541E /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3958ECD29BB5E550080541E /* AppCoordinator.swift */; };
 		A3958ED329BBAAC60080541E /* SignInWithView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3958ED229BBAAC60080541E /* SignInWithView.swift */; };
+		A3FFD1E429E1477B00C99C31 /* RequestStructures.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FFD1E329E1477B00C99C31 /* RequestStructures.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A311A35829CC58FB00CD8995 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Bold.ttf"; path = "Montserrat/Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		A311A35A29CC590400CD8995 /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Medium.ttf"; path = "Montserrat/Montserrat-Medium.ttf"; sourceTree = "<group>"; };
+		A317606529E03B8800535AA6 /* RegistrationViewModelInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModelInput.swift; sourceTree = "<group>"; };
+		A317606729E03BAB00535AA6 /* RegistrationViewModelOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModelOutput.swift; sourceTree = "<group>"; };
+		A317606929E03BDE00535AA6 /* AuthorizationViewModelInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewModelInput.swift; sourceTree = "<group>"; };
+		A317606B29E03BF700535AA6 /* AuthorizationViewModelOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewModelOutput.swift; sourceTree = "<group>"; };
+		A317606D29E03C4600535AA6 /* MainPageViewModelInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageViewModelInput.swift; sourceTree = "<group>"; };
+		A317606F29E03C6300535AA6 /* MainPageViewModelOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageViewModelOutput.swift; sourceTree = "<group>"; };
+		A317607129E03CA000535AA6 /* ProfileViewModelInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModelInput.swift; sourceTree = "<group>"; };
+		A317607329E03CE700535AA6 /* ProfileViewModelOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModelOutput.swift; sourceTree = "<group>"; };
 		A317A4DE29C4FA6700E665C5 /* TabBarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarDelegate.swift; sourceTree = "<group>"; };
 		A319FBB929BC669300B868BE /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
 		A319FBBB29BC992700B868BE /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
@@ -103,6 +121,7 @@
 		A33F493929C49599004A9FF1 /* PlaceholderCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderCoordinator.swift; sourceTree = "<group>"; };
 		A33F493B29C495B5004A9FF1 /* PlaceholderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderViewController.swift; sourceTree = "<group>"; };
 		A33F493D29C49D97004A9FF1 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		A34697B829E40AF0000D1161 /* UIViewController+HidingKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+HidingKeyboard.swift"; sourceTree = "<group>"; };
 		A362421A29C6FBDC0035FF99 /* UIViewController+embedFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+embedFunction.swift"; sourceTree = "<group>"; };
 		A362421D29C741310035FF99 /* CategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
 		A369BFA429C36D4A00D980F1 /* UploadItemButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadItemButton.swift; sourceTree = "<group>"; };
@@ -123,6 +142,7 @@
 		A3958ECB29BB5C840080541E /* BaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
 		A3958ECD29BB5E550080541E /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		A3958ED229BBAAC60080541E /* SignInWithView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithView.swift; sourceTree = "<group>"; };
+		A3FFD1E329E1477B00C99C31 /* RequestStructures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestStructures.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +163,8 @@
 			isa = PBXGroup;
 			children = (
 				A32023E029C0729400230214 /* AuthorizationCoordinator.swift */,
+				A317606929E03BDE00535AA6 /* AuthorizationViewModelInput.swift */,
+				A317606B29E03BF700535AA6 /* AuthorizationViewModelOutput.swift */,
 				A33C591529BF2614009A74F9 /* AuthorizationViewModel.swift */,
 				A319FBB929BC669300B868BE /* AuthorizationViewController.swift */,
 			);
@@ -153,6 +175,8 @@
 			isa = PBXGroup;
 			children = (
 				A33C591729BF7BF7009A74F9 /* RegistrationCoordinator.swift */,
+				A317606529E03B8800535AA6 /* RegistrationViewModelInput.swift */,
+				A317606729E03BAB00535AA6 /* RegistrationViewModelOutput.swift */,
 				A33C591329BF244D009A74F9 /* RegistrationViewModel.swift */,
 				A319FBBB29BC992700B868BE /* RegistrationViewController.swift */,
 			);
@@ -236,6 +260,8 @@
 			children = (
 				A32B736729C9EFF20076DBE4 /* InterfaceElements */,
 				A38E661229C326E400D2D0BC /* ProfileCoordinator.swift */,
+				A317607129E03CA000535AA6 /* ProfileViewModelInput.swift */,
+				A317607329E03CE700535AA6 /* ProfileViewModelOutput.swift */,
 				A33F492E29C4766B004A9FF1 /* ProfileViewModel.swift */,
 				A38E661429C326FD00D2D0BC /* ProfileViewController.swift */,
 			);
@@ -248,6 +274,9 @@
 				A32B736629C9EFC50076DBE4 /* InterfaceElements */,
 				A32B735D29C9E7BE0076DBE4 /* CustomCells */,
 				A33F493429C48C0D004A9FF1 /* MainPageCoordinator.swift */,
+				A317606D29E03C4600535AA6 /* MainPageViewModelInput.swift */,
+				A317606F29E03C6300535AA6 /* MainPageViewModelOutput.swift */,
+				A3FFD1E329E1477B00C99C31 /* RequestStructures.swift */,
 				A36D73F829C857CE00D0AB24 /* MainPageViewModel.swift */,
 				A33F493629C48C23004A9FF1 /* MainPageViewController.swift */,
 			);
@@ -278,6 +307,7 @@
 			children = (
 				A32023EB29C1E84800230214 /* UIFont+CustomFont .swift */,
 				A362421A29C6FBDC0035FF99 /* UIViewController+embedFunction.swift */,
+				A34697B829E40AF0000D1161 /* UIViewController+HidingKeyboard.swift */,
 				A32B735B29C9DB1F0076DBE4 /* UIImageView+loadImage.swift */,
 			);
 			path = Extension;
@@ -419,7 +449,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A32023EE29C1E87300230214 /* DataTextField.swift in Sources */,
+				A317606E29E03C4600535AA6 /* MainPageViewModelInput.swift in Sources */,
 				A33F493C29C495B5004A9FF1 /* PlaceholderViewController.swift in Sources */,
+				A317606629E03B8800535AA6 /* RegistrationViewModelInput.swift in Sources */,
 				A3958ECE29BB5E550080541E /* AppCoordinator.swift in Sources */,
 				A362421E29C741310035FF99 /* CategoriesView.swift in Sources */,
 				A33F493729C48C23004A9FF1 /* MainPageViewController.swift in Sources */,
@@ -427,10 +459,13 @@
 				A3958EB829BB5B300080541E /* ViewController.swift in Sources */,
 				A3271E4329CB7DE7007CF2CB /* LocationView.swift in Sources */,
 				A32023F929C1EFD400230214 /* CoreData.swift in Sources */,
+				A317607229E03CA000535AA6 /* ProfileViewModelInput.swift in Sources */,
 				A32B735C29C9DB1F0076DBE4 /* UIImageView+loadImage.swift in Sources */,
 				A36D73F929C857CE00D0AB24 /* MainPageViewModel.swift in Sources */,
 				A33F493229C488C3004A9FF1 /* TabBarCoordinator.swift in Sources */,
+				A317606C29E03BF700535AA6 /* AuthorizationViewModelOutput.swift in Sources */,
 				A32B736529C9EF990076DBE4 /* LatestView.swift in Sources */,
+				A34697B929E40AF0000D1161 /* UIViewController+HidingKeyboard.swift in Sources */,
 				A3958EBE29BB5B300080541E /* TestApp.xcdatamodeld in Sources */,
 				A33F492F29C4766B004A9FF1 /* ProfileViewModel.swift in Sources */,
 				A32B736E29CA527F0076DBE4 /* BrandsCell.swift in Sources */,
@@ -441,13 +476,17 @@
 				A33C591429BF244D009A74F9 /* RegistrationViewModel.swift in Sources */,
 				A317A4DF29C4FA6700E665C5 /* TabBarDelegate.swift in Sources */,
 				A32B736A29CA27340076DBE4 /* FlashSaleCell.swift in Sources */,
+				A317606829E03BAB00535AA6 /* RegistrationViewModelOutput.swift in Sources */,
 				A32023EA29C1E80E00230214 /* LogInAndSignInButton.swift in Sources */,
+				A3FFD1E429E1477B00C99C31 /* RequestStructures.swift in Sources */,
 				A32B735F29C9E7E40076DBE4 /* CategoriesCell.swift in Sources */,
+				A317606A29E03BDE00535AA6 /* AuthorizationViewModelInput.swift in Sources */,
 				A32B736C29CA27B20076DBE4 /* FlashSaleView.swift in Sources */,
 				A369BFA529C36D4A00D980F1 /* UploadItemButton.swift in Sources */,
 				A319FBBA29BC669300B868BE /* AuthorizationViewController.swift in Sources */,
 				A32023E529C1DEC000230214 /* LoginStorage.swift in Sources */,
 				A319FBBC29BC992700B868BE /* RegistrationViewController.swift in Sources */,
+				A317607429E03CE700535AA6 /* ProfileViewModelOutput.swift in Sources */,
 				A32023E129C0729400230214 /* AuthorizationCoordinator.swift in Sources */,
 				A32023F329C1EC9D00230214 /* ModelCoreData.xcdatamodeld in Sources */,
 				A38E661329C326E400D2D0BC /* ProfileCoordinator.swift in Sources */,
@@ -457,6 +496,7 @@
 				A32023F629C1EEF300230214 /* User+CoreDataClass.swift in Sources */,
 				A32023EC29C1E84800230214 /* UIFont+CustomFont .swift in Sources */,
 				A32B736129C9E82B0076DBE4 /* SearchCell.swift in Sources */,
+				A317607029E03C6300535AA6 /* MainPageViewModelOutput.swift in Sources */,
 				A369BFA729C383C300D980F1 /* SectionView.swift in Sources */,
 				A33F493E29C49D97004A9FF1 /* TabBarViewController.swift in Sources */,
 				A3958EB629BB5B300080541E /* SceneDelegate.swift in Sources */,

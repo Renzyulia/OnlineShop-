@@ -10,20 +10,6 @@ import RxSwift
 import RxCocoa
 import CoreData
 
-struct RegistrationViewModelInput {
-    var signInClick: Observable<Void>
-    var firstName: Observable<String>
-    var lastName: Observable<String>
-    var email: Observable<String>
-}
-
-struct RegistrationViewModelOutput {
-    var shouldShowInvalidEmailError: Driver<Void>
-    var shouldShowExistingLoginError: Driver<Bool>
-    var registrationIsCompleted: Driver<Void>
-    var shouldShowSavingError: Driver<Void>
-}
-
 final class RegistrationViewModel {
     
     private struct FullName {

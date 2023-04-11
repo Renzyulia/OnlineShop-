@@ -34,6 +34,8 @@ final class AuthorizationViewController: UIViewController {
         
         view.backgroundColor = UIColor(named: "BackgroundColor")
         
+//        addTapGestureToHideKeyboard()
+        
         configureLabel()
         configureNameTF()
         configurePasswordTF()
@@ -78,7 +80,7 @@ final class AuthorizationViewController: UIViewController {
         welcomeLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             welcomeLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 158.71),
-            welcomeLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 90.05)
+            welcomeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
     
@@ -89,7 +91,7 @@ final class AuthorizationViewController: UIViewController {
         NSLayoutConstraint.activate([
             nameTextField.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 80.82),
             nameTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 44),
-            nameTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 42)
+            nameTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -42)
         ])
     }
     
@@ -100,7 +102,7 @@ final class AuthorizationViewController: UIViewController {
         NSLayoutConstraint.activate([
             passwordTextField.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 35),
             passwordTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 44),
-            passwordTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 42)
+            passwordTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -42)
         ])
     }
     
@@ -110,7 +112,8 @@ final class AuthorizationViewController: UIViewController {
         loginButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             loginButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 99),
-            loginButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 47)
+            loginButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 47),
+            loginButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -47)
         ])
     }
     

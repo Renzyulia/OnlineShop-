@@ -101,7 +101,7 @@ final class MainPageViewController: UIViewController {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: navigationBar.topAnchor, constant: 10),
-            titleLabel.leftAnchor.constraint(equalTo: navigationBar.leftAnchor, constant: 102)
+            titleLabel.centerXAnchor.constraint(equalTo: navigationBar.centerXAnchor)
         ])
         
 // MARK: - configure rightLabel

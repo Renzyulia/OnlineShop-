@@ -40,9 +40,8 @@ final class LoginAndSignInButton: UIControl {
         label.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             label.topAnchor.constraint(equalTo: topAnchor, constant: 16.98),
-            label.leftAnchor.constraint(equalTo: leftAnchor, constant: 126.05),
             label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -15.17),
-            label.rightAnchor.constraint(equalTo: rightAnchor, constant: -125.63)
+            label.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
     }
 }

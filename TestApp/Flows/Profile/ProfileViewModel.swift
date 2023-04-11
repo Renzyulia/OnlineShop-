@@ -4,23 +4,10 @@
 //
 //  Created by Yulia Ignateva on 17.03.2023.
 //
-
 import UIKit
 import RxSwift
 import RxCocoa
 import CoreData
-
-struct ProfileViewModelInput {
-    var logOutClick: Observable<Void>
-    var viewWillAppear: Observable<Void>
-    var changePhotoClick: Observable<UIImage>
-}
-
-struct ProfileViewModelOutput {
-    var logOutCompleted: Driver<Void>
-    var photoProfile: Driver<UIImage?>
-    var photoProfileChanged: Driver<UIImage>
-}
 
 final class ProfileViewModel {
     
@@ -111,7 +98,6 @@ final class ProfileViewModel {
                 }
             }
         }
-        
         return false
     }
 }
