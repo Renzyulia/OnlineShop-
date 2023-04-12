@@ -44,7 +44,7 @@ final class RegistrationViewController: UIViewController {
         
         view.backgroundColor = UIColor(named: "BackgroundColor")
         
-//        addTapGestureToHideKeyboard()
+        addTapGestureToHideKeyboard()
         
         configureScrollView()
         configureSignInLabel()
@@ -55,8 +55,9 @@ final class RegistrationViewController: UIViewController {
         configureSignInButton()
         configureHaveAccountLabel()
         configureLogInButton()
-        configureSignInGoogleButton()
-        configureSignInAppleButton()
+        configureStack()
+//        configureSignInGoogleButton()
+//        configureSignInAppleButton()
         configureInvalidEmailLabel()
         configureDuplicateAccountLabel()
         
@@ -226,24 +227,23 @@ final class RegistrationViewController: UIViewController {
         didFinishRegistrationBlock?(nil)
     }
     
-    private func configureSignInGoogleButton() {
-        contentView.addSubview(signInWithGoogleButton)
+    private func configureStack() {
+        let stack = UIStackView()
+        stack.alignment = .leading
+        stack.axis = .vertical
+        stack.spacing = 39
         
-        signInWithGoogleButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            signInWithGoogleButton.topAnchor.constraint(equalTo: signInButton.bottomAnchor, constant: 109.92),
-            signInWithGoogleButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
-        ])
-    }
-    
-    private func configureSignInAppleButton() {
-        contentView.addSubview(signInWithAppleButton)
+        stack.addArrangedSubview(signInWithGoogleButton)
+        stack.addArrangedSubview(signInWithAppleButton)
         
-        signInWithAppleButton.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(stack)
+        
+        stack.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            signInWithAppleButton.topAnchor.constraint(equalTo: signInWithGoogleButton.bottomAnchor, constant: 38.73),
-            signInWithAppleButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            signInWithAppleButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            stack.widthAnchor.constraint(lessThanOrEqualTo: contentView.widthAnchor, constant: 84),
+            stack.topAnchor.constraint(equalTo: signInButton.bottomAnchor, constant: 109.92),
+            stack.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            stack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -30)
         ])
     }
     

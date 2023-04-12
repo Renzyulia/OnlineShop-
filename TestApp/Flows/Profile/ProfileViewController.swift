@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import Photos
 
 final class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     var profileViewModel: ProfileViewModel
@@ -163,6 +164,7 @@ final class ProfileViewController: UIViewController, UIImagePickerControllerDele
         
         alert.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { [weak self] (action: UIAlertAction) in
             guard let self = self else { return }
+            
             let imagePickerController = UIImagePickerController()
             imagePickerController.delegate = self
             imagePickerController.sourceType = .photoLibrary

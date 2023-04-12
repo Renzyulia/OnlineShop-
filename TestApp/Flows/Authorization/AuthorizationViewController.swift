@@ -34,7 +34,7 @@ final class AuthorizationViewController: UIViewController {
         
         view.backgroundColor = UIColor(named: "BackgroundColor")
         
-//        addTapGestureToHideKeyboard()
+        addTapGestureToHideKeyboard()
         
         configureLabel()
         configureNameTF()
